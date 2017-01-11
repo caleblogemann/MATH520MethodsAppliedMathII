@@ -1,0 +1,72 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[letterpaper, margin=2cm]{geometry}
+\usepackage{MATH520}
+
+\begin{document}
+\noindent \textbf{\Large{Caleb Logemann \\
+MATH 520 Methods of Applied Math II \\
+Homework 1
+}}
+
+\subsection*{Section 10.9}
+\begin{enumerate}
+  \item[\#3]
+    Prove Proposition 10.1.
+    Proposition 10.1 states that if $T$ is bounded on its domain then it has a
+    unique norm preserving extension to $\overline{D(T)}$.
+    That is to say there exists a unique linear operator
+    $S:\overline{D(T)} \subset X \to Y$ such that $Sx = Tx$ for $x \in D(T)$ and
+    $\norm{S} = \norm{T}$.
+
+    \begin{proof}
+      Let $S:\overline{D(T)} \subset X \to Y$ be defined as follows.
+      \[
+        Sx = \lim[n \to \infty]{Tx_n}
+      \]
+      where the sequence $\set{x_n}_{n = 1}^{\infty}$ is any sequence in $D(T)$
+      that converges to $x$.
+      Note that for any $x \in \overline{D(T)}$, $x$ is a limit point of $D(T)$
+      so the sequence $\set{x_n}$ exists.
+      Also since $T$ is bounded it is also continuous, so the limit always
+      exists.
+
+      Next I will show that $S$ is linear.
+      Consider $x_1, x_2 \in \overline{D(T)}$ and $c_1, c_2 \in \CC$.
+      Then there exists sequences in $D(T)$, $\set{a_n}_{n = 1}^{\infty}$ that
+      converges to $x_1$ and $\set{b_n}_{n = 1}^{\infty}$ that converges to
+      $x_2$.
+      Now note that the sequence ${c_1 a_n + c_2 b_n}_{n = 1}^{\infty}$
+      converges to $c_1 x_1 + c_2 x_2$ by the linearity of limits.
+      Therefore
+      \begin{align*}
+        S(c_1 x_1 + c_2 x_2) &= \lim[n \to \infty]{T(c_1 a_n + c_2 b_n)}
+        \intertext{Because $T$ is linear}
+        S(c_1 x_1 + c_2 x_2) &= \lim[n \to \infty]{c_1 T(a_n) + c_2 T(b_n)}
+        \intertext{By the linearity of limits}
+        S(c_1 x_1 + c_2 x_2) &= c_1 \lim[n \to \infty]{T(a_n)} + c_2 \lim[n \to \infty]{T(b_n)} \\
+        S(c_1 x_1 + c_2 x_2) &= c_1 S(x_1) + c_2 S(x_2)
+      \end{align*}
+      This shows that $S$ is a linear operator.
+
+      Next I will show that $Sx = Tx$ for $x \in D(T)$.
+      Let $\set{x_n}_{n = 1}^{\infty}$ converge to $x$ in $D(T)$, then because
+      $T$ is continuous, $\lim[n \to \infty]{T(x_n)} = T(x)$.
+      Therefore $Sx = Tx$.
+
+      Lastly I will show that $\norm{S} = \norm{T}$.
+      Consider the following.
+      \begin{align*}
+        \norm{S} &= \sup*[x \in \overline{D(T)}]{\frac{\norm[Y]{Sx}}{\norm[X]{x}} \\
+      \end{align*}
+    \end{proof}
+
+  \pagebreak
+  \item[\#6]
+    Show that a linear operator $T:\CC^N \to \CC^M$ is always bounded for
+    any choice of norms on $\CC^N$ and $\CC^M$.
+
+    \begin{proof}
+      
+    \end{proof}
+\end{enumerate}
+\end{document}
