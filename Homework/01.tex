@@ -66,7 +66,42 @@ Homework 1
     any choice of norms on $\CC^N$ and $\CC^M$.
 
     \begin{proof}
-      
+      Let $T:\CC^N \to \CC^M$ be a linear operator.
+      It is known that any linear operator from $\CC^N \to \CC^M$ can be
+      expressed as a matrix multiplication, that is there exists matrix
+      $A \in \CC^{m \times n}$ such that $Tx = Ax$ for every $x \in \CC^N$.
+      It is well known that for finite dimensional vector spaces any two norms
+      are equivalently.
+      More precisely let $\norm[1]{\cdot}$ and $\norm[2]{\cdot}$ be norms on a
+      finite dimensional vector space, then there exists constants $C_1$ and $C_2$ such
+      that
+      \[
+        0 < C_1 \le \frac{\norm[1]{x}}{\norm[2]{x}} \le C_2 < \infty
+      \]
+      for any nonzero $x$ in the vector space.
+      Since both $N$ and $M$ are finite, norms on $\CC^N$ are equivalent
+      and norms on $\CC^M$ are equivalent.
+      Therefore I will let $\norm[N]{\cdot}$ represent any norm on $\CC^N$ and
+      $\norm[M]{\cdot}$ represent any norm on $\CC^M$.
+    \end{proof}
+
+  \pagebreak
+  \item[\#7]
+    If $T, T^{-1} \in \mcB(\v{H})$ show that $\p{T^*}^{-1} \in \mcB(\v{H}$ and
+    $\p{T^*}^{-1} = \p{T^{-1}}^*$.
+
+    \begin{proof}
+      Let $\v{H}$ be a Hilbert Space and let $T \in \mcB(\v{H})$ with 
+    \end{proof}
+
+  \pagebreak
+  \item[\#14]
+    If $T \in \mcB(\v{H})$ show that $T^*$ restricted to $R(T)$ is one-to-one.
+
+    \begin{proof}
+      Let $\v{H}$ be a Hilbert space and let $T \in \mcB(\v{H})$.
+      Consider $T^*$ restricted to $R(T)$.
+      In other words let $S = T^*$ where $D(S) = R(T)$.
     \end{proof}
 \end{enumerate}
 \end{document}
