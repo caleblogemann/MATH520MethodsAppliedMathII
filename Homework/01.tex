@@ -56,7 +56,7 @@ Homework 1
       Lastly I will show that $\norm{S} = \norm{T}$.
       Consider the following.
       \begin{align*}
-        \norm{S} &= \sup*[x \in \overline{D(T)}]{\frac{\norm[Y]{Sx}}{\norm[X]{x}} \\
+        \norm{S} &= \sup*[x \in \overline{D(T)}]{\frac{\norm[Y]{Sx}}{\norm[X]{x}}} \\
       \end{align*}
     \end{proof}
 
@@ -101,7 +101,12 @@ Homework 1
     \begin{proof}
       Let $\v{H}$ be a Hilbert space and let $T \in \mcB(\v{H})$.
       Consider $T^*$ restricted to $R(T)$.
-      In other words let $S = T^*$ where $D(S) = R(T)$.
+      In other words let $S$ be a linear function such that $D(S) = R(T)$ and
+      $Sx = T^*x$ for every $x \in D(S)$.
+      Let $x, y \in D(S) = R(T)$ such that $Sx = Sy$.
+      Since $S$ is linear this is equivalent to $S(x - y) = 0$, which implies
+      that $x - y \in N(S)$.
+      Note that $N(S) \subseteq N(T^*)$, so $x - y \in N(T^*)$.
     \end{proof}
 \end{enumerate}
 \end{document}
