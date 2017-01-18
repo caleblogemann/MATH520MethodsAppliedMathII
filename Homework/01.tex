@@ -87,7 +87,7 @@ Homework 1
 
   \pagebreak
   \item[\#7]
-    If $T, T^{-1} \in \mcB(\v{H})$ show that $\p{T^*}^{-1} \in \mcB(\v{H}$ and
+    If $T, T^{-1} \in \mcB(\v{H})$ show that $\p{T^*}^{-1} \in \mcB(\v{H})$ and
     $\p{T^*}^{-1} = \p{T^{-1}}^*$.
 
     \begin{proof}
@@ -95,7 +95,7 @@ Homework 1
     \end{proof}
 
   \pagebreak
-  \item[\#14]
+  \item[\#14] % Done
     If $T \in \mcB(\v{H})$ show that $T^*$ restricted to $R(T)$ is one-to-one.
 
     \begin{proof}
@@ -107,6 +107,23 @@ Homework 1
       Since $S$ is linear this is equivalent to $S(x - y) = 0$, which implies
       that $x - y \in N(S)$.
       Note that $N(S) \subseteq N(T^*)$, so $x - y \in N(T^*)$.
+      Also note that $R(T)$ is a subspace of $\v{H}$ so that $x - y \in R(T)$.
+      It has already been stated that $R(T) \subset N(T^*)^{\perp}$, which
+      implies that $x - y \in N(T^*)^{\perp}$.
+      Since $x - y \in N(T^*)^{\perp}$ and $x - y \in N(T^*)$, $x - y$ must be
+      orthogonal to itself.
+      \begin{align*}
+        \abr{x - y, x - y} &= 0 \\
+        \norm{x - y}^2 &= 0 \\
+        \norm{x - y} &= 0 \\
+        x - y &= 0 \\
+        x &= y
+      \end{align*}
+      This follows since the only element of $\v{H}$ with norm $0$ is the zero
+      element.
+      This shows that when $Sx = Sy$ then $x = y$.
+      Therefore $S$ is one to one or $T^*$ is one to one when restricted to the
+      range of $T$.
     \end{proof}
 \end{enumerate}
 \end{document}
