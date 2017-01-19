@@ -10,7 +10,7 @@ Homework 1
 
 \subsection*{Section 10.9}
 \begin{enumerate}
-  \item[\#3]
+  \item[\#3] % Done
     Prove Proposition 10.1.
     Proposition 10.1 states that if $T$ is bounded on its domain then it has a
     unique norm preserving extension to $\overline{D(T)}$.
@@ -53,15 +53,44 @@ Homework 1
       $T$ is continuous, $\lim[n \to \infty]{T(x_n)} = T(x)$.
       Therefore $Sx = Tx$.
 
-      Lastly I will show that $\norm{S} = \norm{T}$.
-      Consider the following.
+      Now I will show that $\norm{S} = \norm{T}$.
+      Consider the following, note that supremums are taken excluding the zero
+      vector.
       \begin{align*}
         \norm{S} &= \sup*[x \in \overline{D(T)}]{\frac{\norm[Y]{Sx}}{\norm[X]{x}}} \\
+         &= \sup*[x \in \overline{D(T)}]{\frac{\norm[Y]{\lim[n \to \infty]{Tx_n}}}{\norm[X]{x}}} \\
+         &= \sup*[x \in \overline{D(T)}]{\frac{\lim[n \to \infty]{\norm[Y]{Tx_n}}}{\norm[X]{x}}} \\
+         &\le \sup*[x \in \overline{D(T)}]{\frac{\lim[n \to \infty]{\norm{T}\norm[X]{x_n}}}{\norm[X]{x}}} \\
+         &= \sup*[x \in \overline{D(T)}]{\frac{\norm{T}\norm[X]{x}}{\norm[X]{x}}} \\
+         &= \sup*[x \in \overline{D(T)}]{\norm{T}} \\
+         &= \norm{T} \\
       \end{align*}
+      Therefore $\norm{S} \le \norm{T}$.
+      Also $D(T) \subset \overline{D(T)}$, therefore
+      \begin{align*}
+        \norm{S} &= \sup*[x \in \overline{D(T)}]{\frac{\norm[Y]{Sx}}{\norm[X]{x}}} \\
+        &\ge \sup*[x \in D(T)]{\frac{\norm[Y]{Sx}}{\norm[X]{x}}} \\
+        &= \sup*[x \in D(T)]{\frac{\norm[Y]{Tx}}{\norm[X]{x}}} \\
+        &= \norm{T}
+      \end{align*}
+      Therefore $\norm{S} \ge \norm{T}$, and both of these inequalities imply
+      that $\norm{S} = \norm{T}$.
+
+      Finally note that this extension is unique suppose that there exists some
+      other extension $S'$ with the same properties.
+      Consider $x \in \overline{D(T)}$, then there exists some sequence
+      $\set{x_n}_{n = 1}^{\infty} \in D(T)$ that converges to $x$.
+      Now consider $S'x$ since $S'$ is linear and bounded it is continuous,
+      so
+      \[
+        S'x = \lim[n \to \infty]{S'x_n} = \lim[n \to \infty]{Tx_n} = Sx
+      \]
+      because $S'x = Tx$ for $x \in D(T)$.
+      Therefore the extension is unique.
     \end{proof}
 
   \pagebreak
-  \item[\#6]
+  \item[\#6] % Done
     Show that a linear operator $T:\CC^N \to \CC^M$ is always bounded for
     any choice of norms on $\CC^N$ and $\CC^M$.
 
@@ -70,28 +99,83 @@ Homework 1
       It is known that any linear operator from $\CC^N \to \CC^M$ can be
       expressed as a matrix multiplication, that is there exists matrix
       $A \in \CC^{m \times n}$ such that $Tx = Ax$ for every $x \in \CC^N$.
-      It is well known that for finite dimensional vector spaces any two norms
-      are equivalently.
-      More precisely let $\norm[1]{\cdot}$ and $\norm[2]{\cdot}$ be norms on a
-      finite dimensional vector space, then there exists constants $C_1$ and $C_2$ such
-      that
+      %It is well known that for finite dimensional vector spaces any two norms
+      %are equivalently.
+      %More precisely let $\norm[1]{\cdot}$ and $\norm[2]{\cdot}$ be norms on a
+      %finite dimensional vector space, then there exists constants $C_1$ and $C_2$ such
+      %that
+      %\[
+        %0 < C_1 \le \frac{\norm[1]{x}}{\norm[2]{x}} \le C_2 < \infty
+      %\]
+      %for any nonzero $x$ in the vector space.
+      %Since both $N$ and $M$ are finite, norms on $\CC^N$ are equivalent
+      %and norms on $\CC^M$ are equivalent.
+      %Therefore I will let $\norm[N]{\cdot}$ represent any norm on $\CC^N$ and
+      %$\norm[M]{\cdot}$ represent any norm on $\CC^M$.
+
+      Consider the alternative definition of the norm of an operator
       \[
-        0 < C_1 \le \frac{\norm[1]{x}}{\norm[2]{x}} \le C_2 < \infty
+        \norm{T} = \sup[\norm{x} = 1]{\norm{Tx}}
       \]
-      for any nonzero $x$ in the vector space.
-      Since both $N$ and $M$ are finite, norms on $\CC^N$ are equivalent
-      and norms on $\CC^M$ are equivalent.
-      Therefore I will let $\norm[N]{\cdot}$ represent any norm on $\CC^N$ and
-      $\norm[M]{\cdot}$ represent any norm on $\CC^M$.
+      I will let $S = \set{x \in \CC^N: \norm{x} = 1}$, which is commonly known as the
+      unit sphere of the vector space.
+      It is well known that the unit sphere of a finite dimensional vector space
+      is a compact set and this is true for any norm chosen on that space.
+      It is also well known that a continous function is bounded on every compact
+      set.
+      Since any norm on $\CC^M$ is continuous, the value of $\norm{Ax}$ is bounded
+      for any $x \in S$.
+      This implies that
+      \[
+        \norm{T} = \sup[x \in S]{\norm{Tx}} = \sup[x \in S]{\norm{Ax}} < \infty
+      \]
+      Therefore the $T$ is bounded for any choice of norms on $\CC^N$ and $\CC^M$.
     \end{proof}
 
   \pagebreak
-  \item[\#7]
+  \item[\#7] % Done
     If $T, T^{-1} \in \mcB(\v{H})$ show that $\p{T^*}^{-1} \in \mcB(\v{H})$ and
     $\p{T^*}^{-1} = \p{T^{-1}}^*$.
 
     \begin{proof}
-      Let $\v{H}$ be a Hilbert Space and let $T \in \mcB(\v{H})$ with 
+      Let $\v{H}$ be a Hilbert Space and let $T, T^{-1} \in \mcB(\v{H})$.
+      Since $T \in \mcB(\v{H})$ this implies that there exists a unique linear
+      operator $T^* \in \mcB(\v{H})$ such that $\abr{Tu, v} = \abs{u, T^*v}$ for
+      all $u, v \in \v{H}$.
+      First I will show that $T^*$ is one-to-one so that $\p{T^*}^{-1}$ exists.
+      Consider $x, y \in \v{H}$ such that $T^*x = T^*y$ or equivalently
+      $T^*(x - y) = 0$.
+      Now consider any $u \in \v{H}$.
+      \[
+        0 = \abr{u, T^*(x - y)} = \abr{Tu, x - y}
+      \]
+      Since $\abr{Tu, x - y} = 0$ for any $u \in \v{H}$ this implies that
+      $x - y = 0$ or $x = y$.
+      Therefore $T^*$ is one-to-one and $\p{T^*}^{-1}$ exists.
+      Secondly I will show that $\p{T^*}^{-1} = \p{T^{-1}}^*$.
+      Consider the identity operator $I$ which is defined as $Ix = x$ for all
+      $x \in \v{H}$.
+      Note that $T^{-1}T = I$.
+      Also note that $I^* = I$ because $I \in \mcB(\v{H})$ and
+      \[
+        \abr{Iu, v} = \abr{u, v} = \abr{u, Iv}
+      \]
+      for all $u, v \in \v{H}$.
+      This implies that $\p{T^{-1}T}^* = I$ or equivalently $T^* \p{T^{-1}}^* = I$
+      because $T, T^{-1} \in \mcB(\v{H})$.
+      Now consider any $x \in \mcB(\v{H})$
+      \begin{align*}
+        x &= T^* \p{T^{-1}}^* x \\
+        \p{T^*}^{-1} x &= \p{T^{-1}}^* x
+      \end{align*}
+      This is because $\p{T^*}^{-1}$ is defined for any $x \in \v{H}$.
+      Since this is true for any $x$, this implies that
+      $\p{T^*}^{-1} = \p{T^{-1}}^*$.
+      Now it is easy to see that since $\norm{T} = \norm{T^*}$ this implies that
+      $\norm{\p{T^*}^{-1}} = \norm{T^{-1}} < \infty$.
+      Also since $\p{T^*}^{-1} = \p{T^{-1}}^*$, this implies that $\p{T^*}^{-1}$
+      is linear.
+      Therefore $\p{T^*}^{-1} \in \mcB(\v{H})$.
     \end{proof}
 
   \pagebreak
