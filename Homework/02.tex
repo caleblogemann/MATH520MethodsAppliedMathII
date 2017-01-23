@@ -1,0 +1,60 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[letterpaper, margin=2cm]{geometry}
+\usepackage{MATH520}
+
+\begin{document}
+\noindent \textbf{\Large{Caleb Logemann \\
+MATH 520 Methods of Applied Math II \\
+Homework 2
+}}
+
+\subsection*{Section 10.9}
+\begin{enumerate}
+  \item[\#10]
+    Let $S_+$ and $S_-$ be the left and right shift operators on $\mcl^2$.
+    Show that $S_- = S_+^*$ and $S_+=S_-^*$.
+
+    \begin{proof}
+      
+    \end{proof}
+
+  \pagebreak
+  \item[\#11]
+    Let $T$ be the Volterra integral operator $Tu = \dintt{0}{x}{u(y)}{y}$
+    considered as an operator on $L^2(0, 1)$.
+    Find $T^*$ and $N(T^*)$.
+
+  \pagebreak
+  \item[\#12]
+    Suppose $T \in \mcB(\v{H})$ is self-adjoint and there exists a constant
+    $c > 0$ such that $\norm{Tu} \ge c \norm{u}$ for all $u \in \v{H}$.
+    Show that there exists a solution of $Tu = f$ for all $f \in \v{H}$.
+    Show by example that the conclusion may be false if the assumption of
+    self-adjointedness is removed.
+
+    \begin{proof}
+      
+
+      This conclusion may be false if that operator is not self-adjoint.
+      Consider the operator $S_+$ on $\mcl^2$.
+      We have already shown that $S_+^* = S_-$ so $S_+$ is not self-adjoint.
+      However $\norm{S_+x} = \norm{x}$ for all $x \in \mcl^2$, so with $c = 1$
+      $S_+$ satisfies $\norm{S_+ x} \ge c \norm{x}$ for all $x \in \mcl^2$.
+      However $R(S_+) = \set{x \in \mcl^2 : x_1 = 0}$, so $S_+ u = x$ will not
+      have a solution if $x_1 \neq 0$.
+    \end{proof}
+
+  \pagebreak
+  \item[\#13]
+    Let $M$ be the multiplication operator $Mu(x) = xu(x)$ in $L^2(0, 1)$.
+    Show that $R(M)$ is dense but not closed.
+
+  \pagebreak
+  \item[\#15]
+    An operator $T \in \mcB(\v{H})$ is said to be normal if it commutes with
+    its adjoint, i.e. $TT^* = T^*T$.
+
+  \pagebreak
+  \item[\#19]
+\end{enumerate}
+\end{document}
