@@ -10,19 +10,64 @@ Homework 2
 
 \subsection*{Section 10.9}
 \begin{enumerate}
-  \item[\#10]
+  \item[\#10] % Done
     Let $S_+$ and $S_-$ be the left and right shift operators on $\mcl^2$.
     Show that $S_- = S_+^*$ and $S_+=S_-^*$.
 
     \begin{proof}
-      
+      Both $S_+$ and $S_-$ are in $\mcB(\mcl^2)$ therefore they both have unique
+      adjoints.
+      Consider $x, y \in \mcl^2$, then
+      \begin{align*}
+        \abr{S_+ x, y} &= \sum{n = 1}{\infty}{\p{S_+ x}_n \cdot \overline{y_n}} \\
+                       &= \sum{n = 2}{\infty}{x_{n - 1} \cdot \overline{y_n}} \\
+                       &= \sum{n = 1}{\infty}{x_{n} \cdot \overline{y_{n+1}}} \\
+                       &= \sum{n = 1}{\infty}{x_{n} \cdot \overline{\p{S_- y}_n}} \\
+                       &= \abr{x, S_- y}
+      \end{align*}
+      This shows that $S_+^* = S_-$.
+      Now since $S_+, S_- \in \mcB(\mcl^2)$ it is true that $\p{S_+^*}^* = S_+$
+      or $S_-^* = S_+$.
     \end{proof}
 
   \pagebreak
-  \item[\#11]
+  \item[\#11] % Done
     Let $T$ be the Volterra integral operator $Tu = \dintt{0}{x}{u(y)}{y}$
     considered as an operator on $L^2(0, 1)$.
     Find $T^*$ and $N(T^*)$.
+
+    Consider $u, v \in L^2(0, 1)$.
+    \begin{align*}
+      \abr{Tu, v} &= \dintt{0}{1}{Tu(x) \overline{v(x)}}{x} \\
+                  &= \dintt{0}{1}{\dintt{0}{x}{u(y)}{y} \overline{v(x)}}{x} \\
+                  &= \dintt{0}{1}{\dintt{y}{1}{\overline{v(x)}}{x} u(y)}{y} \\
+                  &= \dintt{0}{1}{\overline{\dintt{y}{1}{v(x)}{x}} u(y)}{y} \\
+                  &= \abr{u, T^* v}
+    \end{align*}
+    where
+    \[
+      T^* v(y) = \dintt{y}{1}{v(x)}{x}
+    \]
+    Since $T \in \mcB(L^2(0, 1))$ this is the unique adjoint of $T$.
+
+    In order to find $N(T^*)$ consider $u \in L^2(0, 1)$ such that
+    \[
+      T^* u = 0
+    \]
+    This implies that
+    \[
+      T^* v(y) = \dintt{y}{1}{v(x)}{x} = 0
+    \]
+    for every $y \in (0, 1)$.
+    Using the Fundamental Theorem of Calculus for $L^2$ functions it can be seen
+    that
+    \[
+      0 &= -v(y) + v(1)
+    \]
+    This implies that $v(y) = v(1)$ for every $y \in (0, 1)$ or equivalently
+    that $v$ is a constant function.
+    Therefore the
+    $N(T^*) = \set{v \in L^2(0, 1): v = c \text{ for some } c \in \RR}$.
 
   \pagebreak
   \item[\#12]
@@ -33,7 +78,7 @@ Homework 2
     self-adjointedness is removed.
 
     \begin{proof}
-      
+
 
       This conclusion may be false if that operator is not self-adjoint.
       Consider the operator $S_+$ on $\mcl^2$.
@@ -53,8 +98,46 @@ Homework 2
   \item[\#15]
     An operator $T \in \mcB(\v{H})$ is said to be normal if it commutes with
     its adjoint, i.e. $TT^* = T^*T$.
+    Thus, for example, any sefl-adjoint, skey-adjoint, or unitary operator is
+    normal.
+    For a normal operator $T$ show that
+    \begin{enumerate}
+      \item[(a)] % Done
+        $\norm{Tu} = \norm{T^*u}$ for every $u \in \v{H}$.
+
+        \begin{proof}
+          Let $u \in \v{H}$ and consider the following.
+          \begin{align*}
+            \norm{Tu}^2 &= \abr{Tu, Tu} \\
+                        &= \abr{u, T^* T u} \\
+                        &= \abr{u, T T^* u} \\
+                        &= \abr{u, \p{T^*}^* T^* u} \\
+                        &= \abr{T^*u, T^* u} \\
+                        &= \norm{T^* u}^2
+          \end{align*}
+          Therefore $\norm{Tu} = \norm{T^* u}$ for every $u \in \v{H}$.
+        \end{proof}
+
+      \item[(b)]
+        T is one to one if and only if it has dense range.
+
+        \begin{proof}
+          
+        \end{proof}
+
+      \item[(c)]
+        Show that any multiplication operator or Fourier multiplication
+        operator is normal in $L^2$.
+
+      \item[(b)]
+        Show that the shift operators $S_+$ and $S_-$ are not normal in $\mcl^2$.
+
+    \end{enumerate}
 
   \pagebreak
   \item[\#19]
+    If $T_n \in \mcB(X)$ and $\sum{n = 1}{\infty}{\norm{T_n}} < \infty$, show
+    that the series $\sum{n = 1}{\infty}{T_n}$ is uniformly convergent.
+
 \end{enumerate}
 \end{document}
