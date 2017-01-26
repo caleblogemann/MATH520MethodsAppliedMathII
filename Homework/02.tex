@@ -70,7 +70,7 @@ Homework 2
     $N(T^*) = \set{v \in L^2(0, 1): v = c \text{ for some } c \in \RR}$.
 
   \pagebreak
-  \item[\#12]
+  \item[\#12] % Done
     Suppose $T \in \mcB(\v{H})$ is self-adjoint and there exists a constant
     $c > 0$ such that $\norm{Tu} \ge c \norm{u}$ for all $u \in \v{H}$.
     Show that there exists a solution of $Tu = f$ for all $f \in \v{H}$.
@@ -78,7 +78,37 @@ Homework 2
     self-adjointedness is removed.
 
     \begin{proof}
+      First note that $N(T) = \set{0}$.
+      Assume that $u \in N(T)$, then $\norm{u} \le \frac{\norm{Tu}}{c} = 0$.
+      Since $\norm{u} = 0$, this implies that $u = 0$.
+      Also since $T$ is self-adjoint, $N(T^*) = \set{0}$.
+      This implies by Proposition 10.3 that
+      $\overline{R(T)} = \v{H} = \set{0}^{\perp}$.
+      Therefore the range of $T$ is dense in $\v{H}$, and thus if we can show
+      that the range is in fact closed then $Tu = f$ will have a solution for
+      all $f \in \v{H}$.
 
+      In order to show that $R(T)$ is closed I will first consider $T^{-1}$.
+      Since $N(T) = \set{0}$ this inverse is well defined for all $u \in R(T)$.
+      Consider some sequence $u_n \in \R(T)$ such that $u_n \to 0$ as
+      $n \to \infty$.
+      Now consider the sequence $v_n = T^{-1}u_n$.
+      Using the property that $\norm{Tu} \ge c \norm{u}$, it can be seen that
+      \[
+        \norm{v_n} \le \frac{\norm{Tv_n}}{c} = \frac{\norm{u_n}}{c}
+      \]
+      Therefore $\lim[n \to \infty]{\norm{v_n}} = 0$ or equivalently
+      $T^{-1}u_n \to 0$, this shows that $T^{-1}$ is continous at $0$.
+      Also $T^{-1}$ is bounded because $\frac{\norm{T^{-1}u}}{\norm{u}} \le \frac{1}{c}$
+      for all $u \in R(T)$.
+      Since $T^{-1}$ is bounded and continous at 0, $T^{-1}$ is continous
+      everywhere.
+      Now it is known that continuity implies that for $F \subset \v{H}$ closed
+      $\p{T^{-1}}^{-1}(F)$ is also closed.
+      Since $\p{T^{-1}}^{-1} = T$ and $\v{H}$ is closed when considered as a
+      subset of itself, this implies that $T(\v{H}) = R(T)$ is closed.
+      Now that we have shown that $R(T)$ is closed and dense, this implies
+      that $R(T) = \v{H}$.
 
       This conclusion may be false if that operator is not self-adjoint.
       Consider the operator $S_+$ on $\mcl^2$.
@@ -90,7 +120,7 @@ Homework 2
     \end{proof}
 
   \pagebreak
-  \item[\#13]
+  \item[\#13] % Done
     Let $M$ be the multiplication operator $Mu(x) = xu(x)$ in $L^2(0, 1)$.
     Show that $R(M)$ is dense but not closed.
 
@@ -152,6 +182,16 @@ Homework 2
       Therefore $Mu_n \to 1$ in $L^2(0, 1)$.
       Lastly I will show that $1 \not\in R(M)$ in order to show that $R(M)$ is
       not closed.
+      If $1 \in R(M)$ then there exists $u \in L^2(0, 1)$ such that $xu(x) = 1$.
+      This would imply that $u(x) = \frac{1}{x}$, however $\frac{1}{x}$ is not
+      in $L^2(0, 1)$.
+      To verify this consider the following.
+      \begin{align*}
+        \dintt{0}{1}{\abs{x^{-1}}^2}{x} &= \dintt{0}{1}{x^{-2}}{x} \\
+        &= \eval{-x^{-1}}{x = 0}{1} \\
+        &= -1 + \infty = \infty
+      \end{align*}
+      This shows that $x^{-1}$ is not in $L^2(0, 1)$.
     \end{proof}
 
   \pagebreak
@@ -254,9 +294,24 @@ Homework 2
     \end{enumerate}
 
   \pagebreak
-  \item[\#19]
+  \item[\#19] % Done
     If $T_n \in \mcB(X)$ and $\sum{n = 1}{\infty}{\norm{T_n}} < \infty$, show
     that the series $\sum{n = 1}{\infty}{T_n}$ is uniformly convergent.
+
+    \begin{proof}
+      To show that the series $\sum{n = 1}{\infty}{T_n}$ is uniformly
+      convergent is equivalent to showing that the series of partial sums
+      converges uniformly to the infinite sum.
+      Consider the following
+      \begin{align*}
+        \norm{\sum{n = 1}{\infty}{T_n} - \sum{n = 1}{N - 1}{T_n}} &= \norm{\sum{n = N}{\infty}{T_n}} \\
+        &\le \sum{n = N}{\infty}{\norm{T_n}}
+        \intertext{However since this is part of a convergent sum as $N$ goes to infinity this
+        sum goes to 0, therefore}
+        \lim[N \to \infty]{\norm{\sum{n = 1}{\infty}{T_n} - \sum{n = 1}{N - 1}{T_n}}} = 0
+      \end{align*}
+      This shows that the series $\sum{n = 1}{\infty}{T_n}$ is uniformly convergent.
+    \end{proof}
 
 \end{enumerate}
 \end{document}
