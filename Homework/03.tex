@@ -10,26 +10,127 @@ Homework 3
 
 \subsection*{Section 11.4}
 \begin{enumerate}
-  \item[\#2]
+  \item[\#2] % Done
     Verify that $\v{H} \times \v{H}$ is a Hilbert space with the inner product
     given by (11.1.2), and prove Proposition 11.1.
 
     \begin{proof}
-      
+      First note that the inner product
+      \[
+        \abr{(u_1, v_1), (u_2, v_2)} = \abr{u_1, u_2} + \abr{v_1, v_2}
+      \]
+      satisfies all of the axioms of an inner product.
+
+      Next I will show that $\v{H} \times \v{H}$ is complete under this inner
+      product.
+      Let $x_n = (u_n, v_n)$ be a Cauchy sequence in $\v{H} \times \v{H}$.
+      Let $\epsilon > 0$ be given then there exists $N \in \NN$ such that
+      $\norm{(u_n, v_n) - (u_m, v_m)} < \epsilon$ for all $n, m > N$.
+      This implies that 
+      \begin{align*}
+        \norm{(u_n, v_n) - (u_m, v_m)}^2 &\le \epsilon^2 \\
+        \norm{(u_n - u_m, v_n - v_m)}^2 &\le \epsilon^2 \\
+        \abr{(u_n - u_m, v_n - v_m), (u_n - u_m, v_n - v_m)} &\le \epsilon^2 \\
+        \abr{u_n - u_m, u_n - u_m} + \abr{v_n - v_m, v_n - v_m} &\le \epsilon^2 \\
+        \norm{u_n - u_m}^2 + \norm{v_n - v_m}^2 &\le \epsilon^2
+        \intertext{Since the left had is the sum of nonnegative numbers each term
+          must be less than $\epsilon^2$}
+        \norm{u_n - u_m} &\le \epsilon
+        \norm{v_n - v_m} &\le \epsilon
+      \end{align*}
+      This shows that the sequences $u_n, v_n \in \v{H}$ are both Cauchy.
+      Since $\v{H}$ is complete this implies that these sequences converge.
+      Let $u = \lim[n \to \infty]{u_n}$ and $v = \lim[n \to \infty]{v_n}$.
+      Now consider
+      \begin{align*}
+        \norm{(u_n, v_n) - (u, v)}^2 &= \norm{(u_n - u, v_n - v}^2 \\
+        &= \abr{(u_n - u, v_n - v), (u_n - u, v_n - v)} \\
+        &= \abr{u_n - u, u_n - u} + \abr{v_n - v, v_n - v} \\
+        &= \norm{u_n - u}^2 + \norm{v_n - v}^2
+        \intertext{Now let $n \to \infty$}
+        \lim[n \to \infty]{\norm{(u_n, v_n) - (u, v)}^2} &= \lim[n \to \infty]{\norm{u_n - u}^2 + \norm{v_n - v}^2} \\
+        &= \lim[n \to \infty]{\norm{u_n - u}^2} + \lim[n \to \infty]{\norm{v_n - v}^2} \\
+        \intertext{Since $u_n \to u$ and $v_n \to v$}
+        &= 0 + 0 = 0 \\
+      \end{align*}
+      Thus $(u_n, v_n) \to (u, v)$ as $n \to \infty$.
+      This shows that any Cauchy sequence in $\v{H} \times \v{H}$ converges.
+      Thus $\v{H} \times \v{H}$ is complete and is also a Hilbert space.
+
+      Finally I will prove Proposition 11.1.
+      Let $T:D(T) \subset \v{H} \to \v{H}$ be a closed linear operator.
+      Consider the graph of $T$.
+      Obviously $G(T)$ is a subspace because $T$ is linear.
+      Since $T0 = 0$, this implies that $(0, 0) \in G(T)$.
+      Let $(u_1, v_1), (u_2, v_2) \in G(T)$, then $Tu_1 = v_1$, $Tu_2 = v_2$,
+      and $T(c_1 u_1 + c_2 u_2) = c_1 v_1 + c_2 v_2$ for any scalars $c_1, c_2$.
+      This shows that $c_1(u_1, v_1) + c_2(u_2, v_2) \in G(T)$, and therefore
+      $G(T)$ is a subspace.
+      Now let $(u_n, v_n) \in G(T)$ be a convergent sequence, that is
+      $(u_n, v_n) \to (u, v)$.
+      Since $(u_n, v_n) \in G(T)$ this implies that $u_n \in D(T)$ and
+      $v_n = Tu_n$.
+      Also since $(u_n, v_n) \to (u, v)$ this implies that $u_n \to u$ and
+      $v_n = Tu_n \to v$.
+      Therefore since $T$ is closed this implies that $u \in D(T)$ and $Tu = v$.
+      This shows that $(u, v) \in G(T)$, and thus $G(T)$ is closed.
+
+      Let $T:D(T) \subset \v{H} \to \v{H}$ be a linear operator and let $G(T)$,
+      the graph of $T$, be a closed subspace.
+      Let $u_n \in D(T)$, such that $u_n \to u$ and $Tu_n \to v$.
+      This implies that $(u_n, Tu_n) \in G(T)$ and that $(u_n, Tu_n) \to (u, v)$.
+      Since $G(T)$ is closed this implies that $(u, v) \in G(T)$, and thus
+      $u \in D(T)$ and $Tu = v$.
+      Therefore $T$ is a closed operator.
     \end{proof}
 
   \pagebreak
-  \item[\#5]
+  \item[\#5] % Done
     If $T: D(T) \subset \v{H} \to \v{H}$ is a densely defined linear operator,
     $v \in \v{H}$ and the map $u \to \abr{Tu, v}$ is bounded on $D(T)$, show
     that there exists $v^* \in \v{H}$ such that $(v, v^*)$ is an admissible pair
     for $T^*$.
 
+    \begin{proof}
+      Let $T:D(T) \subset \v{H} \to \v{H}$ be a densely defined linear
+      operator, let $v \in \v{H}$ and let $\phi_v(u) = \abr{Tu, v}$ be a bounded
+      functional on $D(T)$.
+      Note that since $\phi_v(u) = \abr{Tu, v}$ is bounded it is also continous
+      and there exists a continuous extension of $\phi_v$ onto
+      $\overline{D(T)}$ by Proposition 10.1.
+      Let $S:\overline{D(T)} \to \v{H}$ be this continuous extension.
+      Since $T$ is densely defined, $\overline{D(T)} = \v{H}$.
+      Therefore $S \in \mcB(\v{H}, \CC)$ so the Riesz Representation Theorem
+      states that there exists $v^* \in \v{H}$ such that $Su = \abr{u, v^*}$ for
+      all $u \in \v{H}$.
+      Now note that for $u \in D(T)$, $Su = \abr{Tu, v}$ and $Su = \abr{u, v^*}$,
+      therefore $\abr{Tu, v} = \abr{u, v^*}$.
+      This implies that $(v, v^*)$ is an admissable pair for $T^*$.
+    \end{proof}
+
   \pagebreak
-  \item[\#8]
+  \item[\#8] % Done
     Show that if $T$ is self-adjoint and one-to-one then $T^{-1}$ is also
     self-adjoint.
     % Hint All you really need to do is show that T^{-1} is densely defined.
+
+    \begin{proof}
+      Let $T$ be self-adjoint and one-to-one.
+      This implies that $T$ is linear and densely defined as the adjoint of $T$
+      isn't defined for $T$ not linear and densely defined.
+      Also $T = T^*$, and $N(T) = \set{0}$ because $T$ is one-to-one.
+      By Theorem 11.3
+      \[
+        \overline{R(T)} = N(T^*)^{\perp} = N(T)^{\perp} = \set{0}^{\perp} = \v{H}
+      \]
+      This shows that the range of $T$ is dense in $\v{H}$.
+      Since $D(T^{-1}) = R(T)$ this also shows that $T^{-1}$ is densely defined
+      on $\v{H}$.
+      Now since the range of $T$ is dense, Proposition 11.6 implies that
+      $T^*$ is one-to-one and $\p{T^*}^{-1} = \p{T^{-1}}^*$.
+      However since $T$ is self-adjoint this is equivalent to
+      $T^{-1} = \p{T^{-1}}^*$, which states that $T^{-1}$ is self-adjoint.
+    \end{proof}
 
   \pagebreak
   \item[\#11]
@@ -37,13 +138,68 @@ Homework 3
     \begin{enumerate}
       \item[(a)]
         Show that $S + T$ is closed
+
+        \begin{proof}
+          First note that since $S$ is bounded there exists a continuous
+          extension of $S$ onto the closure of its domain, by Proposition 10.1.
+          Also we can assume that $S$ has been replaced by this extension, and
+          therefore $D(S)$ is closed.
+          Now let $u_n \in D(S + T)$ and let $u_n \to u$ and $(S + T)u_n \to v$.
+          This implies that $u_n \in D(S) \cap D(T)$ and that $Su_n + Tu_n \to v$.
+          Since $u_n \in D(S)$ and $D(S)$ is closed, $u \in D(S)$.
+          Also since $S$ is bounded it is continuous, therefore $Su_n \to Su$.
+          Note that
+          \[
+            \lim[n \to \infty]{Su_n + Tu_n} = Su + \lim[n \to \infty]{Tu_n} = v
+          \]
+          Therefore $Tu_n \to v - Su$.
+          Also since $u_n \in D(T)$ and $u_n \to u$ by the closedness of $T$
+          this implies that $u \in D(T)$ and $Tu = v - Su$.
+          Therefore $u \in D(S + T)$ and $Su + Tu = (S + T)u = v$, so $S + T$
+          is closed.
+        \end{proof}
+
       \item[(b)]
         Show that $TS$ is closed, but that $ST$ is not closed, in general.
+
+        \begin{proof}
+          As in part (a) it can be assumed that $S$ is replaced with its unique
+          continuous extension to $\overline{D(S)}$.
+          Let $u_n \in D(TS)$ such that $u_n \to u$ and $TSu_n \to v$.
+          Note that the domain of $TS$ can be expressed as follows.
+          \[
+            D(TS) = \set{x \in D(S): Sx \in D(T)}
+          \]
+          This implies that $u_n \in D(S)$ and since $D(S)$ is closed $u \in D(S)$.
+          Therefore because $S$ is bounded and continous $Su_n \to Su$.
+          Now note that since $Su_n \in D(T)$ and $Su_n \to Su$ and
+          $T(Su_n) \to v$, by the closedness of $T$, $Su \in D(T)$ and $TSu = v$.
+          Therefore $u \in D(TS)$ and $TSu = v$, so $TS$ is closed.
+
+          However the operator $ST$ is not closed in general.
+          Let $\v{H} = L^2(0, 1)$ and consider the closed operator $Tu = u'$ on
+          \[
+            D(T) = \set{u \in H^1(0, 1): u(0) = 0}
+          \]
+          and let $S:\v{H} \to \v{H}$ be the zero operator that is
+          $Su = 0$ for all $u \in \v{H}$.
+          Note that $S$ is clearly bounded.
+        \end{proof}
     \end{enumerate}
 
   \pagebreak
-  \item[\#14]
-    It $T$ is closable, show that $T$ and $\overline{T}$ have the same adjoint.
+  \item[\#14] % Done
+    If $T$ is closable, show that $T$ and $\overline{T}$ have the same adjoint.
+
+    \begin{proof}
+      Since $T$ has an adjoint, $T$ must be densely defined.
+      By Theorem 11.5 this implies that $T^*$ is densely defined and
+      $\overline{T} = T^{**}$.
+      Also since $T^*$ is closed it is also closable so applying Theorem 11.5
+      to $T^*$ implies that $T^{**}$ is densely defined and $\overline{T^*} = T^{***}$.
+      Since $T^*$ is closed $T^* = \overline{T^*}$, so $T^* = T^{***} = \overline{T}^*$.
+      This shows that $T$ and $\overline{T}$ have the same adjoint.
+    \end{proof}
 
 \end{enumerate}
 \end{document}
