@@ -133,7 +133,7 @@ Homework 3
     \end{proof}
 
   \pagebreak
-  \item[\#11]
+  \item[\#11] % Done
     Assume that $T$ is closed and $S$ is bounded
     \begin{enumerate}
       \item[(a)]
@@ -184,6 +184,14 @@ Homework 3
           and let $S:\v{H} \to \v{H}$ be the zero operator that is
           $Su = 0$ for all $u \in \v{H}$.
           Note that $S$ is clearly bounded.
+          Let $u_n(x) = \frac{1}{1 + e^{-n(x - 1/2)}}$ be the logistic function.
+          As $n \to \infty$ this logistic function gets steeper and steeper.
+          In $L^2(0, 1)$ this sequence of function converges to the Heaviside
+          function at $x = 1/2$, that is $u_n(x) \to H(x - 1/2) \in L^2(0, 1)$.
+          All the assumptions of closedness are met $u_n \in D(ST)$,
+          $u_n \to u \in L^2(0, 1)$, and $STu_n \to 0$, but $u \not\in D(T)$,
+          as $u \not\in H^1(0, 1)$.
+          This implies that $u \not\in D(ST)$ and therefore $ST$ is not closed.
         \end{proof}
     \end{enumerate}
 
@@ -200,6 +208,5 @@ Homework 3
       Since $T^*$ is closed $T^* = \overline{T^*}$, so $T^* = T^{***} = \overline{T}^*$.
       This shows that $T$ and $\overline{T}$ have the same adjoint.
     \end{proof}
-
 \end{enumerate}
 \end{document}
