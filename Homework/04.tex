@@ -64,11 +64,28 @@ Homework 4
           
         \end{proof}
 
-      \item[(b)]
+      \item[(b)] % Done
         Deduce from this that $R_{\lambda}$ and $R_{\mu}$ commute.
 
         \begin{proof}
-          
+          Let $\lambda, \mu \in \CC$.
+          If $\lambda = \mu$, then $R_{\lambda} = R_{\mu}$ so
+          \[
+            R_{\lambda} R_{\mu} = R_{\lambda}^2 = R_{\mu} R_{\lambda}.
+          \]
+          In this case $R_{\lambda}$ and $R_{\mu}$ commute trivially.
+          Now let $\lambda \neq \mu$, in this case the resolvant identity
+          states that
+          \[
+            R_{\lambda} R_{\mu} = \frac{R_{\lambda} - R_{\mu}}{\lambda - \mu}.
+          \]
+          Now consider the following
+          \begin{align*}
+            R_{\lambda} R_{\mu} &= \frac{R_{\lambda} - R_{\mu}}{\lambda - \mu} \\
+            &= \frac{R_{\mu} - R_{\lambda}}{\mu - \lambda} \\
+            &= R_{\mu} R_{\lambda}
+          \end{align*}
+          This shows that $R_{\lambda}$ and $R_{\mu}$ commute.
         \end{proof}
 
       \item[(c)]
