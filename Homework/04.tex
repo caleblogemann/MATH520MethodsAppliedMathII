@@ -21,21 +21,136 @@ Homework 4
     What is $T_2^*$?
 
     \begin{proof}
-      
+      First I will show that $T_1$ is self-adjoint.
+      Let $v \in D(T_1)$, then $(v, iv')$ is an admissable pair for $T_1^*$.
+      To see this note that
+      \begin{align*}
+        \abr{T_1 u, v} &= \dintt{0}{1}{iu'(x) \overline{v(x)}}{x} \\
+        &= \eval{iu(x)\overline{v(x)}}{x = 0}{1} - \dintt{0}{1}{iu(x)\overline{v'(x)}}{x} \\
+        &= \eval{iu(x)\overline{v(x)}}{x = 0}{1} + \dintt{0}{1}{u(x)\overline{iv'(x)}}{x} \\
+        &= iu(1)\overline{v(1)} - iu(0)\overline{v(0)} + \dintt{0}{1}{u(x)\overline{iv'(x)}}{x}
+        \intertext{Since $u(0) = u(1)$ and $v(0) = v(1)$.}
+        &= \dintt{0}{1}{u(x)\overline{iv'(x)}}{x} \\
+        &= \abr{u, T_1 v}
+      \end{align*}
+      This shows that $D(T_1) \subset D(T_1^*)$ and that
+      $T_1 u = T_1^* u = iu'$ for $u \in D(T)$.
+
+      Now let $v \in D(T_1^*)$, if we can show that $v \in D(T)$ and
+      $T_1^* v = iv'$, then we know that $T_1 = T_1^*$.
+      Since $v \in D(T_1^*)$ then there exists $g \in L^2(0, 1)$ such that
+      $(v, g)$ is an admissable pair for $T_1^*$ and $\dintt{0}{1}{g(x)}{x} = 0$
+      Now by definition $T_1^* v = g$.
+      Also since $(v, g)$ is an admissable pair,
+      \[
+        \abr{Tu, v} = \abr{u, g}
+      \]
+      for all $u \in D(T)$.
+      Next I will define the following function
+      \[
+        G(x) = \dintt{0}{x}{g(y)}{y} + \alpha
+      \]
+      where
+      \[
+        \alpha = i\dintt{0}{1}{v(s)}{s} - \dintt{0}{1}{\dintt{0}{s}{g(y)}{y}}{s}.
+      \]
+      Since $v, g \in L^2(0, 1)$, this function is well-defined.
+      Note that by the Fundamental Theorem of Calculus for $L^2$ functions,
+      $G'(x) = g(x)$.
+      Also note that since $\dintt{0}{1}{g(x)}{x} = 0$,
+      \[
+        G(0) = \dintt{0}{0}{g(y)}{y} + \alpha = \alpha = \dintt{0}{1}{g(y)}{y} + \alpha = G(1)
+      \]
+      Now reconsider the inner product $\abr{u, g}$.
+      \begin{align*}
+        \abr{u, g} &= \dintt{0}{1}{u(x)\overline{g(x)}}{x} \\
+        &= \dintt{0}{1}{u(x)\overline{G'(x)}}{x} \\
+        &= \eval{u(x)G(x)}{x=0}{1} - \dintt{0}{1}{u'(x)\overline{G(x)}}{x} \\
+        &= \p{u(1)G(1) - u(0)G(0)} - \dintt{0}{1}{u'(x)\overline{G(x)}}{x}
+        \intertext{Since $u \in D(T)$, $u(0) = u(1)$ and as shown before
+          $G(0) = G(1)$, the first term is zero.}
+        \abr{u, g} &= -\dintt{0}{1}{u'(x)\overline{G(x)}}{x}
+        &= -\abr{u', G}
+      \end{align*}
+      Now using the definition of admissible pair it is possible to see that
+      \[
+        \abr{Tu, v} = \abr{u, g} = -\abr{u', G}
+      \]
+      for all $u \in D(T)$.
+      Equivalently this is
+      \begin{align*}
+        \dintt{0}{1}{iu'(x) \overline{v(x)}}{x} &= -\dintt{0}{1}{u'(x)\overline{G(x)}}{x} \\
+        \dintt{0}{1}{u'(x) \overline{G(x) - iv(x)}}{x} &= 0 \\
+      \end{align*}
+      Since this is true for any $u \in D(T_1)$ this is true in particular for
+      \[
+        u(x) = \dintt{0}{x}{G(y) - iv(y)}{y}
+      \]
+      In order to verify that $u \in D(T_1)$, note that $u(x) \in L^2(0, 1)$ and
+      that $u'(x) = G(x) - iv(x) \in L^2(0,1)$.
+      Also $u(0) = 0$ and
+      \begin{align*}
+        u(1) &= \dintt{0}{1}{G(y) - iv(y)}{y} \\
+        &= \dintt{0}{1}{\dintt{0}{y}{g(s)}{s} + \alpha - iv(y)}{y} \\
+        &= \alpha - i\dintt{0}{1}{v(y)}{y} + \dintt{0}{1}{\dintt{0}{y}{g(s)}{s}}{y}
+        \intertext{Substituting in for $\alpha$}
+        &= i\dintt{0}{1}{v(y)}{y} - \dintt{0}{1}{\dintt{0}{y}{g(s)}{s}}{y} - i\dintt{0}{1}{v(y)}{y} + \dintt{0}{1}{\dintt{0}{y}{g(s)}{s}}{y} \\
+        &= 0
+      \end{align*}
+      Now using this function we see that
+      \begin{align*}
+        \dintt{0}{1}{\abs{G(x) - iv(x)}^2}{x} &= 0 \\
+        \norm{G - iv} &= 0 \\
+        G - iv &= 0 \\
+        G &= iv \\
+      \end{align*}
+      Since $G' = g \in L^2(0, 1)$ is differentiable this implies that
+      $v' = -iG' \in L^2(0, 1)$.
+      Also $v(0) = -iG(0) = -iG(1) = v(1)$ because $G(0) = G(1)$.
+      This shows that $v \in D(T_1)$ and that $T_1^* v = g = iv'$.
+      Therefore $T_1^* = T_1$.
     \end{proof}
 
   \pagebreak
-  \pagebreak
-  \item[\#7]
+  \item[\#7] % Done
     If $T$ is symmetric with $R(T) = \v{H}$ show that $T$ is self-adjoint.
     % Suggestion: it is enough to show that D(T^*) \subset D(T)
 
     \begin{proof}
-      
+      Let $T$ be symmetric with $R(T) = \v{H}$.
+      Let $u, v \in D(T)$, then
+      \[
+        \abr{Tu, v} = \abr{u, Tv}.
+      \]
+      This shows that $(v, Tv)$ is an admissable pair for $T^*$ and that
+      $T^* v = Tv$.
+      Thus for any $v \in D(T)$, $v \in D(T^*)$, which shows that
+      $D(T) \subset D(T^*)$.
+
+      Now let $v \in D(T^*)$, so that there exists $v^* \in \v{H}$ such that
+      $(v, v^*)$ is an admissable pair for $T^*$.
+      Also since $v^* \in \v{H}$, there exists some $w \in D(T)$ such that
+      $Tw = v^*$.
+      Now using the definition of admissible pair
+      \begin{align*}
+        \abr{Tu, v} = \abr{u, v^*} \\
+        &= \abr{u, Tw} \\
+        &= \abr{Tu, w}
+      \end{align*}
+      for all $u \in D(T)$.
+      This implies that
+      \begin{align*}
+        \abr{Tu, v - w} &= 0 \\
+        v - w &\perp R(T) = \v{H}\\
+        v - w &= 0
+        v &= w
+      \end{align*}
+      This shows that $v \in D(T)$ and that $Tv = v^* = T^* v$.
+      Thus $D(T) = D(T^*)$ and $T = T^*$, so $T$ is self-adjoint.
     \end{proof}
 
   \pagebreak
-  \item[\#16]
+  \item[\#16] % Done
     We say that a linear operator on a Hilbert space $\v{H}$ is bounded below
     if there exists a constant $c_0 > 0$ such that
     \[
@@ -46,7 +161,61 @@ Homework 4
     % Hint T + c_oI is positive
 
     \begin{proof}
-      
+      Let $T$ be densely defined, symmetric, and bounded below by $c_0 > 0$.
+      Consider the operator $T + c_0 I$, where $I$ is the identity operator on
+      $\v{H}$.
+      Note that $D(T + c_0 I) = D(T)$ so that $T + c_0 I$ is densely defined.
+      Also $T + c_0 I$ is positive.
+      To see this let $u \in D(T + c_0 I)$, then
+      \begin{align*}
+        \abr{(T + c_0 I)u, u} &= \abr{Tu + c_0 u, u} \\
+        &= \abr{Tu, u} + c_0 \abr{u, u} \\
+        &\ge -c_0 \norm{u}^2 + c_0 \norm{u}^2 \\
+        &= 0
+      \end{align*}
+      The operator $T + c_0 I$ is also symmetric, to show this let
+      $u, v \in D(T + c_0 I)$, then
+      \begin{align*}
+        \abr{(T + c_0 I) u, v} &= \abr{Tu + c_0u, v} \\
+        &= \abr{Tu, v} + c_0 \abr{u, v}.
+        \intertext{Since $T$ is symmetric}
+        \abr{(T + c_0 I) u, v} &= \abr{u, Tv} + c_0 \abr{u, v}.
+        \intertext{Also since $c_0 > 0$, $c_0 \in \RR$, so}
+        \abr{(T + c_0 I) u, v} &= \abr{u, Tv} + \abr{u, c_0 v} \\
+        &= \abr{u, Tv + c_0 v} \\
+        &= \abr{u, (T + c_0 I) v}.
+      \end{align*}
+
+      Since $T + c_0 I$ is densely defined, positive, and symmetric, by Theorem
+      11.6 there exists a positive self-adjoint extension, $S$, of $T + c_0 I$.
+      Next I will define the operator $R = S - c_0 I$ and claim that this is
+      a bounded below self adjoint extension of $T$.
+      First note that $D(R) = D(S) \supset D(T + c_0 I) = D(T)$.
+      Let $u \in D(T)$, then
+      \begin{align*}
+        Ru &= (S - c_0I)u \\
+        &= Su - c_0u
+        \intertext{Since $u \in D(T + c_0 I)$ and $S$ is an extension of $T + c_0I$}
+        Ru &= (T + c_0I)u - c_0u \\
+        &= Tu + c_0u - c_0u \\
+        &= Tu
+      \end{align*}
+      This shows that $R$ is an extension of $T$.
+
+      Also $R$ is bounded below, to see this let $u \in D(R)$, then
+      \begin{align*}
+        \abr{Ru, u} &= \abr{(S - c_0I)u, u} \\
+        &= \abr{Su, u} - c_0\abr{u, u}
+        \intertext{Since $S$ is positive}
+        \abr{Ru, u} &\ge -c_0 \norm{u}^2
+      \end{align*}
+      Finally I will show that $R$ is self-adjoint.
+      Since $S$ and $I$ are self-adjoint.
+      \[
+        R^* = (S - c_0I)^* = S^* - c_0I^* = S - c_0I = R
+      \]
+      Therefore for any densely defined, bounded below, symmetric operator
+      there exists a bounded below self-adjoint extension.
     \end{proof}
 \end{enumerate}
 
@@ -97,7 +266,7 @@ Homework 4
     \end{enumerate}
 
   \pagebreak
-  \item[\#4]
+  \item[\#4] % Done
     Show that $\lambda \to R_{\lambda}$ is continuously differentiable, regarded
     as a mapping from $\rho(T) \subset \CC$ into $\mcB(\v{H})$, with
     \[
@@ -105,7 +274,28 @@ Homework 4
     \]
 
     \begin{proof}
-      
+      First I will show that this mapping is continous.
+      Let $\lambda_n \in \rho(T)$ such that $\lambda_n \to \lambda$
+      as $n \to \infty$.
+      Consider
+      \begin{align*}
+        \lim[n \to infty]{\norm{R_{\lambda_n} - R_{\lamdba}}} &= \lim[n \to \infty]{\norm{(\lambda - \lambda_n)R_{\lambda_n} R_{\lambda}}} \\
+        &\le \lim[n \to \infty]{\abr{\lambda_n - \lambda}\norm{R_{\lambda_n}}\norm{R_{\lambda}}}
+        \intertext{Since $R_{\lambda}$ and $R_{\lambda_n}$ are bounded}
+        \lim[n \to infty]{\norm{R_{\lambda_n} - R_{\lamdba}}} &= 0
+      \end{align*}
+      Therefore $R_{\lambda}$ is continuous when seen as a function of $\lambda$.
+
+      Now consider the derivative of $R_{\lambda}$ with respect to $\lambda$.
+      \begin{align*}
+        \d{R_{\lambda}}{\lambda} &= \lim[n \to \infty]{\frac{R_{\lambda_n} - R_{\lambda}}{\lambda_n - \lambda}} \\
+        &= \lim[n \to \infty]{\frac{(\lambda - \lambda_n)R_{\lambda} R_{\lambda_n}}{\lambda_n - \lambda}} \\
+        &= \lim[n \to \infty]{-R_{\lambda} R_{\lambda_n}}
+        \intertext{Since $R_{\lambda}$ is continuous}
+        &= -R_{\lambda}^2
+      \end{align*}
+      Finally note that $-R_{\lambda}^2$ is continuous as a function of
+      $\lambda$ because negation and squaring are continuous operations.
     \end{proof}
 \end{enumerate}
 \end{document}
