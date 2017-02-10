@@ -1,0 +1,90 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[letterpaper, margin=2cm]{geometry}
+\usepackage{MATH520}
+
+\begin{document}
+\noindent \textbf{\Large{Caleb Logemann \\
+MATH 520 Methods of Applied Math II \\
+Homework 5
+}}
+
+\subsection*{Section 12.4}
+\begin{enumerate}
+  \item[\#6]
+    Let $T$ denote the right shift operator on $\mcl^2$.
+    \begin{enumerate}
+      \item[(a)]
+        Show that $\sigma_p(T) = \varnothing$.
+
+      \item[(b)]
+        Show that $\sigma_c(T) = \set{\lambda: \abs{\lambda}= 1}$.
+
+      \item[(c)]
+        Show that $\sigma_r(T) = \set{\lambda: \abs{\lambda} < 1}$.
+    \end{enumerate}
+
+  \pagebreak
+  \item[\#7]
+    If $\lambda \neq \pm 1, \pm i$ show that $\lambda$ is in the resolvant set
+    of the Fourier Transform $\mcF$.
+    (Suggestion: Assuming that a solution of $\mcF u - \lambda u = f$ exists,
+    derive an explicit formula for it by justifying and using the identity
+    \[
+      \mcF^4 u = \lambda^4 u + \lambda^3 f + \lambda^2 \mcF f + \mcF^3 f
+    \]
+    together with the fact that $\mcF^4 = I$.)
+
+  \pagebreak
+  \item[\#8]
+    Let $\v{H} = L^2(0, 1)$, $T_1 u = T_2 u = T_3 u = u'$ on the domains
+    \begin{align*}
+      D(T_1) &= H^1(0, 1) \\
+      D(T_2) &= \set{u \in H^1(0,1): u(0) = 0} \\
+      D(T_3) &= \set{u \in H^1(0, 1): u(0) = u(1) = 0}
+    \end{align*}
+    \begin{enumerate}
+      \item[(i)]
+        Show that $\sigma(T_1) = \sigma_p(T_1) = \CC$.
+
+        \begin{proof}
+          
+        \end{proof}
+
+      \item[(ii)]
+        Show that $\sigma(T_2) = \varnothing$.
+
+        \begin{proof}
+          
+        \end{proof}
+
+      \item[(iii)]
+        Show that $\sigma(T_3) = \sigma_r(T_3) = \CC$.
+
+        \begin{proof}
+          
+        \end{proof}
+    \end{enumerate}
+
+  \pagebreak
+  \item[\#10]
+    Let $Tu(x) = \dintt{0}{x}{K(x, y)u(y)}{u}$ be a Volterra intergral operator
+    on $L^2(0, 1)$ with a bounded kernel, $\abs{K(x, y)} \le M$.
+    Show that $\sigma(T) = \set{0}$.
+    (There are several ways to show that $T$ has no nonzero eigenvalues.
+    Here is one approach: Define the equivalent norm on $L^2(0, 1)$
+    \[
+      \norm[\theta]{u}^2 = \dintt{0}{1}{\abs{u(x)}^2e^{-2\theta x}}{x}
+    \]
+    and show that the supremum of $\frac{\norm[\theta]{Tu}}{\norm[\theta]{u}}$
+    can be made arbitrarily small by choosing $\theta$ sufficiently large.
+
+  \pagebreak
+  \item[\#11]
+    If $T$ is a symmetric operator, show that
+    \[
+      \sigma_p(T) \cup \sigma_c(T) \subset \RR
+    \]
+    (IT is almost the same as showing that $\sigma(T) \subset \RR$ for a
+    self-adjoint operator.)
+\end{enumerate}
+\end{document}
