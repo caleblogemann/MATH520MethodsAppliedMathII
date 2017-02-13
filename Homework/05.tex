@@ -16,8 +16,57 @@ Homework 5
       \item[(a)]
         Show that $\sigma_p(T) = \varnothing$.
 
+        \begin{proof}
+          First I will let $S_+ = T$, so as to better represent the right shift
+          operator.
+          In order to show that $\sigma_p(S_+) = \varnothing$, we must show that
+          $S_+$ has no eigenvalues.
+          First I will show that $0$ is not an eigenvalue, if $0$ was an
+          eigenvalue then $S_+ x = 0 x = 0$ would have a nonzero solution
+          $x \in \mcl^2$.
+          However the equation $S_+ x = 0$ guarantees that
+          \[
+            \p{S_+ x}_k = x_{k-1} = 0
+          \]
+          for $k \ge 1$, which implies that $x = 0$.
+          This shows that the only solution to $S_+ x = 0$ is $x = 0$, so $0$
+          is not an eigenvalue of $S_+$, e.g. $0 \not\in \sigma_p(S_+)$.
+
+          Next I will show that no nonzero value can be an eigenvalue.
+          Assume to the contrary that $\lambda \neq 0 \in \sigma_p(T)$, that is
+          $\lambda$ is an eigenvalue of $T$.
+          This implies that $S_+ x = \lambda x$ has a nonzero solution
+          $x \in \mcl^2$.
+          Both $S_+ x$ and $\lambda x$ are sequences and for the sequences to be
+          equal each term in the sequences must be equal.
+          Therefore I will compare the terms of these sequences.
+          Note that by definition $\p{S_+ x}_k = x_{k-1}$ for $k \ge 1$ and
+          $\p{S_+ x}_0 = 0$.
+          Using this definition, in $S_+ x = \lambda x$ two conditions arise
+          first for $k = 0$
+          \[
+            \lambda x_0 = \p{\lambda x}_0 = \p{S_+ x}_0 = 0
+          \]
+          and for $k \ge 1$
+          \[
+            \lambda x_k = \p{\lambda x}_k = \p{S_+ x}_k = x_{k-1}
+          \]
+          The first condition shows that $x_0 = 0$, and the second that
+          $x_k = \frac{x_{k-1}}{\lambda}$.
+          However these two statements together inductively show that $x_k = 0$
+          for $k \ge 0$.
+          Thus $x = 0$ is the only solution to the equation $S_+ x = \lambda x$,
+          and $\lambda \not\in \sigma_p(S_+)$.
+          This shows that no complex number can be an eigenvalue of $S_+$ and so
+          $\sigma_p(S_+) = \varnothing$.
+        \end{proof}
+
       \item[(b)]
         Show that $\sigma_c(T) = \set{\lambda: \abs{\lambda}= 1}$.
+
+        \begin{proof}
+          
+        \end{proof}
 
       \item[(c)]
         Show that $\sigma_r(T) = \set{\lambda: \abs{\lambda} < 1}$.
