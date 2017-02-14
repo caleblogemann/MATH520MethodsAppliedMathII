@@ -13,7 +13,7 @@ Homework 5
   \item[\#6]
     Let $T$ denote the right shift operator on $\mcl^2$.
     \begin{enumerate}
-      \item[(a)]
+      \item[(a)] % Done
         Show that $\sigma_p(T) = \varnothing$.
 
         \begin{proof}
@@ -64,12 +64,119 @@ Homework 5
       \item[(b)]
         Show that $\sigma_c(T) = \set{\lambda: \abs{\lambda}= 1}$.
 
-        \begin{proof}
-          
-        \end{proof}
-
       \item[(c)]
         Show that $\sigma_r(T) = \set{\lambda: \abs{\lambda} < 1}$.
+
+        \begin{proof}
+          Again I will let $S_+ = T$ and I will prove (b) and (c) simultaneaously.
+          From part (a) it is clear that for any $\lambda$, the operator
+          $\lambda I - S_+$ is one-to-one.
+          If $\lambda I - S_+$ was not one-to-one then
+          $\lambda \in \sigma_p(S_+)$, however we have already shown that
+          $\sigma_p(S_+)$ is empty.
+          Thus for any $\lambda \in \CC$, $\lambda$ must be in the resolvant
+          set, the continuous spectrum, or the residual spectrum.
+          From Example 12.5 it is known that for $\abs{\lambda} > 1$, then
+          $\lambda \in \rho(S_+)$.
+          This is shown by noting that for bounded operators
+          $\lambda \in \sigma(S_+)$ implies that
+          $\abs{\lambda} \le \norm{S_+} = 1$.
+          Let $\lambda \in \sigma(S_+)$, then $\abs{\lambda} \le 1$.
+          Note that $I, S_+ \in \mcB(\mcl^2)$, so
+          \[
+            \p{\lambda I - S_+}^* = \overline{\lambda} I^* - S_+^* = \overline{\lambda} I - S_-.
+          \]
+          Also since $\lambda I - S_+$ is densely defined linear operator
+          \[
+            R(\lambda I - S_+)^{\perp} = N\p{\p{\lambda I - S_+}^*} = N\p{\overline{\lambda} I - S_-}
+          \]
+          Since $R(\lambda I - S_+)$ determines whether $\lambda$ is in the
+          continuous spectrum or the residual spectrum, I will inspect
+          $N\p{\overline{\lambda} I - S_-}$.
+          Let $x \in N\p{\overline{\lambda} I - S_-}$, then
+          \begin{align*}
+            \p{\overline{\lambda} I - S_-}x &= 0 \\
+            \overline{\lambda} x - S_-x &= 0 \\
+            S_-x &= \overline{\lambda}x \\
+            \p{S_-x}_n &= \overline{\lambda} x_n \\
+            x_{n+1} &= \overline{\lambda} x_n \\
+            \intertext{Inducting on this formula, we find that a explicit
+              formula for $x_n$}
+            x_n &= \overline{\lambda}^n x_0
+          \end{align*}
+          This sequence $x_n = \overline{\lambda}^n x_0$ for an arbitrary $x_0$
+          is a potential element in $N\p{\overline{\lambda}I - S_-}$, yet it
+          remains to be seen if $\set{x_n} \in \mcl^2$.
+          In order to see if $\set{x_n}$ is in $\mcl^2$ consider
+          $\sum{n = 0}{\infty}{\abs{x_n}^2}$.
+          If this sum is convergent then $x = \set{x_n}$ is in $\mcl^2$ and if
+          the sum is not convergent then $x$ is not in $\mcl^2$.
+          \begin{align*}
+            \sum{n = 0}{\infty}{\abs{x_n}^2} &= \sum{n = 0}{\infty}{\abs{\overline{\lambda}^n x_0}^2} \\
+            &= \sum{n = 0}{\infty}{\abs{\overline{\lambda}}^{2n} \abs{x_0}^2} \\
+            &= \abs{x_0}^2 \sum{n = 0}{\infty}{\abs{\overline{\lambda}}^{2n}} \\
+          \end{align*}
+          Since we already know that $\abs{\lambda} \le 1$, there are two
+          possible cases, either $\abs{\lambda} = 1$ or $\abs{\lambda} < 1$.
+          If $\abs{\lambda} = 1$, then
+          \[
+            \sum{n = 0}{\infty}{\abs{x_n}^2} = \abs{x_0}^2 \sum{n = 0}{\infty}{\abs{\overline{\lambda}}^{2n}}
+            = \abs{x_0}^2 \sum{n = 0}{\infty}{1}
+          \]
+          which only converges if $x_0 = 0$.
+          Thus if $\abs{\lambda} = 1$, then
+          $N\p{\overline{\lambda}I - S_-} = \set{0}$.
+          Using the relationship with the range of $\lamdba I - S_+$, we see
+          that
+          \begin{align*}
+            R(\lambda I - S_+)^{\perp} &= N\p{\overline{\lambda}I - S_-} \\
+            \p{R(\lambda I - S_+)^{\perp}}^{\perp} &= \p{N\p{\overline{\lambda}I - S_-}}^{\perp} \\
+            \overline{R(\lambda I - S_+)} &= \p{\set{0}}^{\perp} \\
+            \overline{R(\lambda I - S_+)} &= \mcl^2 \\
+          \end{align*}
+          This shows that the range of $\lambda I - S_+$ is dense in $\mcl^2$,
+          so if $\abs{\lambda} = 1$, then $\lambda \in \sigma_c(S_+)$ or
+          $\lambda \in \rho(S_+)$.
+
+          If on the other hand $\abs{\lambda} < 1$, then
+          \[
+            \sum{n = 0}{\infty}{\abs{x_n}^2} = \abs{x_0}^2 \sum{n = 0}{\infty}{\abs{\overline{\lambda}}^{2n}}
+            = \frac{\abs{x_0}^2}{1 - \abs{\overline{\lambda}}^2}
+          \]
+          as this is a geometric series.
+          In this case, the sum converges for any $x_0$.
+          Therefore for any $x_0$ the sequence $x_n = \overline{\lambda}^n x_0$
+          is in $N\p{\overline{\lambda}I - S_-}$.
+          This shows that $N\p{\overline{\lambda}I - S_-} \neq \set{0}$.
+          If we examine the relationship with the range again we see that
+          \begin{align*}
+            R(\lambda I - S_+)^{\perp} &= N\p{\overline{\lambda}I - S_-} \\
+            \p{R(\lambda I - S_+)^{\perp}}^{\perp} &= \p{N\p{\overline{\lambda}I - S_-}}^{\perp} \\
+            \overline{R(\lambda I - S_+)} &\neq \p{\set{0}}^{\perp} \\
+            \overline{R(\lambda I - S_+)} &\neq \mcl^2 \\
+          \end{align*}
+          Thus if $\abs{\lambda} < 1$, then $R(\lambda I - S_+)$ is not dense
+          and $\lambda \in \sigma_r(S_+)$.
+          This shows that
+          $\set{\lambda \in \CC: \abs{\lambda} < 1} \subset \sigma_r(S_+)$.
+
+          Lastly since we have seen that
+          $\set{\lambda \in \CC: \abs{\lambda} > 1} \subset \rho(S_+)$,
+          $\set{\lambda \in \CC: \abs{\lambda} = 1} \subset \sigma_c(S_+)$, and
+          $\set{\lambda \in \CC: \abs{\lambda} < 1} \subset \sigma_r(S_+)$, and
+          we know that these sets partition the complex numbers, then equality
+          must hold.
+          That is these sets are not only subsets they are the resolvant set,
+          the continuous spectrum, and the residual spectrum.
+          This shows for part (b) that
+          \[
+            \set{\lambda \in \CC: \abs{\lambda} = 1} = \sigma_c(S_+)
+          \]
+          and for part (c) that
+          \[
+            \set{\lambda \in \CC: \abs{\lambda} < 1} = \sigma_c(S_+).
+          \]
+        \end{proof}
     \end{enumerate}
 
   \pagebreak
