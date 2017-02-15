@@ -10,7 +10,7 @@ Homework 5
 
 \subsection*{Section 12.4}
 \begin{enumerate}
-  \item[\#6]
+  \item[\#6] % Done
     Let $T$ denote the right shift operator on $\mcl^2$.
     \begin{enumerate}
       \item[(a)] % Done
@@ -61,10 +61,10 @@ Homework 5
           $\sigma_p(S_+) = \varnothing$.
         \end{proof}
 
-      \item[(b)]
+      \item[(b)] % Done
         Show that $\sigma_c(T) = \set{\lambda: \abs{\lambda}= 1}$.
 
-      \item[(c)]
+      \item[(c)] % Done
         Show that $\sigma_r(T) = \set{\lambda: \abs{\lambda} < 1}$.
 
         \begin{proof}
@@ -118,27 +118,7 @@ Homework 5
           \end{align*}
           Since we already know that $\abs{\lambda} \le 1$, there are two
           possible cases, either $\abs{\lambda} = 1$ or $\abs{\lambda} < 1$.
-          If $\abs{\lambda} = 1$, then
-          \[
-            \sum{n = 0}{\infty}{\abs{x_n}^2} = \abs{x_0}^2 \sum{n = 0}{\infty}{\abs{\overline{\lambda}}^{2n}}
-            = \abs{x_0}^2 \sum{n = 0}{\infty}{1}
-          \]
-          which only converges if $x_0 = 0$.
-          Thus if $\abs{\lambda} = 1$, then
-          $N\p{\overline{\lambda}I - S_-} = \set{0}$.
-          Using the relationship with the range of $\lamdba I - S_+$, we see
-          that
-          \begin{align*}
-            R(\lambda I - S_+)^{\perp} &= N\p{\overline{\lambda}I - S_-} \\
-            \p{R(\lambda I - S_+)^{\perp}}^{\perp} &= \p{N\p{\overline{\lambda}I - S_-}}^{\perp} \\
-            \overline{R(\lambda I - S_+)} &= \p{\set{0}}^{\perp} \\
-            \overline{R(\lambda I - S_+)} &= \mcl^2 \\
-          \end{align*}
-          This shows that the range of $\lambda I - S_+$ is dense in $\mcl^2$,
-          so if $\abs{\lambda} = 1$, then $\lambda \in \sigma_c(S_+)$ or
-          $\lambda \in \rho(S_+)$.
-
-          If on the other hand $\abs{\lambda} < 1$, then
+          If $\abs{\lambda} < 1$, then
           \[
             \sum{n = 0}{\infty}{\abs{x_n}^2} = \abs{x_0}^2 \sum{n = 0}{\infty}{\abs{\overline{\lambda}}^{2n}}
             = \frac{\abs{x_0}^2}{1 - \abs{\overline{\lambda}}^2}
@@ -160,15 +140,59 @@ Homework 5
           This shows that
           $\set{\lambda \in \CC: \abs{\lambda} < 1} \subset \sigma_r(S_+)$.
 
-          Lastly since we have seen that
-          $\set{\lambda \in \CC: \abs{\lambda} > 1} \subset \rho(S_+)$,
-          $\set{\lambda \in \CC: \abs{\lambda} = 1} \subset \sigma_c(S_+)$, and
-          $\set{\lambda \in \CC: \abs{\lambda} < 1} \subset \sigma_r(S_+)$, and
-          we know that these sets partition the complex numbers, then equality
-          must hold.
-          That is these sets are not only subsets they are the resolvant set,
-          the continuous spectrum, and the residual spectrum.
-          This shows for part (b) that
+          If one the other hand $\abs{\lambda} = 1$, then
+          \[
+            \sum{n = 0}{\infty}{\abs{x_n}^2} = \abs{x_0}^2 \sum{n = 0}{\infty}{\abs{\overline{\lambda}}^{2n}}
+            = \abs{x_0}^2 \sum{n = 0}{\infty}{1}
+          \]
+          which only converges if $x_0 = 0$.
+          Thus if $\abs{\lambda} = 1$, then
+          $N\p{\overline{\lambda}I - S_-} = \set{0}$.
+          Using the relationship with the range of $\lambda I - S_+$, we see
+          that
+          \begin{align*}
+            R(\lambda I - S_+)^{\perp} &= N\p{\overline{\lambda}I - S_-} \\
+            \p{R(\lambda I - S_+)^{\perp}}^{\perp} &= \p{N\p{\overline{\lambda}I - S_-}}^{\perp} \\
+            \overline{R(\lambda I - S_+)} &= \p{\set{0}}^{\perp} \\
+            \overline{R(\lambda I - S_+)} &= \mcl^2 \\
+          \end{align*}
+          This shows that the range of $\lambda I - S_+$ is dense in $\mcl^2$ when
+          $\abs{\lambda} = 1$.
+
+          Note that this shows that if $\lambda \in \sigma_r(S_+)$ then
+          $\abs{\lambda} \not\ge 1$, so $\abs{\lambda} < 1$ and
+          $\sigma_r(S_+) \subset \set{\lambda \in \CC: \abs{\lambda} < 1}$.
+          Thus $\sigma_r(S_+) = \set{\lambda \in \CC: \abs{\lambda} < 1}$ in fact.
+
+          Now if $\abs{\lambda} = 1$, then $R(\lambda I - S_+)$ is dense, so
+          either $\lambda \in \sigma_c(S_+)$ or $\lambda \in \rho(S_+)$.
+          Suppose $\lambda \in \rho(S_+)$, then because $\rho(S_+)$ must be an
+          open set $\lambda$ must be an interior point of $\rho(S_+)$.
+          Let $B$ be a ball of radius $\epsilon$ around $\lambda$.
+          Since $\abs{\lambda} = 1$, there must be some $\mu \in B$ such that
+          $1 - \epsilon < \abs{mu} < 1$.
+          However we have previously seen that if $\abs{\mu} < 1$, then
+          $\mu \in \sigma_r(S_+)$.
+          This contradicts the fact that $\lambda$ is an interior point of
+          $\rho(S_+)$, because any ball around $\lambda$ will contain points
+          in the residual spectrum.
+          Therefore $\lambda \not\in \rho(S_+)$ and $\lambda \in \sigma_c(S_+)$.
+          Thus $\set{\lambda \in \CC: \abs{\lambda} = 1} \subset \sigma_c(S_+)$.
+          But since $\sigma_r(S_+)$, $\sigma_c(S_+)$, and $\rho(S_+)$ are
+          disjoint this shows that
+          $\set{\lambda \in \CC: \abs{\lambda} = 1} = \sigma_c(S_+)$.
+          This is because $\abs{\lambda} < 1$ implies $\lambda \in \sigma_r(S_+)$
+          and $\abs{\lambda} > 1$ implies that $\lambda \in \rho(S_+)$.
+
+          %Lastly since we have seen that
+          %$\set{\lambda \in \CC: \abs{\lambda} > 1} \subset \rho(S_+)$,
+          %$\set{\lambda \in \CC: \abs{\lambda} = 1} \subset \sigma_c(S_+)$, and
+          %$\set{\lambda \in \CC: \abs{\lambda} < 1} = \sigma_r(S_+)$, and
+          %we know that these sets partition the complex numbers, then equality
+          %must hold.
+          %That is these sets are not only subsets they are the resolvant set,
+          %the continuous spectrum, and the residual spectrum.
+          In conclusion this shows for part (b) that
           \[
             \set{\lambda \in \CC: \abs{\lambda} = 1} = \sigma_c(S_+)
           \]
@@ -191,10 +215,10 @@ Homework 5
     together with the fact that $\mcF^4 = I$.)
 
     \begin{proof}
-      Let $\lambda \in \CC$ such that $\lambda \neq \om 1, \pm i$.
+      Let $\lambda \in \CC$ such that $\lambda \neq \pm 1, \pm i$.
       We have previously shown that this implies that
       $\lambda \not\in \sigma_p(\mcF)$.
-      Therefore $\lambda \in \rho(\mcF) \union \sigma_c(\mcF) \cup \sigma_r(\mcF)$.
+      Therefore $\lambda \in \rho(\mcF) \cup \sigma_c(\mcF) \cup \sigma_r(\mcF)$.
       This implies that for some $f \in L^2 \cap L^1$, there exists a solution
       $u \in L^2 \cap L^2$ such that $\mcF u - \lambda u = f$.
       This is equivalent to $\mcF u = f + \lambda u$.
@@ -255,18 +279,72 @@ Homework 5
           This shows that $\sigma_p(T_1) = \CC$.
         \end{proof}
 
-      \item[(ii)]
+      \item[(ii)] % Done
         Show that $\sigma(T_2) = \varnothing$.
 
         \begin{proof}
-          Let $\lambda \in \CC$ 
+          Let $\lambda \in \CC$, and suppose that $\lambda \in \sigma(T_2)$.
+          As in part $(i)$, if there is a solution to $T_2 u = \lambda u$, then
+          $u(x) = A e^{\lambda x}$ where $A \neq 0$ is some scalar.
+          However any $u$ of this form is not in $D(T_2)$ because even though
+          $u \in H^1(0, 1)$, we have $u(0) = A \neq 0$.
+          Therefore $\lambda \not\in \sigma_p(T_2)$.
+          This also shows that $\lambda I - T_2$ is a one-to-one function for
+          any $\lambda$, because if $\lambda I - T_2$ was not one-to-one then
+          $\lambda \in \sigma_p(T_2)$.
+          Consider the equation $(T_2 - \lambda I) u = f$ for some
+          $f \in L^2(0, 1)$.
+          This is a differential equation that can be solved using an
+          integrating factor.
+          \begin{align*}
+            (T_2 - \lambda I) u &= f \\
+            T_2u - \lambda u &= f \\
+            u' - \lambda u &= f
+            \intertext{Let $\mu = e^{-\lambda x}$ and multiply both sides of
+              the equation}
+            e^{-\lambda x} u'- \lambda e^{-\lambda x} u &= e^{-\lambda x} f \\
+            \d*{e^{-\lambda x} u}{x} &= e^{-\lambda x} f \\
+            e^{-\lambda x} u &= \dintt{0}{x}{e^{-\lambda y} f}{y}\\
+            u &= e^{\lambda x}\dintt{0}{x}{e^{-\lambda y} f}{y} \\
+          \end{align*}
+          Note that this is one possible solution to this equation.
+          The important quality of this solution is that $u \in D(T_2)$.
+          To see this note that
+          \[
+            u(0) = e^{\lambda x}\dintt{0}{0}{e^{-\lambda y} f}{y} = 0
+          \]
+          Also $u \in L^2(0, 1)$ as it is the product of functions in $L^2(0, 1)$.
+          The derivative of $u$ also exists by the product rule,
+          \[
+            u'(x) = \lambda e^{\lambda x}\dintt{0}{x}{e^{-\lambda x} f}{x} + e^{\lambda x} \p{e^{-\lambda x} f(x) - f(0)}.
+          \]
+          This derivative is in $L^2(0, 1)$ as well.
+          Therefore $u \in H^1(0, 1)$ and $u \in D(T_2)$.
+          This shows that for any $f$ there is a solution $u \in D(T_2)$ or in
+          other words $R(\lambda I - T_2) = L^2(0, 1)$ for all $\lambda$.
+          Thus $\lambda \in \rho(T_2)$, and not in $\sigma_r(T_2)$ or $\sigma_c(T_2)$.
+          This shows that the spectrum is empty, i.e. $\sigma(T_2) = \varnothing$.
         \end{proof}
 
       \item[(iii)]
         Show that $\sigma(T_3) = \sigma_r(T_3) = \CC$.
 
         \begin{proof}
-          
+          Let $\lambda \in \CC$,
+          Again as in part (i) if $T_3 u = \lambda u$ is going to have a
+          solution, then it must be in the form $u(x) = A e^{\lambda x}$.
+          However if $u \in D(T_3)$, then $u(0) = u(1) = 0$ and this implies
+          that $A = 0$ which makes $u(x) = 0$.
+          Thus there is no nonzero solution to $T_3 u = \lambda u$.
+          Thus for any $\lambda \in \CC$, the operator $T_3 - \lambda I$ is
+          one-to-one.
+
+          As is part (ii) we can say that the equation
+          $T_3 u - \lambda u = f$ has a solution if and only if
+          $\d*{e^{-\lambda x} u} = e^{-\lambda x} f$.
+          Let $G(x)$ be any antiderivative of $e^{-\lambda x} f$, then
+          $u = e^{\lambda x} G(x)$.
+
         \end{proof}
     \end{enumerate}
 
@@ -284,20 +362,166 @@ Homework 5
     can be made arbitrarily small by choosing $\theta$ sufficiently large.
 
     \begin{proof}
-      
+      First I will show that $\norm[\theta]{u}$ is indeed a norm.
+      Let $u = 0$ then
+      \begin{align*}
+        \norm[\theta]{0}^2 &= \dintt{0}{1}{\abs{0}^2e^{-2\theta x}}{x} \\
+        &= \dintt{0}{1}{0}{x} = 0
+      \end{align*}
+      Now suppose $\norm[\theta]{u}^2 = 0$,
+      \begin{align*}
+        \norm[\theta]{u}^2 &= \dintt{0}{1}{\abs{u}^2e^{-2\theta x}}{x} \\
+        0 &= \dintt{0}{1}{\abs{u}^2e^{-2\theta x}}{x}.
+        \intertext{Since this is an integral of a nonnegative function it can
+          only be zero if the integrand is zero, this implies that}
+        u &= 0.
+      \end{align*}
+      This shows that $\norm[\theta]{u} = 0$ if and only if $u = 0$.
+
+      Now suppose $u \in L^2(0, 1)$ and $\lambda$ is some scalar, then
+      \begin{align*}
+        \norm[\theta]{\lambda u} &= \sqrt{\dintt{0}{1}{\abs{\lambda u}^2e^{-2\theta x}}{x}} \\
+        &= \sqrt{\abs{\lambda}^2 \dintt{0}{1}{\abs{u}^2e^{-2\theta x}}{x}} \\
+        &= \abs{\lambda} \sqrt{\dintt{0}{1}{\abs{u}^2e^{-2\theta x}}{x}} \\
+        &= \abs{\lambda} \norm[\theta]{u}
+      \end{align*}
+      This shows that $\norm[\theta]{\lambda u} = \abs{\lambda} \norm[\theta]{u}$.
+
+      Let $u, v \in L^2(0, 1)$, then
+      \begin{align*}
+        \norm[\theta]{u + v} &= \sqrt{\dintt{0}{1}{\abs{u(x) + v(x)}^2e^{-2\theta x}}{x}} \\
+        &= \sqrt{\dintt{0}{1}{\abs{u(x)e^{-\theta x} + v(x)e^{-\theta x}}^2}{x}} \\
+        &= \norm[L^2(0, 1)]{u(x)e^{-\theta x} + v(x)e^{-\theta x}} \\
+        &\le \norm[L^2(0, 1)]{u(x)e^{-\theta x}} + \norm[L^2]{v(x)e^{-\theta x}} \\
+        &= \sqrt{\dintt{0}{1}{\abs{u(x)e^{-\theta x}}^2}{x}} + \sqrt{\dintt{0}{1}{\abs{u(x)e^{-\theta x}}^2}{x}} \\
+        &= \sqrt{\dintt{0}{1}{\abs{u(x)}^2e^{-2\theta x}}{x}} + \sqrt{\dintt{0}{1}{\abs{u(x)}^2e^{-2\theta x}}{x}} \\
+        &= \norm[\theta]{u(x)} + \norm[\theta]{u(x)}
+      \end{align*}
+      Thus this function also satisfies the triangle inequality and therefore
+      it is a norm.
+
+      Now that we have established that $\norm[\theta]{\cdot}$ is a norm, I will
+      show that this norm is equivalent to the $L^2$ norm.
+      First note that $e^{-2\theta} \le e^{-2\theta x} \le 1$ when
+      $x \in \br{0, 1}$.
+      Using this it is clear that
+      \[
+        e^{-2\theta} \dintt{0}{1}{\abs{u(x)}^2}{x} \le \dintt{0}{1}{\abs{u(x)}^2 e^{-2\theta x}}{x} \le \dintt{0}{1}{\abs{u(x)}^2}{x}
+      \]
+      or equivalently
+      \[
+        e^{-2\theta} \norm[L^2]{u} \le \norm[\theta]{u} \le \norm[L^2]{u}.
+      \]
+      for any $u \in L^2(0, 1)$.
+      This shows that the norm $\norm[\theta]{\cdot}$ is equivalent to
+      $\norm[L^2]{\cdot}$.
     \end{proof}
 
   \pagebreak
-  \item[\#11]
+  \item[\#11] % Done
     If $T$ is a symmetric operator, show that
     \[
       \sigma_p(T) \cup \sigma_c(T) \subset \RR
     \]
-    (IT is almost the same as showing that $\sigma(T) \subset \RR$ for a
+    (It is almost the same as showing that $\sigma(T) \subset \RR$ for a
     self-adjoint operator.)
 
     \begin{proof}
       Let $\lambda = \xi + i \eta$ with $\eta \neq 0$.
+      Now consider for $u \in D(T)$,
+      \begin{align*}
+        \norm{\p{\lambda I - T}u}^2 &= \norm{\lambda u - Tu}^2 \\
+        &= \abr{\lambda u - Tu, \lambda u - Tu} \\
+        &= \abr{\xi u + i \eta u - Tu, \xi u + i \eta u - Tu} \\
+        &= \abr{\xi u - Tu, \xi u - Tu} + \abr{i \eta u, \xi u - Tu} + \abr{\xi u - Tu, i \eta u} + \abr{i\eta u, i \eta u} \\
+        &= \norm{\xi u - Tu}^2 + \abr{i \eta u, \xi u - Tu} + \abr{\xi u - Tu, i \eta u} + \norm{i \eta u}^2 \\
+        &= \norm{\xi u - Tu}^2 + \abr{i \eta u, \xi u - Tu} + \abr{\xi u - Tu, i \eta u} + \abs{\eta}^2 \norm{u}^2
+      \end{align*}
+      Now note that
+      \begin{align*}
+        \abr{i \eta u, \xi u - Tu} + \abr{\xi u - Tu, i \eta u}
+        &= i\eta\abr{u, \xi u - Tu} -i\eta \abr{\xi u - Tu,u} \\
+        &= i\eta\p{\abr{u, \xi u - Tu} -\abr{\xi u - Tu,u}} \\
+        &= i\eta\p{\abr{u, \xi u - Tu} -\p{\abr{\xi u,u} - \abr{Tu,u}}} \\
+        &= i\eta\p{\abr{u, \xi u - Tu} -\p{\xi\abr{u,u} - \abr{Tu,u}}}
+        \intertext{As $T$ is symmetric}
+        &= i\eta\p{\abr{u, \xi u - Tu} -\p{\xi\abr{u,u} - \abr{u,Tu}}}
+        \intertext{As $\xi$ is real}
+        &= i\eta\p{\abr{u, \xi u - Tu} -\p{\abr{u,\xi u} - \abr{u,Tu}}} \\
+        &= i\eta\p{\abr{u, \xi u - Tu} - \abr{u,\xi u - Tu}} \\
+        &= i\eta\p{0} = 0
+      \end{align*}
+      Therefore
+      \[
+        \norm{\p{\lambda I - T}u}^2 = \norm{\xi u - Tu}^2 + \abs{\eta}^2 \norm{u}^2
+      \]
+      Now as $\norm{\xi u - Tu}^2 \ge 0$, this implies that
+      \[
+        \norm{\p{\lambda I - T}u}^2 \ge \abs{\eta}^2 \norm{u}^2
+      \]
+      or
+      \[
+        \norm{\p{\lambda I - T}u} \ge \abs{\eta} \norm{u}.
+      \]
+      Since $\abs{\eta} > 0$ this implies that $\lambda I - T$ is one-to-one
+      because if $\norm{u} > 0$ then $\norm{\p{\lambda I - T}u} > 0$ which shows
+      that $N(\lambda I - T) = \set{0}$.
+      Since $\lambda I - T$ is one-to-one for any complex $\lambda$ this shows
+      that $\lambda \not\in \sigma_p(T)$.
+      Therefore $\sigma_p(T) \subset \RR$.
+
+      Since $\lambda \not\in \sigma_p(T)$ this implies that
+      $\lambda \in \sigma_c(T)$.
+      Since $\lambda \in \sigma_c(T)$, then $\overline{R(\lambda I - T)} = H$.
+
+      I now claim that $R(\lambda I - T)$ must be closed.
+      To see this note that $(\lambda I - T)^{-1}$ is well-defined because
+      $\lambda I - T$ is one-to-one.
+      Also $(\lambda I - T)^{-1}$ is bounded.
+      If $u \in D(\lambda I - T)$, then there exists
+      $v \in R(\lambda I - T) = D\p{(\lambda I - T)^{-1}}$ such that
+      $u = (\lambda I - T)^{-1} v$.
+      Now
+      \begin{align*}
+        \norm{(\lambda I - T)u} &\ge \abs{\eta} \norm{u} \\
+        \norm{(\lambda I - T)(\lambda I - T)^{-1}u} &\ge \abs{\eta} \norm{(\lambda I - T)^{-1}u} \\
+        \norm{u} &\ge \abs{\eta} \norm{(\lambda I - T)^{-1}u} \\
+        \frac{\norm{(\lambda I - T)^{-1}u}{\norm{u}} &\le \frac{1}{\abs{\eta}} \\
+        \norm{(\lambda I - T)^{-1}} &\le \frac{1}{\abs{\eta}} \\
+      \end{align*}
+      Thus this shows that $(\lambda I - T)^{-1}$ is bounded and continuous.
+      Now to see that $R(\lambda I - T)$ is closed let $v_n \in R(\lambda I - T)$,
+      such that $v_n \to v \in H$.
+      Since $v_n \in R(\lambda I - T)$, there exists $u_n \in D(\lambda I - T)$
+      such that $(\lambda I - T)u_n = v_n$.
+      It can be shown that $\set{u_n}$ converges.
+      To see this note that $\norm{v_n - v_m} \to 0$, this is equivalent to
+      \begin{align*}
+        \norm{(\lambda I - T)u_n - (\lambda I - T)u_m} &= \norm{(\lambda I - T)(u_n - u_m)} \\
+        &\ge \abs{eta} \norm{u_n - u_m}
+      \end{align*}
+      Thus $\norm{u_n - u_m} \to 0$ as well.
+      This shows that $\set{u_n}$ is Cauchy and since this is a Hilbert space
+      the sequence is convergent.
+      Therefore $u_n \to u$.
+      Consider now
+      \begin{align*}
+        u &= \lim[n \to \infty]{u_n} \\
+        &= \lim[n \to \infty]{(\lambda I - T)^{-1}(\lambda I - T)u_n}
+        \intertext{Since $(\lambda I - T)$ is continuous}
+        &= (\lambda I - T)^{-1} \lim[n \to \infty]{(\lambda I - T)u_n} \\
+        &= (\lambda I - T)^{-1} \lim[n \to \infty]{v_n} \\
+        &= (\lambda I - T)^{-1} v
+      \end{align*}
+      This shows that $u \in R((\lambda I - T)^{-1}) = D(\lambda I - T)$ and
+      therefore $(\lambda I - T)u = v$.
+      Therefore $v \in R(\lambda I - T)$, so $R(\lambda I - T)$ is closed.
+
+      In conclusion since $R(\lambda I - T)$ is dense and closed, this implies
+      that $R(\lambda I - T) = H$.
+      This contradicts that $\lambda \in \sigma_c(T)$, so this shows that if
+      $\lambda \in \CC$, then $\lambda \not\in \sigma_c(T)$.
+      Therefore $\sigma_c(T) \subset \RR$.
     \end{proof}
 \end{enumerate}
 \end{document}
