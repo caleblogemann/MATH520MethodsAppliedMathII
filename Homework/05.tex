@@ -180,7 +180,7 @@ Homework 5
     \end{enumerate}
 
   \pagebreak
-  \item[\#7]
+  \item[\#7] % Done
     If $\lambda \neq \pm 1, \pm i$ show that $\lambda$ is in the resolvant set
     of the Fourier Transform $\mcF$.
     (Suggestion: Assuming that a solution of $\mcF u - \lambda u = f$ exists,
@@ -189,6 +189,41 @@ Homework 5
       \mcF^4 u = \lambda^4 u + \lambda^3 f + \lambda^2 \mcF f + \mcF^3 f
     \]
     together with the fact that $\mcF^4 = I$.)
+
+    \begin{proof}
+      Let $\lambda \in \CC$ such that $\lambda \neq \om 1, \pm i$.
+      We have previously shown that this implies that
+      $\lambda \not\in \sigma_p(\mcF)$.
+      Therefore $\lambda \in \rho(\mcF) \union \sigma_c(\mcF) \cup \sigma_r(\mcF)$.
+      This implies that for some $f \in L^2 \cap L^1$, there exists a solution
+      $u \in L^2 \cap L^2$ such that $\mcF u - \lambda u = f$.
+      This is equivalent to $\mcF u = f + \lambda u$.
+      If we take the Fourier transform of each side several times the equality
+      is perserved.
+      \begin{align*}
+        \mcF u &= \lambda u + f \\
+        \mcF^2 u &= \lambda \mcF u + \mcF f \\
+        \mcF^2 u &= \lambda \p{\lambda u + f} + \mcF f \\
+        \mcF^2 u &= \lambda^2 u + \lambda f + \mcF f \\
+        \mcF^3 u &= \lambda^2 \mcF u + \lambda \mcF f + \mcF^2 f \\
+        \mcF^3 u &= \lambda^2 \p{\lambda u + f} + \lambda \mcF f + \mcF^2 f \\
+        \mcF^3 u &= \lambda^3 u + \lambda^2 f + \lambda \mcF f + \mcF^2 f \\
+        \mcF^4 u &= \lambda^3 \mcF u + \lambda^2 \mcF f + \lambda \mcF^2 f + \mcF^3 f \\
+        \mcF^4 u &= \lambda^3 \p{\lambda u + f} + \lambda^2 \mcF f + \lambda \mcF^2 f + \mcF^3 f \\
+        \mcF^4 u &= \lambda^4 u + \lambda^3 f + \lambda^2 \mcF f + \lambda \mcF^2 f + \mcF^3 f
+        \intertext{Since $\mcF^4 = I$}
+        u &= \lambda^4 u + \lambda^3 f + \lambda^2 \mcF f + \lambda \mcF^2 f + \mcF^3 f \\
+        u - \lambda^4 u &= \lambda^3 f + \lambda^2 \mcF f + \lambda \mcF^2 f + \mcF^3 f \\
+        u &= \frac{1}{1 - \lambda^4} \p{\lambda^3 f + \lambda^2 \mcF f + \lambda \mcF^2 f + \mcF^3 f}
+      \end{align*}
+      Since $f \in L^2 \cap \L^1$ and $\lambda \neq \pm 1, \pm i$ this formula
+      for $u$ is well-defined.
+      It remains to be seen that $u \in L^2 \cap L^2$.
+      However $\mcF f \in L^2 \cap L^1$ so $u$ is the sum of functions in
+      $L^2 \cap L^1$ so $u \in L^2 \cap L^1$.
+      Therefore we have an explicit formula for $u$ given any $f$, this shows
+      that $R(\lambda I - \mcF) = L^2 \cap L^1$, so $\lambda \in \rho(\mcF)$.
+    \end{proof}
 
   \pagebreak
   \item[\#8]
@@ -199,18 +234,32 @@ Homework 5
       D(T_3) &= \set{u \in H^1(0, 1): u(0) = u(1) = 0}
     \end{align*}
     \begin{enumerate}
-      \item[(i)]
+      \item[(i)] % Done
         Show that $\sigma(T_1) = \sigma_p(T_1) = \CC$.
 
         \begin{proof}
-          
+          Let $\lambda \in \CC$ and consider the equation $T_1 u = \lambda u$.
+          Let $u(x) = e^{\lambda x}$, and note that $u \in H^1(0, 1)$,
+          because $u \in L^2(0, 1)$ and $u'(x) = \lambda e^{\lambda x} \in L^2(0, 1)$.
+          This is true because
+          \[
+            \dintt{0}{1}{\abs{e^{\lambda x}}^2}{x} < \infty
+          \]
+          and
+          \[
+            \dintt{0}{1}{\abs{\lambda e^{\lambda x}}^2}{x} < \infty.
+          \]
+          Since $u' = \lambda e^{\lambda x}$ it is clear that $u' = \lambda u$.
+          Therefore $u$ is a nonzero solution to $T_1 u = \lambda u$, and
+          therefore $\lambda \in \sigma_p(T_1)$.
+          This shows that $\sigma_p(T_1) = \CC$.
         \end{proof}
 
       \item[(ii)]
         Show that $\sigma(T_2) = \varnothing$.
 
         \begin{proof}
-          
+          Let $\lambda \in \CC$ 
         \end{proof}
 
       \item[(iii)]
@@ -233,6 +282,10 @@ Homework 5
     \]
     and show that the supremum of $\frac{\norm[\theta]{Tu}}{\norm[\theta]{u}}$
     can be made arbitrarily small by choosing $\theta$ sufficiently large.
+
+    \begin{proof}
+      
+    \end{proof}
 
   \pagebreak
   \item[\#11]
