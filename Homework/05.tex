@@ -350,7 +350,7 @@ Homework 5
 
   \pagebreak
   \item[\#10]
-    Let $Tu(x) = \dintt{0}{x}{K(x, y)u(y)}{u}$ be a Volterra intergral operator
+    Let $Tu(x) = \dintt{0}{x}{K(x, y)u(y)}{y}$ be a Volterra intergral operator
     on $L^2(0, 1)$ with a bounded kernel, $\abs{K(x, y)} \le M$.
     Show that $\sigma(T) = \set{0}$.
     (There are several ways to show that $T$ has no nonzero eigenvalues.
@@ -415,6 +415,29 @@ Homework 5
       for any $u \in L^2(0, 1)$.
       This shows that the norm $\norm[\theta]{\cdot}$ is equivalent to
       $\norm[L^2]{\cdot}$.
+
+      Next I will show that $\sup \frac{\norm[\theta]{Tu}}{\norm[\theta]{u}}$
+      arbitrarily small, by making $\theta$ large enough.
+      Let $\epsilon > 0$ be fixed.
+      \begin{align*}
+        \norm[\theta]{Tu}^2 &= \dintt{0}{1}{\abs{Tu(x)}^2 e^{-2\lambda x}}{x} \\
+        &= \dintt{0}{1}{\abs{\dintt{0}{x}{K(x, y)u(y)}{y}}^2 e^{-2\lambda x}}{x} \\
+      \end{align*}
+
+      Now that we have shown that
+      \[
+        \norm[\theta]{T} = \sup \frac{\norm[\theta]{Tu}}{\norm[\theta]{u}} < \epsilon
+      \]
+      for any $\epsilon > 0$, we can show that $\sigma(T) = \set{0}$.
+      Theorem 12.1 states that $\abs{\lambda} \le \norm{T}$ for any
+      $\lambda \in \sigma(T)$, because $T \in \mcB(L^2(0, 1))$.
+      However since $\norm[\theta]{T}$ is equivalent to $\norm{T}$, this also
+      means that $\abs{\lamdba} \le \norm[\theta]{T}$ for any $\theta$.
+      Now since $\norm[\theta]{T}$ can be arbitrarily small this implies that
+      $\lambda = 0$ is the only possible element of $\sigma(T)$.
+      Also by Theorem 12.3 we know that $\sigma(T)$ is nonempty because
+      $T \in \mcB(L^2(0, 1))$.
+      This shows that $\sigma(T) = \set{0}$.
     \end{proof}
 
   \pagebreak
