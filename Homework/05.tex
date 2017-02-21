@@ -344,12 +344,26 @@ Homework 5
           $\d*{e^{-\lambda x} u} = e^{-\lambda x} f$.
           Let $G(x)$ be any antiderivative of $e^{-\lambda x} f$, then
           $u = e^{\lambda x} G(x)$.
-
+          So in order for $u$ to be in $D(T_3)$ this implies that
+          $G(0) = G(1) = 0$.
+          This can only happen if
+          \[
+            \dintt{0}{1}{f(x) e^{-\lambda x}}{x} = 0
+          \]
+          So there is a solution to $(\lambda I - T_3)u = f$ when
+          $f$ has this property.
+          The set of $f \in L^2(0, 1)$, which have this property are not a
+          dense subset of $L^2(0, 1)$, so this implies that
+          $\lambda \in \sigma_r(T_3)$.
+          Since this was true for any $\lambda$, this means that
+          \[
+            \sigma_r(T_3) = \CC
+          \]
         \end{proof}
     \end{enumerate}
 
   \pagebreak
-  \item[\#10]
+  \item[\#10] % Done
     Let $Tu(x) = \dintt{0}{x}{K(x, y)u(y)}{y}$ be a Volterra intergral operator
     on $L^2(0, 1)$ with a bounded kernel, $\abs{K(x, y)} \le M$.
     Show that $\sigma(T) = \set{0}$.
@@ -416,23 +430,38 @@ Homework 5
       This shows that the norm $\norm[\theta]{\cdot}$ is equivalent to
       $\norm[L^2]{\cdot}$.
 
-      Next I will show that $\sup \frac{\norm[\theta]{Tu}}{\norm[\theta]{u}}$
+      Next I will show that $\sup{\frac{\norm[\theta]{Tu}}{\norm[\theta]{u}}}$
       arbitrarily small, by making $\theta$ large enough.
       Let $\epsilon > 0$ be fixed.
       \begin{align*}
-        \norm[\theta]{Tu}^2 &= \dintt{0}{1}{\abs{Tu(x)}^2 e^{-2\lambda x}}{x} \\
-        &= \dintt{0}{1}{\abs{\dintt{0}{x}{K(x, y)u(y)}{y}}^2 e^{-2\lambda x}}{x} \\
+        \norm[\theta]{Tu}^2 &= \dintt{0}{1}{\abs{Tu(x)}^2 e^{-2\theta x}}{x} \\
+        &= \dintt{0}{1}{\abs{\dintt{0}{x}{K(x, y)u(y)}{y}}^2 e^{-2\theta x}}{x}
+        \intertext{Using Holder's Inequality}
+        &\le \dintt{0}{1}{e^{-2\theta x}}{x} \dintt{0}{1}{\dintt{0}{x}{\abs{K(x, y)u(y)}^2}{y}}{x}
+        \intertext{Using Fubini's Theorem}
+        &= \dintt{0}{1}{e^{-2\theta x}}{x} \dintt{0}{1}{\abs{u(y)}^2\dintt{y}{1}{\abs{K(x, y)}^2}{x}}{y}
+        \intertext{Since $K(x, y)$ is bounded on $\br{0, 1} \times \br{0, 1}$, there exists $M$ such that}
+        &\le \dintt{0}{1}{e^{-2\theta x}}{x} \dintt{0}{1}{M\abs{u(y)}^2}{y} \\
+        &= \frac{M}{-2\theta e^{-2\theta}} \norm[\theta]{u}^2
       \end{align*}
+      This implies that
+      \[
+        \frac{\norm[\theta]{Tu}}{\norm[\theta]{u}} \le \sqrt{\frac{M}{-2\theta e^{-2\theta}}}
+      \]
+      Since $\theta$ can be any number there exists $\theta$ such that
+      \[
+        \frac{\norm[\theta]{Tu}}{\norm[\theta]{u}} \le \epsilon
+      \]
 
       Now that we have shown that
       \[
-        \norm[\theta]{T} = \sup \frac{\norm[\theta]{Tu}}{\norm[\theta]{u}} < \epsilon
+        \norm[\theta]{T} = \sup{\frac{\norm[\theta]{Tu}}{\norm[\theta]{u}}} < \epsilon
       \]
       for any $\epsilon > 0$, we can show that $\sigma(T) = \set{0}$.
       Theorem 12.1 states that $\abs{\lambda} \le \norm{T}$ for any
       $\lambda \in \sigma(T)$, because $T \in \mcB(L^2(0, 1))$.
       However since $\norm[\theta]{T}$ is equivalent to $\norm{T}$, this also
-      means that $\abs{\lamdba} \le \norm[\theta]{T}$ for any $\theta$.
+      means that $\abs{\lambda} \le \norm[\theta]{T}$ for any $\theta$.
       Now since $\norm[\theta]{T}$ can be arbitrarily small this implies that
       $\lambda = 0$ is the only possible element of $\sigma(T)$.
       Also by Theorem 12.3 we know that $\sigma(T)$ is nonempty because
@@ -509,7 +538,7 @@ Homework 5
         \norm{(\lambda I - T)u} &\ge \abs{\eta} \norm{u} \\
         \norm{(\lambda I - T)(\lambda I - T)^{-1}u} &\ge \abs{\eta} \norm{(\lambda I - T)^{-1}u} \\
         \norm{u} &\ge \abs{\eta} \norm{(\lambda I - T)^{-1}u} \\
-        \frac{\norm{(\lambda I - T)^{-1}u}{\norm{u}} &\le \frac{1}{\abs{\eta}} \\
+        \frac{\norm{(\lambda I - T)^{-1}u}}{\norm{u}} &\le \frac{1}{\abs{\eta}} \\
         \norm{(\lambda I - T)^{-1}} &\le \frac{1}{\abs{\eta}} \\
       \end{align*}
       Thus this shows that $(\lambda I - T)^{-1}$ is bounded and continuous.
@@ -539,7 +568,6 @@ Homework 5
       This shows that $u \in R((\lambda I - T)^{-1}) = D(\lambda I - T)$ and
       therefore $(\lambda I - T)u = v$.
       Therefore $v \in R(\lambda I - T)$, so $R(\lambda I - T)$ is closed.
-
       In conclusion since $R(\lambda I - T)$ is dense and closed, this implies
       that $R(\lambda I - T) = H$.
       This contradicts that $\lambda \in \sigma_c(T)$, so this shows that if
