@@ -34,15 +34,30 @@ Homework 6
     \end{proof}
 
   \pagebreak
-  \item[\#2]
+  \item[\#2] % Done
     If $T \in \mcB(\v{H})$ and $T^*T$ is compact, show that $T$ must be compact.
     Use this to show that if $T$ is compact then $T^*$ must also be compact.
-    
+
     \begin{proof}
       Let $T \in \mcB(\v{H})$ such that $T^* T$ is compact and let
-      $E \subset \v{H}$ be bounded.
-      Let $\set{u_n} \in T(E)$, and now consider $\set{T^* u_n} \in T^* T(E)$.
-      Since $T^* T$ is compact this implies that there exists some 
+      $u_n \wto u$ in $\v{H}$
+      Since $T^* T$ is compact, $T^* T u_n \to u$.
+      To show that $T$ compact we wish to show $Tu_n \to Tu$.
+      \begin{align*}
+        \lim[n \to \infty]{\norm{Tu_n - Tu}^2} &= \lim[n \to \infty]{\abs{\abr{Tu_n - Tu, Tu_n - Tu}}} \\
+        &= \lim[n \to \infty]{\abs{\abr{Tu_n - Tu, Tu_n - Tu}}} \\
+        &= \lim[n \to \infty]{\abs{\abr{T^*Tu_n - T^*Tu, u_n - u}}} \\
+        &= \lim[n \to \infty]{\abs{\abr{T^*Tu_n, u_n} - \abr{T^*Tu_n, u} - \abr{T^*Tu, u_n} - \abr{T^*Tu, u}}}
+        \intertext{Since $u_n \wto u$ and $T^*Tu_n \to T^*Tu$}
+        &= \abs{\abr{T^*Tu, u} - \abr{T^*Tu, u} - \abr{T^*Tu, u} - \abr{T^*Tu, u}}
+        &= 0
+      \end{align*}
+      This shows that $Tu_n \to Tu$, so $T$ is a compact operator.
+
+      Now let $T$ be a compact operator, then by problem 1 $TT^*$ is compact as
+      $T^* \in \mcB(\v{H})$.
+      Now since $T^{**} = T$, this implies $\p{T^*}^* T^*$ is compact as well.
+      Therefore by first part of this problem $T^*$ is compact.
     \end{proof}
 
   \pagebreak
@@ -51,7 +66,11 @@ Homework 6
     show that $0 \in \sigma(T)$.
 
     \begin{proof}
+      Let $T \in \mcB(\v{H})$ is compact and let $\v{H}$ be of infinite
+      dimension.
       
+      
+
     \end{proof}
 
   \pagebreak
