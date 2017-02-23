@@ -1,0 +1,169 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[letterpaper, margin=2cm]{geometry}
+\usepackage{MATH520}
+
+\begin{document}
+\noindent \textbf{\Large{Caleb Logemann \\
+MATH 520 Methods of Applied Math II \\
+Homework 6
+}}
+
+\subsection*{Section 13.6}
+\begin{enumerate}
+  \item[\#1] % Done
+    Show that if $S \in \mcB{\v{H}}$ and $T$ is compact, the $TS$ and $ST$ are
+    compact.
+
+    \begin{proof}
+      Let $E \subset \v{H}$ be bounded.
+      Since $S \in \mcB(\v{H})$, this implies that the set $S(E)$ is also
+      bounded.
+      Now since $T$ is compact the set $T(S(E))$ will be precompact.
+      This shows that $TS(E) = T(S(E))$ is precompact and that therefore the
+      operator $TS$ is compact.
+
+      Also since $T$ is compact this implies that $T(E)$ is precompact or that
+      $\overline{T(E)}$ is compact.
+      Let $\set{u_n} \in T(E)$, then there exists a subsequence $\set{u_{n_j}}$
+      such that $u_{n_j} \to u \in \overline{T(E)}$.
+      Consider $\set{S(u_{n_j})} \in S(T(E))$ and note that since
+      $S \in \mcB(\v{H})$ there exists $v \in \overline{S(T(E))}$ such that
+      $S(u_{n_j}) \to v$.
+      This shows that $S(T(E))$ is also precompact, and therefore $ST$ is a
+      compact operator.
+    \end{proof}
+
+  \pagebreak
+  \item[\#2]
+    If $T \in \mcB(\v{H})$ and $T^*T$ is compact, show that $T$ must be compact.
+    Use this to show that if $T$ is compact then $T^*$ must also be compact.
+    
+    \begin{proof}
+      Let $T \in \mcB(\v{H})$ such that $T^* T$ is compact and let
+      $E \subset \v{H}$ be bounded.
+      Let $\set{u_n} \in T(E)$, and now consider $\set{T^* u_n} \in T^* T(E)$.
+      Since $T^* T$ is compact this implies that there exists some 
+    \end{proof}
+
+  \pagebreak
+  \item[\#4]
+    It $T \in \mcB(\v{H})$ is compact and $\v{H}$ is of infinite dimension,
+    show that $0 \in \sigma(T)$.
+
+    \begin{proof}
+      
+    \end{proof}
+
+  \pagebreak
+  \item[\#13]
+    The concept of a Hilbert-Schmidt operator can be defined abstractly as
+    follows.
+    If $\v{H}$ is a separable Hilber space, we say that $T \in \mcB(\v{H})$ is
+    Hilbert-Schmidt if
+    \[
+      \sum{n = 1}{\infty}{\norm{Tu_n}^2} < \infty
+    \]
+    for some orthonormal basis $\set{u_n}_{n = 1}^{\infty}$ of $\v{H}$.
+    \begin{enumerate}
+      \item[(a)] % Done
+        Show that if $T$ is Hilbert-Schmidt then the sum must be finite for any
+        orthonormal basis of $\v{H}$.
+
+        \begin{proof}
+          First note that given any element $x \in \v{H}$ and any orthonormal
+          basis $\set{u_n}_{n = 1}^{\infty}$, $x$ can be represented as its
+          projection onto the basis, that is
+          \[
+            x = \sum{n = 1}{\infty}{\abr{x, u_n} u_n}
+          \]
+          This relationship can be used to rewrite $\norm{x}^2$.
+          \begin{align*}
+            \norm{x}^2 &= \abr{x, x} \\
+            &= \abr{x, \sum{n = 1}{\infty}{\abr{x, u_n} u_n}} \\
+            &= \sum{n = 1}{\infty}{\abr{x, \abr{x, u_n} u_n}} \\
+            &= \sum{n = 1}{\infty}{\overline{\abr{x, u_n}} \abr{x, u_n}} \\
+            &= \sum{n = 1}{\infty}{\abs{\abr{x, u_n}}^2} \\
+          \end{align*}
+          Therefore $\norm{x}^2 = \sum{n = 1}{\infty}{\abs{\abr{x, u_n}}^2}$
+          for any $x \in \v{H}$ and any orthonormal basis
+          $\set{u_n}_{n = 1}^{\infty}$.
+
+          Now I will show $\sum{n = 1}{\infty}{\norm{Tv_n}^2}$ is finite for any
+          orthonormal basis $\set{v_n}_{n = 1}^{\infty}$ when $T$ is a
+          Hilbert-Schmidt operator.
+          Let $\set{v_n}_{n = 1}^{\infty}$ be an orthonormal basis in $\v{H}$,
+          and let $T$ be a Hilbert-Schmidt operator, then there exists another
+          orthonormal basis $\set{u_n}_{n = 1}^{\infty}$ such that
+          \[
+            \sum{n = 1}{\infty}{\norm{Tu_n}^2} < \infty
+          \]
+          Now since $\norm{Tv_n}^2 = \sum{m = 1}{\infty}{\abs{\abr{Tv_n, u_n}}^2}$,
+          \begin{align*}
+            \sum{n = 1}{\infty}{\norm{Tv_n}^2} &= \sum{n = 1}{\infty}{\sum{m = 1}{\infty}{\abs{\abr{Tv_n, u_m}}^2}}
+            \intertext{Since $T \in \mcB{\v{H}}$, $T^*$ exists}
+            &= \sum{n = 1}{\infty}{\sum{m = 1}{\infty}{\abs{\abr{v_n, T^* u_m}}^2}} \\
+            &= \sum{n = 1}{\infty}{\sum{m = 1}{\infty}{\abs{\abr{T^*u_m, v_n}}^2}} \\
+            &= \sum{m = 1}{\infty}{\sum{n = 1}{\infty}{\abs{\abr{T^*u_m, v_n}}^2}}
+            \intertext{Since $\set{v_n}$ is an orthonormal basis, $\sum{n = 1}{\infty}{\abs{\abr{T^*u_m, v_n}}^2} = \norm{T^* u_m}^2$}
+            &= \sum{m = 1}{\infty}{\norm{T^* u_m}^2} \\
+            &= \sum{m = 1}{\infty}{\sum{n = 1}{\infty}{\abs{\abr{T^*u_m, u_n}}^2}} \\
+            &= \sum{m = 1}{\infty}{\sum{n = 1}{\infty}{\abs{\abr{u_m, Tu_n}}^2}} \\
+            &= \sum{m = 1}{\infty}{\sum{n = 1}{\infty}{\abs{\abr{Tu_n, u_m}}^2}} \\
+            &= \sum{n = 1}{\infty}{\sum{m = 1}{\infty}{\abs{\abr{Tu_n, u_m}}^2}} \\
+            &= \sum{n = 1}{\infty}{\norm{Tu_n}^2} \\
+            &< \infty
+          \end{align*}
+          This shows that $\sum{n = 1}{\infty}{\norm{Tv_n}^2} < \infty$ for any
+          orthonormal basis.
+        \end{proof}
+
+      \item[(b)]
+        Show that a Hilbert-Schmidt operator is compact.
+
+        \begin{proof}
+          Let $T$ be a Hilbert-Schmidt operator.
+          Since $\mcK(\v{H})$ is a closed subspace of $\mcB(\v{H})$, if there
+          exists some sequence of operators $T_N \in \mcK(\v{H})$ such that
+          $T_N \to T$, then $T \in \mcK(\v{H})$ because $\mcK(\v{H})$ is closed.
+          To this end, I will let $\set{u_n}_{n = 1}^{\infty}$ be an orthonormal
+          basis of $\v{H}$ and I will define
+          \[
+            T_N x = \sum{n = 1}{N}{\abr{x, u_n} Tu_n}
+          \]
+          First I will show that $T_N \in \mcK(\v{H})$ for any $N$.
+          Note that $T_N \in \mcB(\v{H})$,
+          \begin{align*}
+            \norm{T_N x} &= \norm{\sum{n = 1}{N}{\abr{x, u_n} Tu_n}} \\
+            &\le \sum{n = 1}{N}{\abs{\abr{x, u_n}} \norm{Tu_n}}
+            \intertext{By Cauchy-Schwarze}
+            &\le \sum{n = 1}{N}{\norm{x} \norm{u_n} \norm{Tu_n}} \\
+            &= \sum{n = 1}{N}{\norm{x} \norm{Tu_n}}
+            \intertext{Since $T \in \mcB(\v{H})$}
+            &\le \sum{n = 1}{N}{\norm{x} \norm{T}\norm{u_n}} \\
+            &= \sum{n = 1}{N}{\norm{x} \norm{T}} \\
+            &= N\norm{T}\norm{x} \\
+          \end{align*}
+          This shows that $\norm{T_N} \le N\norm{T}$ and therefore that
+          $T_N \in \mcB(\v{H})$.
+          Next note that $T_N x \in \spanspace{\set{Tu_n: 1 \le n \le N}}$.
+          This shows that $R(T_N) \subset \spanspace{\set{Tu_n: 1 \le n \le N}}$ and
+          that $\dim(R(T_N)) < N$.
+          Since $T_N$ is both bounded and of finite rank, this implies that
+          $T_N \in \mcK(\v{H})$.
+
+          Secondly I will show that $T_N \to T$, and I will use the fact that
+          \[
+            Tx = T\p{\sum{n = 1}{\infty}{\abr{x, u_n}u_n}} = \sum{n = 1}{\infty}{\abr{x, u_n}Tu_n}
+          \]
+          \begin{align*}
+            \norm{T_N - T} &= \sup[\norm{x} = 1]{\norm{T_N x - Tx}} \\
+            &= \sup[\norm{x} = 1]{\norm{\sum{n = 1}{N}{\abr{x, u_n}Tu_n} - \sum{n = 1}{\infty}{\abr{x, u_n}Tu_n}}} \\
+            &= \sup[\norm{x} = 1]{\norm{\sum{n = N+1}{\infty}{\abr{x, u_n}Tu_n}}} \\
+            &\le \sup[\norm{x} = 1]{\sum{n = N+1}{\infty}{\abs{\abr{x, u_n}}\norm{Tu_n}}} \\
+            &\le \sup[\norm{x} = 1]{\sum{n = N+1}{\infty}{\norm{x} \norm{u_n}\norm{Tu_n}}} \\
+            &= \sum{n = N+1}{\infty}{\norm{Tu_n}} \\
+          \end{align*}
+        \end{proof}
+    \end{enumerate}
+\end{enumerate}
+\end{document}
