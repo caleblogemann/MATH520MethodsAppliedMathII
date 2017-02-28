@@ -49,7 +49,7 @@ Homework 6
         &= \lim[n \to \infty]{\abs{\abr{T^*Tu_n - T^*Tu, u_n - u}}} \\
         &= \lim[n \to \infty]{\abs{\abr{T^*Tu_n, u_n} - \abr{T^*Tu_n, u} - \abr{T^*Tu, u_n} - \abr{T^*Tu, u}}}
         \intertext{Since $u_n \wto u$ and $T^*Tu_n \to T^*Tu$}
-        &= \abs{\abr{T^*Tu, u} - \abr{T^*Tu, u} - \abr{T^*Tu, u} - \abr{T^*Tu, u}}
+        &= \abs{\abr{T^*Tu, u} - \abr{T^*Tu, u} - \abr{T^*Tu, u} - \abr{T^*Tu, u}} \\
         &= 0
       \end{align*}
       This shows that $Tu_n \to Tu$, so $T$ is a compact operator.
@@ -61,20 +61,36 @@ Homework 6
     \end{proof}
 
   \pagebreak
-  \item[\#4]
+  \item[\#4] % Done
     It $T \in \mcB(\v{H})$ is compact and $\v{H}$ is of infinite dimension,
     show that $0 \in \sigma(T)$.
 
     \begin{proof}
       Let $T \in \mcB(\v{H})$ is compact and let $\v{H}$ be of infinite
       dimension.
-      
-      
 
+      If $0 \in \sigma(T)$, then $T$ is not one-to-one and onto.
+      Therefore assume to contrary the that $T$ is one-to-one and onto.
+      Since $\v{H}$ is infinite dimensional there exists an orthonormal basis
+      $U = \set{u_n}_{n=1}^{\infty}$.
+      Note that no subsequence, $\set{u_{n_k}}$ can be convergent because all the
+      elements $u_n$ are mutually orthogonal.
+      Consider the set $T(U) = \set{Tu_n}$, since $T$ is compact and $U$ is
+      bounded this set is precompact.
+      Therefore there exists some subsequence $Tu_{n_k}$ that converges to
+      $v \in \overline{T(U)}$.
+      Since $T \in \mcB(\v{H})$ and is one-to-one and onto, $T^{-1}$ is defined
+      for all $x \in \v{H}$ and is continuous.
+      Thus we can consider the sequence $T^{-1} Tu_{n_k}$.
+      Since $T^{-1}$ is continuous, $T^{-1} Tu_{n_k} \to T^{-1} v$.
+      However this is identical to $u_{n_k} \to T^{-1} v$ which is a
+      contradiction as no subsequence $u_{n_k}$ is convergent.
+      Therefore $T$ is not one-to-one and onto, which implies that
+      $0 \in \sigma(T)$.
     \end{proof}
 
   \pagebreak
-  \item[\#13]
+  \item[\#13] % Done
     The concept of a Hilbert-Schmidt operator can be defined abstractly as
     follows.
     If $\v{H}$ is a separable Hilber space, we say that $T \in \mcB(\v{H})$ is
@@ -136,7 +152,7 @@ Homework 6
           orthonormal basis.
         \end{proof}
 
-      \item[(b)]
+      \item[(b)] % Done
         Show that a Hilbert-Schmidt operator is compact.
 
         \begin{proof}
@@ -175,13 +191,18 @@ Homework 6
             Tx = T\p{\sum{n = 1}{\infty}{\abr{x, u_n}u_n}} = \sum{n = 1}{\infty}{\abr{x, u_n}Tu_n}
           \]
           \begin{align*}
-            \norm{T_N - T} &= \sup[\norm{x} = 1]{\norm{T_N x - Tx}} \\
-            &= \sup[\norm{x} = 1]{\norm{\sum{n = 1}{N}{\abr{x, u_n}Tu_n} - \sum{n = 1}{\infty}{\abr{x, u_n}Tu_n}}} \\
-            &= \sup[\norm{x} = 1]{\norm{\sum{n = N+1}{\infty}{\abr{x, u_n}Tu_n}}} \\
-            &\le \sup[\norm{x} = 1]{\sum{n = N+1}{\infty}{\abs{\abr{x, u_n}}\norm{Tu_n}}} \\
-            &\le \sup[\norm{x} = 1]{\sum{n = N+1}{\infty}{\norm{x} \norm{u_n}\norm{Tu_n}}} \\
-            &= \sum{n = N+1}{\infty}{\norm{Tu_n}} \\
+            \norm{T_N - T}^2 &= \sup[\norm{x} = 1]{\norm{T_N x - Tx}^2} \\
+            &= \sup[\norm{x} = 1]{\norm{\sum{n = 1}{N}{\abr{x, u_n}Tu_n} - \sum{n = 1}{\infty}{\abr{x, u_n}Tu_n}}^2} \\
+            &= \sup[\norm{x} = 1]{\norm{\sum{n = N+1}{\infty}{\abr{x, u_n}Tu_n}}^2} \\
+            &\le \sup[\norm{x} = 1]{\sum{n = N+1}{\infty}{\abs{\abr{x, u_n}}^2\norm{Tu_n}^2}} \\
+            &\le \sup[\norm{x} = 1]{\sum{n = N+1}{\infty}{\norm{x}^2 \norm{u_n}^2 \norm{Tu_n}^2}} \\
+            &= \sum{n = N+1}{\infty}{\norm{Tu_n}^2} \\
           \end{align*}
+          This last sum goes to 0 at $N \to \infty$ because
+          $\sum{n = 1}{\infty}{\norm{Tu_n}^2} < \infty$.
+
+          This shows that $T_N \in \mcK(\v{H})$ and that $T_N \to T$, now since
+          $\mcK(\v{H})$ is closed this implies that $T \in \mcK(\v{H})$.
         \end{proof}
     \end{enumerate}
 \end{enumerate}
