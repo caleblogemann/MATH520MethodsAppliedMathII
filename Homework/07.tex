@@ -13,20 +13,88 @@ Homework 7
   \item[\#6]
     Let
     \[
-      Tu(x) = \frac{1}{x} \dintt{0}{x}{u(y)}{x} \qquad u \in L^2(0, 1)
+      Tu(x) = \frac{1}{x} \dintt{0}{x}{u(y)}{y} \qquad u \in L^2(0, 1)
     \]
     Show that $(0, 2) \subset \sigma_p(T)$ and that $T$ is not compact.
     % Suggestion look for eigenfunctions of the form u(x) = x^{\alpha}
+
+    \begin{proof}
+      Let $\lambda \in (0, 2)$ and define $\alpha = \frac{1}{\lambda} - 1$.
+      Since $\lambda \in (0, 2)$ this is well-defined and this implies that
+      $\alpha \in (-1/2, \infty)$.
+      Now let $u(x) = x^{\alpha}$, and first note that $u \in L^2(0, 1)$ for
+      any 
+    \end{proof}
 
   \item[\#9]
     Let $T$ be the integral operator with kernel $K(x, y) = e^{-\abs{x - y}}$
     on $L^2(-1, 1)$.
     Find all the eigenvalues and eigenfunctions of $T$.
-    % suggestion Tu = \lambda u is equivalent to an ODE problem.
-    % Done forget about boundar conditions.
-    % the eigenvalues may need to be characterized in terms of the roots of a
-    % certain nonlinear  functions.
+    Suggestion: $Tu = \lambda u$ is equivalent to an ODE problem.
+    Don't forget about boundary conditions.
+    the eigenvalues may need to be characterized in terms of the roots of a
+    certain nonlinear functions.
+
   \item[\#10]
-  \item[\#14]
+    We say that $T \in \mcB(\v{H})$ is a positive operator if
+    $\abr{Tx, x} \ge 0$ for all $x \in \v{H}$.
+    If $T$ is a positive self-adjoint compact operator show that $T$ has a
+    square root, more precisely there exists a compact self-adjoint operator $S$
+    such that $S^2 = T$.
+    (Suggestion: If $T = \sum{n = 1}{\infty}{\lambda_n P_n}$ try
+    $S = \sum{n = 1}{\infty}{\sqrt{\lambda_n} P_n}$.
+    In a similar manner, one can define other fractional powers of $T$.)
+
+    \begin{proof}
+      
+    \end{proof}
+
+  \item[\#14] % Done
+    If $Q \in \mcB(\v{H})$ is a Fredholm operator of index zero, show that there
+    exists a one-to-one operator $S \in \mcB(\v{H})$ and $T \in \mcK(\v{H})$
+    such that $Q = S + T$.
+    (Hint: Define $T = AP$ where $P$ is the orthogonal projecion onto $N(Q)$ and
+    $A: N(Q) \to N(Q^*)$ is one-to-one and onto.)
+
+    \begin{proof}
+      Let $Q \in \mcB(\v{H})$ be a Fredholm operator of index zero.
+      This implies that $\dim(N(Q)) = \dim(N(Q^*)) < \infty$ and that $R(Q)$
+      is closed.
+      Since $\dim(N(Q)) = \dim(N(Q^*))$ there exists a one-to-one and onto
+      operator $A:N(Q) \to N(Q^*)$.
+      Note that since $A$ is bounded because it is a linear operator from one
+      finite dimensional space to another finite dimensional space, see
+      exercise 10.9.6.
+      Now let $P$ be the projection from $H$ to $N(Q)$.
+      Since $P$ is a projection it is bounded and since $\dim(N(Q)) < \infty$,
+      $P$ is compact.
+      Define $T = AP$, which is compact as it is the composition of a bounded
+      operator with a compact operator.
+
+      Next let $S = Q - T$.
+      Since $Q, T \in \mcB(\v{H})$ this implies that $S \in \mcB(\v{H})$.
+      Lastly I will show that $S$ is one-to-one.
+      Let $u \in \v{H}$ such that $Su = 0$.
+      This implies that $Qu - Tu = 0$ or that $Qu = Tu$.
+      Since $Qu = Tu$, this implies that $Tu \in R(Q)$ or since the
+      range of $Q$ is closed, $T \in \overline{R(Q)}$.
+      However it is known that $\overline{R(Q)} = N(Q^*)^{\perp}$, so therefore
+      $Tu \in N(Q^*)^{\perp}$.
+      One the other hand $Tu = APu$ and therefore $Tu \in R(A) = N(Q^*)$.
+      Since $Tu \in N(Q^*)$ and $Tu \in N(Q^*)^{\perp}$ this implies that
+      $Tu = 0$ and therefore $Qu = 0$ because $Qu = Tu$.
+      Since $Qu = 0$ this shows that $u \in N(Q)$.
+      Also with $Tu = 0$, this implies that $APu = 0$ and since $A$ is
+      one-to-one, $Pu = 0$.
+      Because $Pu = 0$ this implies that $u$ must be orthogonal to $N(Q)$ as
+      $P$ is the projection onto $N(Q)$, therefore $u \in N(Q)^{\perp}$.
+      Now that $u \in N(Q)$ and $u \in N(Q)^{\perp}$, this shows that $u = 0$.
+      We have now shown that $N(S) = \set{0}$ and therefore $S$ is one-to-one.
+
+      Thus there exists a one-to-one and bounded function $S$ and a compact
+      function $T$, such that $Q = S + T$ for any Fredholm operator of index 0,
+      $Q$.
+    \end{proof}
+
 \end{enumerate}
 \end{document}
