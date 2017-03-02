@@ -10,7 +10,7 @@ Homework 7
 
 \subsection*{Section 13.6}
 \begin{enumerate}
-  \item[\#6]
+  \item[\#6] % Done
     Let
     \[
       Tu(x) = \frac{1}{x} \dintt{0}{x}{u(y)}{y} \qquad u \in L^2(0, 1)
@@ -23,7 +23,32 @@ Homework 7
       Since $\lambda \in (0, 2)$ this is well-defined and this implies that
       $\alpha \in (-1/2, \infty)$.
       Now let $u(x) = x^{\alpha}$, and first note that $u \in L^2(0, 1)$ for
-      any 
+      any $\alpha \in (-1/2, \infty)$.
+      \begin{align*}
+        \dintt{0}{1}{\abs{u(x)}^2}{x} &= \dintt{0}{1}{\abs{x^{\alpha}}^2}{x} \\
+        &= \dintt{0}{1}{x^{2\alpha}}{x}
+        \intertext{Since $\alpha > -1/2$, this implies that $2\alpha > -1$ and
+          this integral can be evaluated using the power rule}
+        &= \frac{1}{2\alpha + 1}\eval{x^{2\alpha + 1}}{x = 0}{1} \\
+        &= \frac{1}{2\alpha + 1} \\
+        &\le \infty
+      \end{align*}
+      This shows that $u \in L^2(0, 1)$.
+
+      Now $Tu(x)$,
+      \begin{align*}
+        Tu(x) &= \frac{1}{x} \dintt{0}{x}{u(y)}{y} \\
+        &= \frac{1}{x} \dintt{0}{x}{y^{\alpha}}{y} \\
+        &= \frac{1}{x} \eval{\frac{1}{\alpha + 1} y^{\alpha + 1}}{y = 0}{x} \\
+        &= \frac{1}{x} \frac{1}{\alpha + 1} x^{\alpha + 1} \\
+        &= \frac{1}{\alpha + 1} x^{\alpha} \\
+        &= \frac{1}{\alpha + 1} u(x) \\
+        &= \lambda u(x) \\
+      \end{align*}
+
+      This shows that $\lambda$ and $u(x)$ are an eigenvalue and eigenfunction
+      pair for $T$.
+      Thus $\lambda \in \sigma_p(T)$ and $(0, 2) \subset \sigma_p(T)$
     \end{proof}
 
   \item[\#9]
@@ -46,7 +71,23 @@ Homework 7
     In a similar manner, one can define other fractional powers of $T$.)
 
     \begin{proof}
-      
+      Let $T$ be a positive self-adjoint compact operator.
+      Note that the eigenvalues of $T$ must all be nonnegative.
+      To see this, let $u$ be an eigenvector of $T$ with eigenvalue $\lambda$,
+      then
+      \[
+        0 < \abr{Tu, u} = \abr{\lambda u, u} = \lambda \norm{u}^2
+      \]
+      This implies that $\lambda \ge 0$, since $\norm{u}^2 \ge 0$.
+      Also since $T$ is self-adjoint and compact, the set of eigenvectors make
+      an orthonormal basis of $\v{H}$ and $T$ can be expressed as the following
+      infinite sum
+      \[
+        T = \sum{n = 1}{\infty}{\lambda_n P_n}
+      \]
+      where $P_n$ is the projection operator onto the eigenvector $u_n$ and
+      $\lambda_n$ is the corresponding eigenvalue.
+
     \end{proof}
 
   \item[\#14] % Done
