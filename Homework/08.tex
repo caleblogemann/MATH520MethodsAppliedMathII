@@ -1,0 +1,87 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[letterpaper, margin=2cm]{geometry}
+\usepackage{MATH520}
+
+\begin{document}
+\noindent \textbf{\Large{Caleb Logemann \\
+MATH 520 Methods of Applied Math II \\
+Homework 7
+}}
+
+\subsection*{Section 13.6}
+\begin{enumerate}
+  \item[\#7]
+    Let $\set{\lambda_j}_{j = 1}^{\infty}$ be a sequence of nonzero real
+    numbers satisfying
+    \[
+      \sum{j = 1}{\infty}{\lambda_j^2} < \infty
+    \]
+    Construct a summetric Hilber Schmidt kernel $K$ such that the corresonding
+    integral operator has eigenvalues $\lambda_j$, $j = 1, 2, \ldots$ and for
+    which $0$ is an eigenvalue of infinite multiplicity.
+    ( Suggestion: look for such a $K$ in the form
+    $K(x, y) = \sum{j = 1}{\infty}{\lambda_j u_j(x) \overline{u_j(y)}}$ where
+    $\set{u_j}$ are orthonormal but not complete in $L^2(\Omega)$.)
+
+  \pagebreak
+  \item[\#12]
+    Compute the singular value decomposition of the Volterra operator
+    \[
+      Tu(x) = \dintt{0}{x}{u(s)}{s}
+    \]
+    in $L^2(0, 1)$ and use it to find $\norm{T}$.
+    Is $T$ normal?
+    (Suggestion: The equation $T^* T u = \lambda u$ is equivalent to an ODE
+    eigenvalue problem which you can solve explicitly.)
+
+\end{enumerate}
+
+\pagebreak
+\subsection*{Section 14.5}
+\begin{enumerate}
+  \item[\#1]
+    Let $Lu = (x - 2)u'' + (1 - x)u' + u$ on $(0, 1)$.
+    \begin{enumerate}
+      \item[(a)]
+        Find the Green's function for
+        \[
+          Lu = f \qquad u'(0) = 0 \quad u(1) = 0
+        \]
+        (Hint First show that $x - 1$, $e^x$ are linearly independent
+        solutions of $Lu = 0$.
+
+      \item[(b)]
+        Find the adjoint operator and boundary conditions.
+    \end{enumerate}
+
+  \pagebreak
+  \item[\#2]
+    Let
+    \[
+      Tu = - \d*{x \d{u}{x}}{x}
+    \]
+    on the domain
+    \[
+      D(T) = \set{u \in H^2(1, 2): u(1) = u(2) = 0}
+    \]
+    \begin{enumerate}
+      \item[(a)]
+        Show that $N(T) = \set{0}$.
+      \item[(b)]
+        Find the Green's function for the boundary value problem $Tu = f$.
+      \item[(c)]
+        State and prove a result about the continuous dependence of the
+        solution $u$ on $f$ in part (b).
+    \end{enumerate}
+
+  \pagebreak
+  \item[\#4]
+    Prove the validity of (14.1.22).
+    (Suggestions: start by writing $u(x)$ in the form
+    \[
+      u(x) = \phi_2(x) \dintt{a}{x}{C_2(y)f(y)}{y} + \phi_1(x) \dintt{x}{b}{C_1(y)f(y)}{y}
+    \]
+    and note that some of the terms that arise in the expression for u'(x) will
+    cancel.)
+\end{enumerate}
+\end{document}

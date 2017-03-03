@@ -60,7 +60,23 @@ Homework 7
     the eigenvalues may need to be characterized in terms of the roots of a
     certain nonlinear functions.
 
-  \item[\#10]
+    In order to find the eigenvalues and eigenfunctions of $T$ we must find
+    solutions to $Tu = \lambda u$.
+    \begin{align*}
+      \lambda u(x) &= Tu(x) \\
+      \lambda u(x) &= \dintt{-1}{1}{e^{-\abs{x - y}} u(y)}{y} \\
+      \lambda u(x) &= \dintt{-1}{x}{e^{-\abs{x - y}} u(y)}{y} + \dintt{x}{1}{e^{-\abs{x - y}} u(y)}{y} \\
+      \lambda u(x) &= \dintt{-1}{x}{e^{-\abs{x - y}} u(y)}{y} - \dintt{1}{x}{e^{-\abs{x - y}} u(y)}{y}
+      \intertext{In the first integral $y < x$ and in the second integral $x < y$}
+      \lambda u(x) &= \dintt{-1}{x}{e^{-x + y} u(y)}{y} - \dintt{1}{x}{e^{x - y} u(y)}{y} \\
+      \lambda u(x) &= e^{-x}\dintt{-1}{x}{e^y u(y)}{y} - e^x\dintt{1}{x}{e^{-y} u(y)}{y}
+      \intertext{Differentiating both sides}
+      \lambda u'(x) &= -e^{-x}\dintt{-1}{x}{e^y u(y)}{y} + e^{-x}e^{x}u(x) - e^x\dintt{1}{x}{e^{-y} u(y)}{y} - e^xe^{-x} u(x) \\
+      \lambda u'(x) &= -e^{-x}\dintt{-1}{x}{e^y u(y)}{y} + u(x) - e^x\dintt{1}{x}{e^{-y} u(y)}{y} - u(x) \\
+      \lambda u'(x) &= -e^{-x}\dintt{-1}{x}{e^y u(y)}{y} - e^x\dintt{1}{x}{e^{-y} u(y)}{y} \\
+    \end{align*}
+
+  \item[\#10] % Done
     We say that $T \in \mcB(\v{H})$ is a positive operator if
     $\abr{Tx, x} \ge 0$ for all $x \in \v{H}$.
     If $T$ is a positive self-adjoint compact operator show that $T$ has a
@@ -87,7 +103,22 @@ Homework 7
       \]
       where $P_n$ is the projection operator onto the eigenvector $u_n$ and
       $\lambda_n$ is the corresponding eigenvalue.
+      Since $\lambda_n \ge 0$ for all $n$, we can define the following operator.
+      \[
+        S = \sum{n = 1}{\infty}{\sqrt{\lambda} P_n}
+      \]
+      This operator is compact as can be seen by noting that
+      \[
+        S_N = \sum{n = 1}{N}{\sqrt{\lambda} P_n}
+      \]
+      is a sequence of compact operators that converge to $S$.
+      That is $S_N \in \mcK(\v{H})$ as it has a finite dimensional range.
+      Also $S_N \to S$ so $S \in \mcK(\v{H})$ as $\mcK(\v{H})$ is a closed
+      subspace.
 
+      Also $S$ is self adjoint because it is a sum of self-adjoint operators.
+      Lastly $S^2 = T$ because $P_n P_n = P_n$ and $P_n P_m = 0$ when
+      $n \neq m$.
     \end{proof}
 
   \item[\#14] % Done
