@@ -34,6 +34,86 @@ Homework 7
     (Suggestion: The equation $T^* T u = \lambda u$ is equivalent to an ODE
     eigenvalue problem which you can solve explicitly.)
 
+    In order to compute the singular value decomposition of the Volterra
+    operator, we must first find the operator $T^*$, so that we may construct
+    $S = T^* T$.
+    Since the Volterra operator is an integral operator in may be rewritten as
+    \[
+      Tu(x) = \dintt{0}{1}{K(x, y)u(y)}{y}
+    \]
+    where the kernel $K(x, y)$ is
+    \[
+      K(x, y) =
+      \begin{cases}
+        1 & y < x \\
+        0 & y > x
+      \end{cases}.
+    \]
+    The adjoint of any integral operator is another integral operator with
+    kernel, $\overline{K(y, x)}$.
+    In this case
+    \[
+      \overline{K(y, x)} =
+      \begin{cases}
+        1 & x < y \\
+        0 & x > y
+      \end{cases}.
+    \]
+    Therefore
+    \begin{align*}
+      T^* u(x) &= \dintt{0}{1}{\overline{K(y, x)}u(y)}{y} \\
+      &= \dintt{x}{1}{u(y)}{y}.
+    \end{align*}
+
+    Now I will define $S = T^* T$ which can be expressed as
+    \begin{align*}
+      Su(x) &= T^* T u(x) \\
+      &= T^* \dintt{0}{x}{u(s)}{s} \\
+      &= \dintt{x}{1}{\dintt{0}{y}{u(s)}{s}}{y}
+    \end{align*}
+
+    In order to compute the singular value decomposition of $T$ we must first
+    find the eigenvalues and eigenfunctions of $S$.
+    This means solving $Su = \lambda u$.
+    This integral equation can be changed into a differential equation as
+    follows.
+    \begin{align*}
+      \lambda u(x) &= Su(x) \\
+      \lambda u(x) &= \dintt{x}{1}{\dintt{0}{y}{u(s)}{s}}{y} \\
+      \lambda u(x) &= -\dintt{1}{x}{\dintt{0}{y}{u(s)}{s}}{y} \\
+      \lambda u'(x) &= -\dintt{0}{x}{u(s)}{s} \\
+      \lambda u''(x) &= -u(x) \\
+    \end{align*}
+    The boundary conditions for this differential equation can be found by
+    evaluating $Su(x)$ at $x = 1$.
+    Clearly $Su(1) = 0$ so this implies that $u(1) = 0$.
+    The other boundary condition can be found by evaluating $\da{Su(x)}{x}$
+    at $x = 0$.
+    In this case the result is $u'(0) = 0$.
+
+    So now the original integral equation is identical to the following
+    differential equation.
+    \begin{align*}
+      \lambda u''(x) + u(x) = 0 \\
+      u(1) = 0 \qquad u'(0) = 0
+    \end{align*}
+    This differntial equation can be solved using the characteristic polynomial
+    \[
+      \lambda r^2 + 1 = 0
+    \]
+    The roots of this polynomial are $r = \sqrt{1/\lambda} i$ and
+    $r = -\sqrt{1/\lambda} i$.
+    Since these are complex roots the solutions will be of the form
+    \[
+      u(x) = c_1 \sin{\sqrt{1/\lambda} x} + c_2 \cos{\sqrt{1/\lambda} x}
+    \]
+    Applying the boundary conditions can find the appropriate constants
+    \begin{align*}
+      u'(0) &= c_1 \sqrt{1/\lambda} \cos{\sqrt{1/\lambda} 0} - c_2 \sqrt{1/\lambda} \sin{\sqrt{1/\lambda} 0} \\
+      0 &= c_1 \sqrt{1/\lambda} \\
+      0 &= c_1
+      u(1) &= c_2 \cos{\sqrt{1/\lambda}}
+    \end{align*}
 \end{enumerate}
 
 \pagebreak
