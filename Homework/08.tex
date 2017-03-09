@@ -75,8 +75,15 @@ Homework 7
     In order to compute the singular value decomposition of $T$ we must first
     find the eigenvalues and eigenfunctions of $S$.
     This means solving $Su = \lambda u$.
-    This integral equation can be changed into a differential equation as
-    follows.
+    Note that we have previously shown that $\lambda \ge 0$ because $S = T^* T$.
+    Also note that if $\lambda = 0$, then
+    \[
+      \dintt{x}{1}{\dintt{0}{y}{u(s)}{s}}{y} = 0
+    \]
+    which implies that $u = 0$.
+    Therefore 0 cannot be an eigenvalue, and also $\lambda > 0$.
+    In order to find the eigenvalues, this integral equation can be changed into
+    a differential equation as follows.
     \begin{align*}
       \lambda u(x) &= Su(x) \\
       \lambda u(x) &= \dintt{x}{1}{\dintt{0}{y}{u(s)}{s}}{y} \\
@@ -111,9 +118,51 @@ Homework 7
     \begin{align*}
       u'(0) &= c_1 \sqrt{1/\lambda} \cos{\sqrt{1/\lambda} 0} - c_2 \sqrt{1/\lambda} \sin{\sqrt{1/\lambda} 0} \\
       0 &= c_1 \sqrt{1/\lambda} \\
-      0 &= c_1
-      u(1) &= c_2 \cos{\sqrt{1/\lambda}}
+      0 &= c_1 \\
+      u(1) &= c_2 \cos{\sqrt{1/\lambda}} \\
+      0 &= c_2 \cos{\sqrt{1/\lambda}}
     \end{align*}
+    Since $c_2$ can not equal zero, otherwise $u = 0$, this implies that
+    $\cos{\sqrt{1/\lambda}} = 0$.
+    This is equivalent to $\sqrt{1/\lambda} = \pi/2 + k\pi$, or the eigenvalues
+    are $\lambda_k = \frac{1}{\p{\pi(1/2 + k)}^2}$, which can be indexed by
+    $k \ge 0$.
+    The eigenfunctions then are $u_k(x) = c \cos{\sqrt{1/\lambda_k} x}$.
+    We wish to normalize these eigenfunctions in order to create the singular
+    value decomposition of $T$.
+    \begin{align*}
+      \norm{u_k}^2 &= \dintt{0}{1}{c^2 \cos{\frac{1}{\sqrt{\lambda_k}} x}^2}{x} \\
+      1 &= c^2 \dintt{0}{1}{\frac{1 + \cos{\frac{2}{\sqrt{\lambda_k}} x}}{2}}{x} \\
+      1 &= c^2 \p{\frac{1}{2} + \frac{\sqrt{\lambda_k}}{4} \eval{\sin{\frac{2}{\sqrt{\lambda_k}} x}}{x = 0}{1}} \\
+      1 &= c^2 \p{\frac{1}{2} + \frac{\sqrt{\lambda_k}}{4} \sin{\frac{2}{\sqrt{\lambda_k}}}} \\
+      1 &= c^2 \p{\frac{1}{2} + \frac{\sqrt{\lambda_k}}{4} \sin{\pi + 2k\pi}} \\
+      1 &= c^2 \frac{1}{2} \\
+      2 &= c^2 \\
+      c &= \sqrt{2}
+    \end{align*}
+    The eigenfunctions are thus $u_k(x) = \sqrt{2} \cos{\frac{1}{\sqrt{\lambda_k}} x}$.
+    By Theorem 13.10 these eigenfunctions form an orthonormal basis of $L^2(0, 1)$.
+
+    The singular values are the square roots of the eigenvalues, that is
+    $\sigma_k = \sqrt{\lambda_k} = \frac{1}{\pi(1/2 + k)}$.
+
+    Lastly we can compute $v_k = Tu_k/\sigma_k$.
+    \begin{align*}
+      v_k &= \frac{1}{\sigma_k} Tu_k \\
+      &= \frac{1}{\sigma_k} \dintt{0}{x}{u(y)}{y} \\
+      &= \frac{1}{\sigma_k} \dintt{0}{x}{\sqrt{2} \cos{\frac{1}{\sqrt{\lambda_k}} y}}{y} \\
+      &= \frac{\sqrt{2\lambda_k}}{\sigma_k} \eval{\sin{\frac{1}{\sqrt{\lambda_k}} y}}{y=0}{x} \\
+      &= \sqrt{2} \sin{\frac{1}{\sqrt{\lambda_k}} x} \\
+    \end{align*}
+
+    Now that we have found $\sigma_k$, $u_k$, and $v_k$, the singular value
+    decomposition of $T$ is $\sum{n = 0}{\infty}{\sigma_n \abr{u, u_n} v_n}$.
+
+    The norm of $T$ is the largest singular value, that is
+    $\norm{T} = \sigma_0 = \frac{2}{\pi}$.
+    Also $T$ is not normal because if $T$ was normal then $Tu_n = \sigma_n u_n$
+    or $v_n = u_n$.
+    However this is not the case so $T$ is not normal.
 \end{enumerate}
 
 \pagebreak
@@ -122,20 +171,79 @@ Homework 7
   \item[\#1]
     Let $Lu = (x - 2)u'' + (1 - x)u' + u$ on $(0, 1)$.
     \begin{enumerate}
-      \item[(a)]
+      \item[(a)] % Done
         Find the Green's function for
         \[
           Lu = f \qquad u'(0) = 0 \quad u(1) = 0
         \]
         (Hint First show that $x - 1$, $e^x$ are linearly independent
-        solutions of $Lu = 0$.
+        solutions of $Lu = 0$.)
+
+        First consider $Lu = 0$.
+        Let $u(x) = x - 1$, and consider $Lu$.
+        \begin{align*}
+          Lu(x) &= (x - 2)u''(x) + (1 - x)u'(x) + u(x) \\
+          &= (x - 2)0 + (1 - x)1 + (x - 1) \\
+          &= 0
+        \end{align*}
+        Let $u(x) = e^x$, then
+        \begin{align*}
+          Lu(x) &= (x - 2)e^x + (1 - x)e^x + e^x \\
+          &= (x - 2 + 1 - x + 1)e^x \\
+          &= 0
+        \end{align*}
+        Also these two functions are linearly independent because they are not
+        multiples of one another.
+
+        The boundary conditions for this problem are $B_1 u = u'(0) = 0$ and
+        $B_2 u = u(1) = 0$.
+        Let $\phi_1(x) = e^x - (x - 1)$ and $\phi_2(x) = x - 1$ and note that
+        $L\phi_1 = 0$, $B_1 \phi_1 = 0$, $L\phi_2 = 0$ and $B_2 \phi_2 = 0$.
+        Thus we can use $\phi_1$ and $\phi_2$ to build the Green's function for
+        this differential equation.
+
+        The next thing to do is compute $C_1(y)$ and $C_2(y)$, which first
+        requires computing $W(y)$, the Wronskian of $\phi_1$ and $\phi_2$.
+        \begin{align*}
+          W(x) &=
+          \begin{vmatrix}
+            e^x - (x - 1) & x - 1 \\
+            e^x - 1 & 1
+          \end{vmatrix} \\
+          &= e^x - (x - 1) - (x - 1)(e^x - 1) \\
+          &= (2 - x)e^x
+        \end{align*}
+
+        Now we can compute $C_1$ and $C_2$ as
+        \begin{align*}
+          C_1(y) &= \frac{\phi_1(y)}{a_2(y) W(y)} \\
+          &= \frac{y - 1}{(y - 2)(2 - y)e^y} \\
+          &= \frac{1 - y}{(y - 2)^2 e^y} \\
+          C_2(y) &= \frac{\phi_2(y)}{a_2(y) W(y)} \\
+          &= \frac{e^y - (y - 1)}{(y - 2)(2 - y)e^y} \\
+          &= \frac{y - 1 - e^y}{(y - 2)^2 e^y} \\
+        \end{align*}
+
+        Finally the Green's Function for this differential equation is
+        \begin{align*}
+          G(x, y) &=
+          \begin{cases}
+            C_1(y) \phi_1(x) & 0 < x < y < 1 \\
+            C_2(y) \phi_2(y) & 0 < y < x < 1
+          \end{cases} \\
+          &=
+          \begin{cases}
+            \frac{1 - y}{(y - 2)^2 e^y} \p{e^x - (x - 1)} & 0 < x < y < 1 \\
+            \frac{y - 1 - e^y}{(y - 2)^2 e^y} (x - 1) & 0 < y < x < 1
+          \end{cases}
+        \end{align*}
 
       \item[(b)]
         Find the adjoint operator and boundary conditions.
     \end{enumerate}
 
   \pagebreak
-  \item[\#2]
+  \item[\#2] % Done
     Let
     \[
       Tu = - \d*{x \d{u}{x}}{x}
@@ -145,17 +253,116 @@ Homework 7
       D(T) = \set{u \in H^2(1, 2): u(1) = u(2) = 0}
     \]
     \begin{enumerate}
-      \item[(a)]
+      \item[(a)] % Done
         Show that $N(T) = \set{0}$.
-      \item[(b)]
+
+        \begin{proof}
+          First note that clearly $0 \in N(T)$.
+          Now consider $u \neq 0$ such that $u \in N(T)$, then
+          \begin{align*}
+            Tu &= 0 \\
+            - \d*{x \d{u}{x}}{x} &= 0 \\
+            \d*{x \d{u}{x}}{x} &= 0 \\
+            x \d{u}{x} &= c_1 \\
+            \d{u}{x} &= \frac{c_1}{x} \\
+            u(x) &= \intt{\frac{c_1}{x}}{x} + c_2\\
+            u(x) &= c_1 \ln{x} + c_2\\
+          \end{align*}
+          If $u \in D(T)$, then $u$ must satisfy $u(1) = u(2) = 0$.
+          \begin{align*}
+            u(1) &= c_1 \ln{1} + c_2 \\
+            0 &= c_2 \\
+            u(2) &= c_1 \ln{2} \\
+            0 &= c_1
+          \end{align*}
+          This shows that $u = 0$, which contradicts that $u \neq 0$.
+          This shows that $N(T) = \set{0}$.
+        \end{proof}
+
+      \item[(b)] % Done
         Find the Green's function for the boundary value problem $Tu = f$.
-      \item[(c)]
+
+        In order to find the Green's function for the boundary value problem,
+        we must first find $\phi_1$ and $\phi_2$ where $L\phi_1 = 0$,
+        $B_1 \phi_1 = 0$, $L\phi_2 = 0$, and $B_2 \phi_2 = 0$.
+        For this problem $Lu = - \d*{x \d{u}{x}}{x}$, $B_1 u = u(1)$, and $B_2 u = u(2)$.
+        We have already shown in part (a) that any function that satisfies $Lu = 0$ is
+        of the form $u(x) = c_1 \ln{x} + c_2$.
+        Therefore let $\phi_1(x) = c_1 \ln{x} + c_2$ and let $B_1 \phi_1 = 0$,
+        then $\phi_1(1) = c_1 \ln{1} + c_2 = 0$ or $c_2 = 0$.
+        Also let $c_1 = 1$, then $\phi_1(x) = \ln{x}$.
+        Now $\phi_2(x)$ is of the form $c_1 \ln{x} + c_2$.
+        If $\phi_2(2) = 0$, then $c_1 \ln{2} + c_2 = 0$ and $c_2 = -c_1 \ln{2}$.
+        Then let $c_1 = 1$ and $\phi_2(x) = \ln{x} - \ln{2}$.
+
+        The next step is to compute the Wronskian.
+        \begin{align*}
+          W(y) &=
+          \begin{vmatrix}
+            \ln{y} & \ln{y} - \ln{2} \\
+            1/y & 1/y
+          \end{vmatrix} \\
+          &= \frac{\ln{y}}{y} - \frac{\ln{y} - \ln{2}}{y} \\
+          &= \frac{\ln{2}}{y}
+        \end{align*}
+        We also need to find $a_2(x)$, which can be found using the product rule
+        \begin{align*}
+          -\d*{x \d{u}{x}}{x} &= - x \d[2]{u}{x} - \d{u}{x}
+        \end{align*}
+        Therefore $a_2(x) = -x$.
+
+        Now $C_1(y)$ and $C_2(y)$ are
+        \begin{align*}
+          C_1(y) &= \frac{\phi_2(y)}{a_2(y)W(y)} \\
+          &= \frac{\ln{y} - \ln{2}}{-y\p{\ln{2}/y}} \\
+          &= \frac{\ln{2} - \ln{y}}{\ln{2}} \\
+          C_2(y) &= \frac{\phi_1(y)}{a_2(y)W(y)} \\
+          &= \frac{\ln{y}}{-y\p{\ln{2}/y}} \\
+          &= -\frac{\ln{y}}{\ln{2}}
+        \end{align*}
+
+        Finally the Green's function is
+        \begin{align*}
+          G(x, y) &=
+          \begin{cases}
+            C_1(y) \phi_1(x) & 0 < x < y < 1 \\
+            C_2(y) \phi_2(x) & 0 < y < x < 1
+          \end{cases} \\
+          &=
+          \begin{cases}
+            \frac{\ln{2} - \ln{y}}{\ln{2}}\ln{y} & 0 < x < y < 1 \\
+            -\frac{\ln{y}}{\ln{2}} \p{\ln{y} - \ln{2}} & 0 < y < x < 1
+          \end{cases}
+        \end{align*}
+
+      \item[(c)] % Done
         State and prove a result about the continuous dependence of the
         solution $u$ on $f$ in part (b).
+
+        Let $f_1, f_2 \in R(T)$, then there exists $u_1, u_2 \in D(T)$ such that
+        $Tu_1 = f_1$ and $Tu_2 = f_2$ or equivalently $u_1 = Sf_1$
+        and $u_2 = Sf_2$, where $Sf = \dintt{1}{2}{G(x, y)f(y)}{y}$.
+        I will define $\Delta f = f_1 - f_2$ and $\Delta u = u_1 - u_2$ and since
+        $S$ is linear this implies that $\Delta u = S \Delta f$.
+        The magnitude of $\Delta u$ satisfies
+        \[
+          \norm{\Delta u} \le M \norm{\Delta f}
+        \]
+        where $M > 0$.
+
+        \begin{proof}
+          This can be proved by noting that $G(x, y)$ is bounded on
+          $\br{1, 2} \times \br{1, 2}$.
+          Since $G(x, y)$ is bounded this implies that the integral operator
+          $S$ is bounded, and therefore
+          \[
+            \norm{\Delta u} = \norm{S\Delta f} \le \norm{S} \norm{\Delta f}.
+          \]
+        \end{proof}
     \end{enumerate}
 
   \pagebreak
-  \item[\#4]
+  \item[\#4] % Done
     Prove the validity of (14.1.22).
     (Suggestions: start by writing $u(x)$ in the form
     \[
@@ -163,5 +370,57 @@ Homework 7
     \]
     and note that some of the terms that arise in the expression for u'(x) will
     cancel.)
+
+    \begin{proof}
+      First let $u(x) = Sf = \dintt{a}{b}{G(x, y)f(y)}{y}$, and then I will show that
+      $u$ satisfies $Lu = f$.
+      Using the piecewise definition of $G(x, y)$, it is possible to rewrite $u$
+      as
+      \[
+        u(x) = \phi_2(x) \dintt{a}{x}{C_2(y)f(y)}{y} + \phi_1(x) \dintt{x}{b}{C_1(y)f(y)}{y}
+      \]
+      In order to compute $Lu$, we must first compute $u'$ and $u''$.
+      For simplicity $I_2(x) = \dintt{a}{x}{C_2(y)f(y)}{y}$ and
+      $I_1 = \dintt{x}{b}{C_1(y)f(y)}{y}$.
+      \begin{align*}
+        u'(x) &= \phi_2'(x) I_2(x) + \phi_2(x) C_2(x) f(x) + \phi_1'(x) I_1(x) - \phi_1(x) C_1(x) f(x)
+        \intertext{Since $\phi_2(X) C_2(x) = \phi_1(x) C_1(x)$}
+        u'(x) &= \phi_2'(x) I_2(x) + \phi_1'(x) I_1(x) \\
+        u''(x) &= \phi_2''(x) I_2(x) + \phi'_2(x) C_2(x) f(x) + \phi_1''(x) I_1(x) - \phi_1'(x)C_1(x)f(x)
+      \end{align*}
+      Now $Lu$ can be found.
+      \begin{align*}
+        Lu(x) &= a_2(x) u''(x) + a_1 u'(x) + a_0 u(x) \\
+        &= a_2(x) \p{\phi_2''(x) I_2(x) + \phi'_2(x) C_2(x) f(x) + \phi_1''(x) I_1(x) - \phi_1'(x)C_1(x)f(x)} + a_1(x) \p{\phi_2'(x) I_2(x) + \phi_1'(x) I_1(x)} + a_0 \p{\phi_2(x) I_2(x) + \phi_1(x) I_1(x)} \\
+        &= I_2(x) \p{a_2(x) \phi_2''(x) + a_1(x) \phi_2'(x) + a_0 \phi_2(x)} + I_1(x) \p{a_2(x) \phi_1''(x) + a_1(x) \phi_1'(x) + a_0(x) \phi_1(x)} + \phi_2'(x) C_2(x) f(x) - \phi_1'(x)C_1(x)f(x) \\
+        &= I_2(x) L\phi_2(x) + I_1(x) L\phi_1(x) + a_2(x)\phi_2'(x) C_2(x) f(x) - a_2(x)\phi_1'(x)C_1(x)f(x)
+        \intertext{Since $L\phi_2(x) = 0$ and $L\phi_1(x) = 0$.}
+        &= a_2(x)\phi_2'(x) C_2(x) f(x) - a_2(x)\phi_1'(x)C_1(x)f(x) \\
+        &= a_2(x)\p{\frac{\phi_2'(x)\phi_1(x) - \phi_1'(x)\phi_2(x)}{a_2(x) W(x)}} f(x) \\
+        &= \p{\frac{\phi_2'(x)\phi_1(x) - \phi_1'(x)\phi_2(x)}{W(x)}} f(x) \\
+        &= f(x)
+      \end{align*}
+      This shows that $Lu = f$.
+      Finally I will show that $B_1u = 0$ and $B_2 u = 0$.
+      \begin{align*}
+        B_1 u &= c_1 u(a) + c_2 u'(a) \\
+        &= c_1 \p{\phi_2(a) I_2(a) + \phi_1(a) I_1(a)} + c_2 \p{\phi_2'(a) I_2(a) + \phi_1'(a) I_1(a)}
+        \intertext{Since $I_2(a) = 0$}
+        &= c_1 \phi_1(a) I_1(a) + c_2 \phi_1'(a) I_1(a) \\
+        &= I_1(a) \p{c_1 \phi_1(a) + c_2 \phi_1'(a)} \\
+        &= I_1(a) B_1 \phi_1
+        \intertext{Since $B_1 \phi_1 = 0$}
+        &= 0 \\
+        B_2 u &= c_3 u(b) + c_4 u'(b) \\
+        &= c_3 \p{\phi_2(b) I_2(b) + \phi_1(b) I_1(b)} + c_4 \p{\phi_2'(b) I_2(b) + \phi_1'(b) I_1(b)}
+        \intertext{Since $I_1(b) = 0$}
+        &= c_3 \phi_2(b) I_2(b) + c_4 \phi_2'(b) I_2(b) \\
+        &= I_2(b) \p{c_3 \phi_2(b) + c_4 \phi_2'(b)} \\
+        &= I_2(b) B_2 \phi_2
+        \intertext{Since $B_2 \phi_2 = 0$}
+        &= 0
+      \end{align*}
+      This shows that $u$ satisfies the boundary conditions and the differential equation.
+    \end{proof}
 \end{enumerate}
 \end{document}
