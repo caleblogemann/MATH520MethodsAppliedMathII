@@ -1,0 +1,115 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[letterpaper, margin=2cm]{geometry}
+\usepackage{MATH520}
+
+\begin{document}
+\noindent \textbf{\Large{Caleb Logemann \\
+MATH 520 Methods of Applied Math II \\
+Homework 9
+}}
+
+\pagebreak
+\subsection*{Section 14.5}
+\begin{enumerate}
+  \item[\#5]
+    Let $Lu = a_2(x) u'' + a_1(x)u' + a_0(x) u$ with $a_2' = a$, so that $L$ is
+    formally self adjoint.
+    If $B_1 u = C_1 u(a) + C_2u'(a)$, $B_2 u = C_3u(b) + C_4u'(b)$, show that
+    $\set{B_1^*, B_2^*} = \set{B_1, B_2}$.
+
+  \pagbreak
+  \item[\#8]
+    When we rewrite $a_2(x) u'' + a_1(x) u' + a_0(x) u = \lambda u$ as
+    \[
+      -(p(x)u')' + q(x)u = \lambda \rho(a) u
+    \]
+    the latter is often referred to as the \textit{Liouville normal form}.
+    Consider the eigenvalue problem
+    \begin{align*}
+      x^2 u'' + xu' + u = \lambda u \qquad 1 < x < 2 \\
+      u(1) = u(2) = 0
+    \end{align*}
+    \begin{enumerate}
+      \item[(a)]
+        Find the Liouville normal form.
+
+      \item[(b)]
+        What is the orthogonality relationship satisfied by the eigenfunctions?
+
+      \item[(c)]
+        Find the eigenvalues and eigenfunctions.
+        (You may find the original form of the equation easier to work with than
+        the Liouville normal form when computing the eigenvalues and
+        eigenfunctions.)
+    \end{enumerate}
+
+  \pagbreak
+  \item[\#10]
+    Consider the Sturm-Liouville problem
+    \begin{align*}
+      u'' + \lambda u = 0 \qquad 0 < x < 1 \\
+      u(0) - u'(0) = u(1) = 0
+    \end{align*}
+    \begin{enumerate}
+      \item[(a)]
+        Multiply the equation by $u$ and integrate by parts to show that any
+        eigenvalue is positive.
+
+      \item[(b)]
+        Show that the eigenvalues are the positive solutions of
+        $\tan{\sqrt{\lambda}} = - \sqrt{\lambda}$.
+
+      \item[(c)]
+        Show graphically that such roots exist, and form an infinite sequence
+        $\lambda_k$ such that $(k - 1/2)\pi < \sqrt{\lambda_k} < k \pi$ and
+        \[
+          \lim[k \to \infty]{\sqrt{\lambda_k} - (k - 1/2)\pi} = 0
+        \]
+    \end{enumerate}
+
+  \pagbreak
+  \item[\#14]
+    If $\set{\psi_n}_{n = 1}^{\infty}$ are Dirichlet eigenfunctions of the
+    Laplacian making up an orthonormal basis of $L^2(\Omega)$, let
+    $\xi_n = \psi_n/\sqrt{\lambda_n}$
+    ($\lambda_n$ the corresponding eigenvalue).
+    \begin{enumerate}
+      \item[(a)]
+        Show that $\set{\xi_n}_{n = 1}^{\infty}$ is an orthonormal basis of
+        $H^1_0(\Omega)$.
+
+      \item[(b)]
+        Show that $f \in H_0^1(\Omega)$ if and only if
+        $\sum{n = 1}{\infty}{\lambda_n \abs{\abr{f, \psi_n}}^2} < \infty$
+    \end{enumerate}
+
+  \pagbreak
+  \item[\#15]
+    If $\Omega < \RR^n$ is a bounded open set with smooth enough boundary, find
+    a solution of the wave equation problem
+    \begin{align*}
+      u_{tt} - \Delta u = 0 \qquad x \in \Omega \quad t > 0 \\
+      u(x, t) = 0 \qquad x \in \partial\Omega \quad t > 0 \\
+      u(x, 0) = f(x) \quad u_t(x, 0) = g(x) \qquad x \in \Omega
+    \end{align*}
+    in the form
+    \[
+      u(x, t) = \sum{n = 1}{\infty}{c_n(t) \psi_n(x)}
+    \]
+    where $\set{\psi_n}_{n = 1}^{\infty}$ are the Dirichlet eigenfunctions of
+    $-\Delta$ in $\Omega$.
+
+  \pagbreak
+  \item[\#16]
+    Derive formally that
+    \[
+      G(x, y) = \sum{n=1}{\infty}{\frac{\psi_n(x) \psi_n(y)}{\lambda_n}}
+    \]
+    where $\lambda_n, \psi_n$ are the Dirichlet eigenvalues and normalized
+    eigenfunctions for the domain $\Omega$, and $G(x, y)$ is the corresponding
+    Green's function in (14.4.96).
+    (Suggestion: if $-\Delta u = f$, expand both $u$ and $f$ in the $\psi_n$
+    basis.)
+
+\end{enumerate}
+\end{document}
