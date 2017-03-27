@@ -8,7 +8,6 @@ MATH 520 Methods of Applied Math II \\
 Homework 9
 }}
 
-\pagebreak
 \subsection*{Section 14.5}
 \begin{enumerate}
   \item[\#5]
@@ -17,21 +16,72 @@ Homework 9
     If $B_1 u = C_1 u(a) + C_2u'(a)$, $B_2 u = C_3u(b) + C_4u'(b)$, show that
     $\set{B_1^*, B_2^*} = \set{B_1, B_2}$.
 
-  \pagbreak
+    \begin{proof}
+      Let $\set{B_1^*, B_2^*}$ be the set of boundary operators adjoint to
+      $\set{B_1, B_2}$.
+      This implies that
+      \[
+        \eval{J(\phi, \psi)}{a}{b} = 0
+      \]
+      whenever $B_1 \phi = B_2 \phi = B_1^* \psi = B_2^* \psi = 0$.
+      The boundary function $J$ can be expressed as
+      \[
+        J(\phi, \psi) = a_2\p{\phi' \overline{\psi} - \phi \overline{\psi'}} + (a_1 - a_2') \phi \overline{\psi}
+      \]
+      and since $L$ is formally self-adjoint, this implies that $a_1 - a_2' = 0$,
+      so the boundary functional can be simplified to
+      \[
+        J(\phi, \psi) = a_2\p{\phi' \overline{\psi} - \phi \overline{\psi'}}.
+      \]
+    \end{proof}
+
+  \pagebreak
   \item[\#8]
     When we rewrite $a_2(x) u'' + a_1(x) u' + a_0(x) u = \lambda u$ as
     \[
-      -(p(x)u')' + q(x)u = \lambda \rho(a) u
+      -(p(x)u')' + q(x)u = \lambda \rho(x) u
     \]
     the latter is often referred to as the \textit{Liouville normal form}.
     Consider the eigenvalue problem
-    \begin{align*}
-      x^2 u'' + xu' + u = \lambda u \qquad 1 < x < 2 \\
+    \[
+      x^2 u'' + xu' + u = \lambda u \qquad 1 < x < 2
+    \]
+    \[
       u(1) = u(2) = 0
-    \end{align*}
+    \]
     \begin{enumerate}
       \item[(a)]
         Find the Liouville normal form.
+
+        In order to find the Liouville normal form, the function $a_2(x)$ must
+        be strictly less than zero, so I will first rewrite this eigenvalue
+        problem as
+        \[
+          -x^2 u'' - xu' - u = -\lambda u \qquad 1 < x < 2
+        \]
+        \[
+          u(1) = u(2) = 0
+        \]
+        The functions $p(x)$, $\rho(x)$, and $q(x)$ can be found as follows.
+        \begin{align*}
+          p(x) &= \exp\p{\dintt{a}{x}{\frac{a_1(s)}{a_2(s)}}{s}} \\
+          &= \exp\p{\dintt{a}{x}{\frac{-s}{-s^2}}{s}} \\
+          &= \exp\p{\dintt{a}{x}{\frac{1}{s}}{s}} \\
+          &= \exp\p{\eval{\ln{s}}{s = a}{x}} \\
+          &= e^{\ln{x} - \ln{a}} \\
+          &= e^{\ln{\frac{x}{a}}} \\
+          &= \frac{x}{a} \\
+          \rho(x) &= - \frac{p(x)}{a_2(x)} \\
+          &= - \frac{x/a}{-x^2} \\
+          &= \frac{1}{ax} \\
+          q(x) &= a_0(x) \rho(x) \\
+          &= (-1)\frac{1}{ax}\\
+          &= -\frac{1}{ax}\\
+        \end{align*}
+        Therefore the Liouville normal form of this eigenvalue problem is
+        \[
+          -\p{\frac{x}{a} \phi'}' - \frac{1}{ax} \phi = \lambda \frac{1}{ax} \phi
+        \]
 
       \item[(b)]
         What is the orthogonality relationship satisfied by the eigenfunctions?
@@ -43,7 +93,7 @@ Homework 9
         eigenfunctions.)
     \end{enumerate}
 
-  \pagbreak
+  \pagebreak
   \item[\#10]
     Consider the Sturm-Liouville problem
     \begin{align*}
@@ -67,7 +117,7 @@ Homework 9
         \]
     \end{enumerate}
 
-  \pagbreak
+  \pagebreak
   \item[\#14]
     If $\set{\psi_n}_{n = 1}^{\infty}$ are Dirichlet eigenfunctions of the
     Laplacian making up an orthonormal basis of $L^2(\Omega)$, let
@@ -83,7 +133,7 @@ Homework 9
         $\sum{n = 1}{\infty}{\lambda_n \abs{\abr{f, \psi_n}}^2} < \infty$
     \end{enumerate}
 
-  \pagbreak
+  \pagebreak
   \item[\#15]
     If $\Omega < \RR^n$ is a bounded open set with smooth enough boundary, find
     a solution of the wave equation problem
@@ -99,7 +149,7 @@ Homework 9
     where $\set{\psi_n}_{n = 1}^{\infty}$ are the Dirichlet eigenfunctions of
     $-\Delta$ in $\Omega$.
 
-  \pagbreak
+  \pagebreak
   \item[\#16]
     Derive formally that
     \[
@@ -110,6 +160,5 @@ Homework 9
     Green's function in (14.4.96).
     (Suggestion: if $-\Delta u = f$, expand both $u$ and $f$ in the $\psi_n$
     basis.)
-
 \end{enumerate}
 \end{document}
