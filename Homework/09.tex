@@ -50,7 +50,7 @@ Homework 9
       u(1) = u(2) = 0
     \]
     \begin{enumerate}
-      \item[(a)]
+      \item[(a)] % Done
         Find the Liouville normal form.
 
         In order to find the Liouville normal form, the function $a_2(x)$ must
@@ -83,14 +83,35 @@ Homework 9
           -\p{\frac{x}{a} \phi'}' - \frac{1}{ax} \phi = \lambda \frac{1}{ax} \phi
         \]
 
-      \item[(b)]
+      \item[(b)] % Done
         What is the orthogonality relationship satisfied by the eigenfunctions?
+
+        The eigenfunctions of this linear operator satisfy an orthogonality
+        relationship with respect to the weight $\rho$.
+        In mathematical terms,
+        \[
+          \dintt{a}{b}{\phi_n(x) \phi_m(x) \rho(x)}{x} =
+          \begin{cases}
+            0 & n \neq m \\
+            1 & n = m
+          \end{cases}
+        \]
+        or
+        \[
+          \dintt{a}{b}{\frac{\phi_n(x) \phi_m(x)}{ax}}{x} =
+          \begin{cases}
+            0 & n \neq m \\
+            1 & n = m
+          \end{cases}
+        \]
 
       \item[(c)]
         Find the eigenvalues and eigenfunctions.
         (You may find the original form of the equation easier to work with than
         the Liouville normal form when computing the eigenvalues and
         eigenfunctions.)
+
+        
     \end{enumerate}
 
   \pagebreak
