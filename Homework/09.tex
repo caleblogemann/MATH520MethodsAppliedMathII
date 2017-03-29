@@ -80,7 +80,11 @@ Homework 9
         \end{align*}
         Therefore the Liouville normal form of this eigenvalue problem is
         \[
-          -\p{\frac{x}{a} \phi'}' - \frac{1}{ax} \phi = \lambda \frac{1}{ax} \phi
+          -\p{\frac{x}{a} \phi'}' - \frac{1}{ax} \phi = -\lambda \frac{1}{ax} \phi
+        \]
+        or 
+        \[
+          \p{\frac{x}{a} \phi'}' + \frac{1}{ax} \phi = \lambda \frac{1}{ax} \phi
         \]
 
       \item[(b)] % Done
@@ -122,9 +126,38 @@ Homework 9
       u(0) - u'(0) = u(1) = 0
     \end{align*}
     \begin{enumerate}
-      \item[(a)]
+      \item[(a)] % Done
         Multiply the equation by $u$ and integrate by parts to show that any
         eigenvalue is positive.
+
+        First I will note a few useful facts, first since $u(0) - u'(0) = 0$,
+        this implies that $u(0) = u'(0)$.
+        Also if $u$ is nontrivial this guarantees that
+        $\dintt{0}{1}{u^2(x)}{x} > 0$.
+        Finally if $u$ is a nontrivial solution then $u'(x) \neq 0$ as
+        $u(1) = 0$ makes any constant function is zero.
+        This shows that $\dintt{0}{1}{\p{u'(x)}^2}{x} > 0$ as well.
+
+        Multiplying by $u$ gives the following equation
+        \[
+          uu'' + \lambda u^2 = 0.
+        \]
+        Integrating both sides over $\br{0, 1}$ gives
+        \[
+          \dintt{0}{1}{u(x)u''(x)}{x} + \lambda \dintt{0}{1}{u^2(x)}{x} = \dintt{0}{1}{0}{x}
+        \]
+        This can be simplified using integration by parts
+        \begin{align*}
+          \dintt{0}{1}{u(x)u''(x)}{x} + \lambda \dintt{0}{1}{u^2(x)}{x} &= 0 \\
+          \eval{u(x)u'(x)}{x = 0}{1} - \dintt{0}{1}{\p{u'(x)}^2}{x} + \lambda \dintt{0}{1}{u^2(x)}{x} &= 0 \\
+          u(1)u'(1) - u(0)u'(0) - \dintt{0}{1}{\p{u'(x)}^2}{x} + \lambda \dintt{0}{1}{u^2(x)}{x} &= 0
+          \intertext{Since $u(1) = 0$ and $u(0) = u'(0)$}
+           -u^2(0) - \dintt{0}{1}{\p{u'(x)}^2}{x} + \lambda \dintt{0}{1}{u^2(x)}{x} &= 0.
+        \end{align*}
+        Since $\dintt{0}{1}{u^2(x)}{x} > 0$
+        \[
+          \lambda = \frac{u^2(0) + \dintt{0}{1}{\p{u'(x)}^2}{x}}{\dintt{0}{1}{u^2(x)}{x}} > 0.
+        \]
 
       \item[(b)]
         Show that the eigenvalues are the positive solutions of
@@ -136,6 +169,14 @@ Homework 9
         \[
           \lim[k \to \infty]{\sqrt{\lambda_k} - (k - 1/2)\pi} = 0
         \]
+
+        First this graph shows that solutions to the equation
+        $\tan{\sqrt{\lambda}} = -\sqrt{\lambda}$ exist.
+        \begin{center}
+          \includegraphics[scale=.5]{Figures/09_1}
+        \end{center}
+
+        Next
     \end{enumerate}
 
   \pagebreak
