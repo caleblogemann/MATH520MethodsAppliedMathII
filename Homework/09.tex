@@ -10,29 +10,92 @@ Homework 9
 
 \subsection*{Section 14.5}
 \begin{enumerate}
-  \item[\#5]
+  \item[\#5] % Done
     Let $Lu = a_2(x) u'' + a_1(x)u' + a_0(x) u$ with $a_2' = a$, so that $L$ is
     formally self adjoint.
     If $B_1 u = C_1 u(a) + C_2u'(a)$, $B_2 u = C_3u(b) + C_4u'(b)$, show that
     $\set{B_1^*, B_2^*} = \set{B_1, B_2}$.
 
     \begin{proof}
-      Let $\set{B_1^*, B_2^*}$ be the set of boundary operators adjoint to
-      $\set{B_1, B_2}$.
-      This implies that
+      Consider the operators $B_1^* \psi = C_1 \psi(a) + C_2 \psi'(a) = B_1 \psi$
+      and $B_2^* \psi = C_3 \psi(b) + C_4 \psi'(b) = B_2 \psi$.
+      In order to show that $\set{B_1^*, B_2^*}$ is adjoint to $\set{B_1, B_2}$
+      it must be shown that
       \[
         \eval{J(\phi, \psi)}{a}{b} = 0
       \]
       whenever $B_1 \phi = B_2 \phi = B_1^* \psi = B_2^* \psi = 0$.
-      The boundary function $J$ can be expressed as
+
+      Therefore let $\phi$ and $\psi$ be chosen such that
       \[
-        J(\phi, \psi) = a_2\p{\phi' \overline{\psi} - \phi \overline{\psi'}} + (a_1 - a_2') \phi \overline{\psi}
+        B_1 \phi = B_2 \phi = B_1^* \psi = B_2^* \psi = 0.
       \]
-      and since $L$ is formally self-adjoint, this implies that $a_1 - a_2' = 0$,
-      so the boundary functional can be simplified to
+
+      First consider $B_1 \phi = B_1^* \psi = 0$.
+      These equations can be rewritten as
+      \begin{align*}
+        C_1 \phi(a) &= - C_2 \phi'(a) \\
+        C_1 \psi(a) &= - C_2 \psi'(a).
+      \end{align*}
+      Multiplying these equations gives
+      \begin{align*}
+        -C_1 C_2 \phi(a) \psi'(a) &= -C_1 C_2 \psi(a) \phi'(a)
+        \intertext{or}
+        \phi(a) \psi'(a) - \phi'(a) \psi(a) &= 0
+      \end{align*}
+      Note that this statement is still true if one of $C_1$ or $C_2$ is
+      zero.
+      If one of them is zero, then either $\phi(a) = \psi(a) = 0$ or
+      $\phi'(a) = \psi'(a) = 0$, which still gives
       \[
-        J(\phi, \psi) = a_2\p{\phi' \overline{\psi} - \phi \overline{\psi'}}.
+        \phi(a) \psi'(a) - \phi'(a) \psi(a) = 0 - 0 = 0
       \]
+
+      Similary with $B_2 \phi = B_2^* \psi = 0$, it is possible to rewrite
+      these equations as
+      \begin{align*}
+        C_3 \phi(b) &= - C_4 \phi'(b) \\
+        C_3 \psi(b) &= - C_4 \psi'(b).
+      \end{align*}
+      Multiplying these equations gives
+      \begin{align*}
+        -C_3 C_4 \phi(b) \psi'(b) &= -C_3 C_4 \psi(b) \phi'(b)
+        \intertext{or}
+        \phi(b) \psi'(b) - \phi'(b) \psi(b) &= 0
+      \end{align*}
+      Again if $C_3$ or $C_4$ is zero, then $\phi(b) = \psi(b) = 0$ or
+      $\phi'(b) = \psi'(a) = 0$ which implies
+      \[
+        \phi(b) \psi'(b) - \phi'(b) \psi(b) = 0
+      \]
+
+      Now consider the boundary functional $J(\phi, \psi)$.
+      The boundary function $J(\phi, \psi)$ can be fully expressed as
+      \[
+        J(\phi, \psi) = a_2\p{\phi' \psi - \phi \psi'} + (a_1 - a_2') \phi \psi.
+      \]
+      Since the differential operator is formally self-adjoint, $a_1 = a_2'$, so
+      this is equivalent to
+      \[
+        J(\phi, \psi) = a_2\p{\phi' \psi - \phi \psi'}
+      \]
+
+      Now the condition $\eval{J(\phi, \psi)}{a}{b} = 0$ is equivalent to
+      \[
+        a_2\p{\phi'(b) \psi(b) - \phi(b) \psi'(b)} - a_2\p{\phi'(a) \psi(a) - \phi(a) \psi'(a)} = 0.
+      \]
+      Since we have already shown that $\phi'(b) \psi(b) - \phi(b) \psi'(b) = 0$
+      and $\phi'(a) \psi(a) - \phi(a) \psi'(a) = 0$ when the boundary operators
+      are met.
+      This condition is cleary met, when $B_1 \phi = B_2 \phi = B_1^* \psi = B_2^* \psi = 0$.
+
+      Therefore $\set{B_1^*, B_2^*}$ is adjoint to $\set{B_1, B_2}$ and since
+      $B_1 = B_1^*$ and $B_2 = B_2^*$ this implies that
+      $\set{B_1^*, B_2^*} = \set{B_1, B_2}$.
+      In other words $\set{B_1, B_2}$ is adjoint to itself.
+      The purpose of this exercise is to show that a formally self-adjoint
+      differential operator with boundary conditions of the form found in $B_1$
+      and $B_2$ forms a self-adjoint linear operator.
     \end{proof}
 
   \pagebreak
@@ -82,7 +145,7 @@ Homework 9
         \[
           -\p{\frac{x}{a} \phi'}' - \frac{1}{ax} \phi = -\lambda \frac{1}{ax} \phi
         \]
-        or 
+        or
         \[
           \p{\frac{x}{a} \phi'}' + \frac{1}{ax} \phi = \lambda \frac{1}{ax} \phi
         \]
@@ -115,7 +178,6 @@ Homework 9
         the Liouville normal form when computing the eigenvalues and
         eigenfunctions.)
 
-        
     \end{enumerate}
 
   \pagebreak
@@ -163,7 +225,7 @@ Homework 9
         Show that the eigenvalues are the positive solutions of
         $\tan{\sqrt{\lambda}} = - \sqrt{\lambda}$.
 
-      \item[(c)]
+      \item[(c)] % Done
         Show graphically that such roots exist, and form an infinite sequence
         $\lambda_k$ such that $(k - 1/2)\pi < \sqrt{\lambda_k} < k \pi$ and
         \[
@@ -176,23 +238,119 @@ Homework 9
           \includegraphics[scale=.5]{Figures/09_1}
         \end{center}
 
-        Next
+        Next consider the sequence $\lambda_k = \p{(k - 1/2)\pi + \frac{1}{k}}^2$
+        meets these criterion.
+        Note that $\sqrt{\lambda_k} = (k - 1/2)\pi + \frac{1}{k}$.
+        Clearly $\sqrt{\lambda_k} > (k - 1/2)\pi$ and $\sqrt{\lambda_k} < k\pi$
+        as $\frac{1}{k} < \frac{\pi}{2}$.
+
+        Also
+        \begin{align*}
+          \lim[k \to \infty]{\sqrt{\lambda_k} - (k - 1/2)\pi} &= \lim[k \to \infty]{(k - 1/2)\pi + \frac{1}{k} - (k - 1/2)\pi} \\
+          &= \lim[k \to \infty]{\frac{1}{k}} = 0
+        \end{align*}
     \end{enumerate}
 
   \pagebreak
-  \item[\#14]
+  \item[\#14] % Done
     If $\set{\psi_n}_{n = 1}^{\infty}$ are Dirichlet eigenfunctions of the
     Laplacian making up an orthonormal basis of $L^2(\Omega)$, let
-    $\xi_n = \psi_n/\sqrt{\lambda_n}$
+    $\zeta_n = \psi_n/\sqrt{\lambda_n}$
     ($\lambda_n$ the corresponding eigenvalue).
     \begin{enumerate}
-      \item[(a)]
-        Show that $\set{\xi_n}_{n = 1}^{\infty}$ is an orthonormal basis of
+      \item[(a)] % Done
+        Show that $\set{\zeta_n}_{n = 1}^{\infty}$ is an orthonormal basis of
         $H^1_0(\Omega)$.
 
-      \item[(b)]
+        \begin{proof}
+          First I will show that $\zeta_n$ is an orthonormal set.
+          In order to do this I will use that fact that
+          \[
+            \dintt{\Omega}{}{\nabla u \nabla v}{x} = \lambda \dintt{\Omega}{}{u v}{x}
+          \]
+          for any $v \in H_0^1(\Omega)$ where $\lambda$ and $u$ are a Dirichlet
+          eigenvalue and eigenvector pair for the Laplacian on $\Omega$.
+
+          Consider $\abr[H_0^1(\Omega)]{\zeta_n, \zeta_m}$
+          \begin{align*}
+            \abr[H_0^1(\Omega)]{\zeta_n, \zeta_m} &= \dintt{\Omega}{}{\nabla \zeta_n \cdot \nabla \zeta_m}{x} \\
+            &= \frac{1}{\sqrt{\lambda_n \lambda_m}}\dintt{\Omega}{}{\nabla \psi_n \cdot \nabla \psi_m}{x}
+            \intertext{Since $\psi_m \in H^1_0(\Omega)$ and $\psi_n$ an
+              eigenfunction}
+            &= \frac{\lambda_n}{\sqrt{\lambda_n \lambda_m}}\dintt{\Omega}{}{\psi_n \psi_m}{x} \\
+            &= \frac{\lambda_n}{\sqrt{\lambda_n \lambda_m}} \abr[L^2(\Omega)]{\psi_n, \psi_m}.
+            \intertext{Since $\set{\psi}$ already forms an orthonormal basis of
+              $L^2$, so}
+            &= \frac{\lambda_n}{\sqrt{\lambda_n \lambda_m}} \delta_{nm}
+          \end{align*}
+          where $\delta_{nm}$ is the Kronecker delta.
+          This shows that if $n = m$, then
+          $\abr[H_0^1(\Omega)]{\zeta_n, \zeta_m} = 1$ and if $n \neq m$, then
+          $\abr[H_0^1(\Omega)]{\zeta_n, \zeta_m} = 0$.
+          This shows that $\set{\zeta_n}$ is an orthonormal set in
+          $H^1_0(\Omega)$.
+
+          Now I will show that $\set{\zeta_n}$ is a basis of $H^1_0(\Omega)$.
+          In order to show that this is a basis, I will show that this set is
+          complete in $H^1_0(\Omega)$ or equivalently that the zero function is
+          the only function orthogonal to the entire set.
+          Therefore let $u \in H^1_0(\Omega)$, such that
+          \[
+            \abr[H^1_0(\Omega)]{\zeta_n, u} = 0
+          \]
+          for all $n \in \NN$.
+          \begin{align*}
+            0 &= \abr[H^1_0(\Omega)]{\zeta_n, u} \\
+            &= \dintt{\Omega}{}{\nabla \zeta_n \cdot \nabla u}{x} \\
+            &= \frac{1}{\sqrt{\lambda_n}}\dintt{\Omega}{}{\nabla \psi_n \cdot \nabla u}{x}
+            \intertext{Since $u \in H^1_0(\Omega)$ and $\psi_n$ is a Dirichlet
+              eigenfunction.}
+            &= \frac{\lambda_n}{\sqrt{\lambda_n}}\dintt{\Omega}{}{\psi_n u}{x} \\
+            &= \frac{\lambda_n}{\sqrt{\lambda_n}} \abr[L^2(\Omega)]{\psi_n, u}
+          \end{align*}
+          This shows that $\abr[L^2(\Omega)]{\psi_n, u} = 0$ for all $n$.
+          Since $\set{\psi_n}$ is already a basis of $L^2$ this means that
+          $u = 0$.
+          Therefore $\set{\zeta_n}$ is complete in $H^1_0(\Omega)$ and thus
+          is a basis of $H^1_0(\Omega)$.
+        \end{proof}
+
+      \item[(b)] % Done
         Show that $f \in H_0^1(\Omega)$ if and only if
         $\sum{n = 1}{\infty}{\lambda_n \abs{\abr{f, \psi_n}}^2} < \infty$
+
+        \begin{proof}
+          First I will do some manipulation on the given sum.
+          \begin{align*}
+            \sum{n = 1}{\infty}{\lambda_n \abs{\abr{f, \psi_n}}^2} &= \sum{n = 1}{\infty}{\lambda_n \abs{\dintt{\Omega}{}{f \psi_n}{x}}^2} \\
+            &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n} \abs{\dintt{\Omega}{}{f \lambda_n \psi_n}{x}}^2}
+            \intertext{Since $\psi_n$ and $\lambda_n$ are an eigenfunction and
+              eigenvalue pair for the Laplacian}
+            &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n} \abs{\dintt{\Omega}{}{f \Delta \psi_n}{x}}^2} \\
+            &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n} \abs{\dintt{\Omega}{}{\nabla f \nabla \psi_n}{x}}^2} \\
+            &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n} \abs{\abr[H^1_0(\Omega)]{f, \psi_n}}^2} \\
+            &= \sum{n = 1}{\infty}{\abs{\abr[H^1_0(\Omega)]{f, \psi_n/\sqrt{\lambda_n}}}^2} \\
+            &= \sum{n = 1}{\infty}{\abs{\abr[H^1_0(\Omega)]{f, \zeta_n}}^2} \\
+          \end{align*}
+
+          Now if $f \in H_0^1(\Omega)$ then 
+          \[
+            \sum{n = 1}{\infty}{\abs{\abr[H^1_0(\Omega)]{f, \zeta_n}}^2} < \infty
+          \]
+          and equivalently
+          \[
+            \sum{n = 1}{\infty}{\lambda_n \abs{\abr{f, \psi_n}}^2} < \infty.
+          \]
+          If on the other hand
+          \[
+            \sum{n = 1}{\infty}{\lambda_n \abs{\abr{f, \psi_n}}^2} < \infty.
+          \]
+          then
+          \[
+            \sum{n = 1}{\infty}{\abs{\abr[H^1_0(\Omega)]{f, \zeta_n}}^2} < \infty
+          \]
+          which implies that $f \in H^1_0(\Omega)$.
+        \end{proof}
     \end{enumerate}
 
   \pagebreak
@@ -222,5 +380,6 @@ Homework 9
     Green's function in (14.4.96).
     (Suggestion: if $-\Delta u = f$, expand both $u$ and $f$ in the $\psi_n$
     basis.)
+
 \end{enumerate}
 \end{document}
