@@ -178,6 +178,65 @@ Homework 9
         the Liouville normal form when computing the eigenvalues and
         eigenfunctions.)
 
+        The original differential equation is a Cauchy-Euler differential
+        equation.
+        As such I will guess solutions in the form $u(x) = x^m$.
+        \begin{align*}
+          x^2 m(m - 1) x^{m - 2} + x m x^{m - 1} + (1 - \lambda) x^m &= 0 \\ 
+          m(m - 1) x^m + m x^m + (1 - \lambda) x^m &= 0 \\ 
+          \p{m(m - 1) + m + (1 - \lambda)} x^m &= 0 \\ 
+          m(m - 1) + m + (1 - \lambda) &= 0 \\ 
+          m^2 - m + m + 1 - \lambda &= 0 \\ 
+          m^2 + 1 - \lambda &= 0 \\ 
+          m^2 + 1 - \lambda &= 0 \\ 
+          m^2 &= \lambda - 1
+        \end{align*}
+        If $\lambda \in \RR$ and $\lambda > 1$, then the general solution is
+        \[
+          u(x) = c_1 x^{\sqrt{\lambda - 1}} + c_2 x^{-\sqrt{\lambda - 1}}
+        \]
+        Using the boundary conditions implies that
+        \begin{align*}
+          u(1) = c_1 + c_2 = 0 \\
+          u(2) = c_1 2^{\sqrt{\lambda - 1}} + c_2 2^{-\sqrt{\lambda - 1}} = 0\\
+          c_1 = -c_2 \\
+          -c_2 2^{\sqrt{\lambda - 1}} + c_2 2^{-\sqrt{\lambda - 1}} = 0
+          c_2 = 0 \\
+          c_1 = 0
+        \end{align*}
+        This results in the trivial solution, so $\lambda > 1$ is not an
+        eigenvalue.
+
+        If $\lambda = 1$, then the general solution is
+        \[
+          u(x) = c_1 \ln{x} + c_2
+        \]
+        Applying the boundary conditions gives
+        \begin{align*}
+          u(1) = c_2 = 0 \\
+          u(2) = c_1 \ln{2} = 0 \\
+          c_1 = 0
+        \end{align*}
+        This is also the trivial solution so $\lambda = 1$ is not an eigenvalue.
+
+        If $\lambda < 1$ or $\lambda \in \CC$ with nonzero imaginary component,
+        then $m = \sqrt{\lambda - 1}$ is complex.
+        In this case let $\alpha = Re(\sqrt{\lambda - 1})$ and
+        $\beta = Im(\sqrt{\lambda - 1}$.
+        Then the general solution is
+        \[
+          u(x) = c_1 x^{\alpha} \cos{\beta \ln{x}} + c_2 x^{\alpha} \sin{\beta \ln{x}}
+        \]
+        Applying the boundary conditions gives.
+        \begin{align*}
+          u(1) &= c_1 \cos{0} + c_2 \sin{0} \\
+          &= c_1 = 0 \\
+          u(2) &= c_2 2^{\alpha} \sin{\beta \ln{2}} = 0 \\
+          c_2 &= 0
+        \end{align*}
+        Again this is the trivial solution.
+        Therefore there are no eigenvalues and eigenfunctions for this
+        differential equation.
     \end{enumerate}
 
   \pagebreak
@@ -224,6 +283,8 @@ Homework 9
       \item[(b)]
         Show that the eigenvalues are the positive solutions of
         $\tan{\sqrt{\lambda}} = - \sqrt{\lambda}$.
+
+        Didn't have time to finish.
 
       \item[(c)] % Done
         Show graphically that such roots exist, and form an infinite sequence
@@ -380,6 +441,42 @@ Homework 9
     Green's function in (14.4.96).
     (Suggestion: if $-\Delta u = f$, expand both $u$ and $f$ in the $\psi_n$
     basis.)
+
+    First I will expand both $u$ and $f$ in the basis $\set{\psi_n}$,
+    \[
+      u = \sum{n = 1}{\infty}{c_n \psi_n}
+    \]
+    and
+    \[
+      f = \sum{n = 1}{\infty}{\abr{f, \psi_n} \psi_n}.
+    \]
+    Then we see that $-\Delta u$ can be written as
+    \[
+      -\Delta u = \sum{n = 1}{\infty}{c_n -\Delta \psi_n}
+    \]
+    Working on the expression for $f$ we see that
+    \begin{align*}
+      f &= \sum{n = 1}{\infty}{\abr{f, \psi_n} \psi_n} \\
+      &= \sum{n = 1}{\infty}{\dintt{\Omega}{}{f(y) \psi_n(y)}{y}\psi_n(x)}
+      \intertext{Since $f \in H^1_0(\Omega)$ and $\psi_n(y)$ is a eigenfunction}
+      &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n}\dintt{\Omega}{}{\nabla f(y) \cdot \nabla \psi_n(y)}{y}\psi_n(x)}
+      \intertext{Integrating by parts}
+      &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n}\dintt{\Omega}{}{f(y) -\Delta \psi_n(y)}{y}\psi_n(x)} \\
+      &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n}\dintt{\Omega}{}{f(y) \psi_n(y)}{y}-\Delta\psi_n(x)} \\
+      &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n}\abr{f, \psi_n} (-\Delta\psi_n(x))}
+      \intertext{Comparing this with the expression for $u$ we see that the coefficients $c_n$ are}
+      c_n &= \frac{1}{\lambda_n}\abr{f, \psi_n}
+      \intertext{Now the full expression for $u$ is}
+      u(x) &= \sum{n = 1}{\infty}{c_n \psi_n} \\
+      &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n}\abr{f, \psi_n}\psi_n} \\
+      &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n}\dintt{\Omega}{}{f(y)\psi_n(y)}{y}\psi_n(x)} \\
+      &= \sum{n = 1}{\infty}{\dintt{\Omega}{}{\frac{\psi_n(x)\psi_n(y)}{\lambda_n} f(y)}{y}} \\
+      &= \dintt{\Omega}{}{\sum{n = 1}{\infty}{\frac{\psi_n(x)\psi_n(y)}{\lambda_n}} f(y)}{y} \\
+    \end{align*}
+    Thus the Green's Function is
+    \[
+      G(x, y) = \sum{n = 1}{\infty}{\frac{\psi_n(x)\psi_n(y)}{\lambda_n}}
+    \]
 
 \end{enumerate}
 \end{document}
