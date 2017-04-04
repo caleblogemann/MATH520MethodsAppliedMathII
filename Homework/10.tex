@@ -11,9 +11,86 @@ Homework 10
 \subsection*{Section 16.8}
 \begin{enumerate}
   \item[\#2]
+    Consider the Sturm-Liouville problem
+    \[
+      u'' + \lambda u = 0 \qquad 0 < x < 1
+    \]
+    \[
+      u'(0) = u(1) = 0
+    \]
+    whose eigenvalues are the critical points of
+    \[
+      J(u) = \frac{\dintt{0}{1}{u'(x)}{x}}{\dintt{0}{1}{u(x)^2}{x}}
+    \]
+    on the space $H = \set{u \in H^1(0, 1): u(1) = 0}$.
+    Use the Rayleigh-Ritz method to estimate the first two eigenvalues, and
+    compare to the exact values.
+    For best results, choose polynomial trial functions which resemble what the
+    first two eigenfunctions should look like.
+
   \item[\#3]
+    Use the result of Exercise 14 in Chapter 14 to give an alternate derivation
+    of the fact the Dirichlet quotient achieves its minimum at $\psi_1$.
+    (Hint: For $u \in H_0^1(\Omega)$ compute $\norm[H_0^1(\Omega)]{u}^2$ and
+    $\norm[L^2(\Omega)]{u}^2$ by expanding in the eigenfunction basis.)
+
   \item[\#5]
+    Let $A$ be an $m \times n$ real matrix, $b \in \RR^m$ and define
+    $J(x) = \norm[2]{Ax - b}$ for $x \in \RR^n$.
+    (Here $\norm[2]{x}$ denotes the 2 norm, the usual Euclidean distance on
+    $\RR^m$)
+    \begin{enumerate}
+      \item[(a)]
+        What is the Euler-Lagrange equation for the problem of minimizing J?
+
+      \item[(b)]
+        Under what circumstances does the Euler-Lagrange equation have a unique
+        solution?
+
+      \item[(c)]
+        Under the circumstances will the solution of the Euler-Lagrange equation
+        also be a solution of $Ax = b$.
+    \end{enumerate}
+
   \item[\#13]
+    Let $\Omega \subset \RR^N$ be a bounded open set,
+    $\rho \in C(\overline{\Omega})$, $\rho(x) > 0$ in $\Omega$, and
+    \[
+      J(u) = \frac{\dintt{\Omega}{}{\norm{\nabla u(x)}^2}{x}}{\dintt{\Omega}{}{\rho(x)u(x)^2}{x}}
+    \]
+    \begin{enumerate}
+      \item[(a)]
+        Show that any nonzero critical point $u \in H_0^1(\Omega)$ of $J$ is a
+        solution of the eigenvalue problem
+        \[
+          -\Delta u = \lambda \rho(x) u \qquad x \in \Omega
+        \]
+        \[
+          u = 0 \qquad x \in \partial \Omega
+        \]
+
+      \item[(b)]
+        Show that the eigenvalues are positive.
+
+        \begin{proof}
+          
+        \end{proof}
+
+      \item[(c)]
+        If $\rho(x) \ge 1$ in $\Omega$ and $\lambda_1$ denotes the smallest
+        eigenvalue, show that $\lambda_1 < \lambda_1^*$ where $\lambda_1^*$ is
+        the corresponding first eigenvalue of $-\Delta$ in $\Omega$.
+
+    \end{enumerate}
+
   \item[\#14]
+    Define
+    \[
+      J(u) = \frac{1}{2} \dintt{\Omega}{}{(\Delta u)^2}{x} + \dintt{\Omega}{}{fu}{x}
+    \]
+    What PDE problem is satisfied by a critical point of $J$ over
+    $\chi = H^2(\Omega) \cap H_0^1(\Omega)$?
+    Make sure to specify any relevant boundary conditions.
+    What is different if instead we let $\chi = H^2_0(\Omega)$?
 \end{enumerate}
 \end{document}
