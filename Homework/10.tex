@@ -28,11 +28,52 @@ Homework 10
     For best results, choose polynomial trial functions which resemble what the
     first two eigenfunctions should look like.
 
-  \item[\#3]
+  \item[\#3] % Done
     Use the result of Exercise 14 in Chapter 14 to give an alternate derivation
     of the fact the Dirichlet quotient achieves its minimum at $\psi_1$.
     (Hint: For $u \in H_0^1(\Omega)$ compute $\norm[H_0^1(\Omega)]{u}^2$ and
     $\norm[L^2(\Omega)]{u}^2$ by expanding in the eigenfunction basis.)
+
+    \begin{proof}
+      Let $\set{\psi_n}$ be a set of eigenfunctions for the Laplacian on $\Omega$
+      be chosen such that $\set{\psi_n}$ form an orthonormal basis for $L^2(\Omega)$.
+      From exercise 14 in chapter 14, we know that the set of functions
+      $\set{\psi_n/\sqrt{\lambda_n}}$ form an orthonormal basis for $H^1_0(\Omega)$.
+      Using these basis we can rewrite $u$ as
+      \[
+        u = \sum{n = 1}{\infty}{\abr[H_0^1(\Omega)]{u, \psi_n/\sqrt{\lambda}} \psi_n/\sqrt{\lambda_n}}
+      \]
+      and
+      \[
+        u = \sum{n = 1}{\infty}{\abr[L^2(\Omega)]{u, \psi_n} \psi_n}
+      \]
+      Now the norms $\norm[H_0^1(\Omega)]{u}^2$ and $\norm[L^2(\Omega)]{u}^2$
+      can be simplified by noting that the norms squared are the sums of the coefficients.
+      \begin{align*}
+        \norm[H_0^1(\Omega)]{u}^2 &= \norm[H_0^1(\Omega)]{\sum{n = 1}{\infty}{\abr[H_0^1(\Omega)]{u, \psi_n/\sqrt{\lambda_n}} \psi_n/\sqrt{\lambda_n}}}^2 \\
+        &= \sum{n = 1}{\infty}{\abr[H_0^1(\Omega)]{u, \psi_n/\sqrt{\lambda_n}}^2} \\
+        &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n}\p{\dintt{\Omega}{}{\nabla \psi_n \cdot \nabla u}{x}}^2} \\
+        &= \sum{n = 1}{\infty}{\frac{1}{\lambda_n}\p{\lambda_n\dintt{\Omega}{}{\psi_n u}{x}}^2} \\
+        &= \sum{n = 1}{\infty}{\lambda_n \abr[L^2(\Omega)]{u, \psi_n}^2} \\
+        \norm[L^2(\Omega)]{u}^2 &= \norm[L^2(\Omega]{\sum{n = 1}{\infty}{\abr[L^2(\Omega)]{u, \psi_n} \psi_n}}^2 \\
+        &= \sum{n = 1}{\infty}{\abr[L^2(\Omega)]{u, \psi_n}^2} \\
+      \end{align*}
+      Now the value of $J(u)$ can be rewritten using the eigenfunction basis as
+      \[
+        J(u) = \frac{\sum{n = 1}{\infty}{\lambda_n \abr[L^2(\Omega)]{u, \psi_n}^2}}{\sum{n = 1}{\infty}{\abr[L^2(\Omega)]{u, \psi_n}^2}}
+      \]
+      Since $\lambda_1 \le \lambda_i$ for all other eigenvalues we can bound
+      the value of $J(u)$.
+      \begin{align*}
+        J(u) &= \frac{\sum{n = 1}{\infty}{\lambda_n \abr[L^2(\Omega)]{u, \psi_n}^2}}{\sum{n = 1}{\infty}{\abr[L^2(\Omega)]{u, \psi_n}^2}} \\
+        &\le \frac{\sum{n = 1}{\infty}{\lambda_1 \abr[L^2(\Omega)]{u, \psi_n}^2}}{\sum{n = 1}{\infty}{\abr[L^2(\Omega)]{u, \psi_n}^2}} \\
+        &= \lambda_1\frac{\sum{n = 1}{\infty}{\abr[L^2(\Omega)]{u, \psi_n}^2}}{\sum{n = 1}{\infty}{\abr[L^2(\Omega)]{u, \psi_n}^2}} \\
+        &= \lambda_1
+      \end{align*}
+      Also since the functions $\psi_n$ are orthonormal $J(\psi_1) = \lambda_1$,
+      which implies that $J(\psi_1) \le J(u)$ for all $u \in H^1_0(\Omega)$ so
+      the Dirichlet quotient does achieve its minimum.
+    \end{proof}
 
   \item[\#5]
     Let $A$ be an $m \times n$ real matrix, $b \in \RR^m$ and define
@@ -43,23 +84,62 @@ Homework 10
       \item[(a)]
         What is the Euler-Lagrange equation for the problem of minimizing J?
 
+        The Euler-Lagrange equation for this problem is
+        \[
+          \eval{\da{J(x + ty)}{t}}{t = 0}{} = 0
+        \]
+        for all $y \in \RR^n$.
+        This can be simplified as follows.
+        \begin{align*}
+          0 &= \eval{\da{J(x + ty)}{t}}{t = 0}{} \\
+          &= \eval{\da{\norm[2]{A(x + ty) - b}}{t}}{t = 0}{} \\
+          &= \eval{\da{\sqrt{(A(x + ty) - b)^T (A(x + ty) - b)}}{t}}{t = 0}{} \\
+          &= \eval{\da{\sqrt{((x + ty)^TA^T - b^T) (A(x + ty) - b)}}{t}}{t = 0}{} \\
+          &= \eval{\da{\sqrt{(x + ty)^TA^T A(x + ty) - (x + ty)^TA^T b - b^T A(x + ty) + b^Tb}}{t}}{t = 0}{} \\
+          &= \eval{\da{\sqrt{(x^T + ty^T) A^T A(x + ty) - (x^T + ty^T) A^T b - b^T A x - t b^T A y + b^Tb}}{t}}{t = 0}{} \\
+          %&= \eval{\da{\sqrt{x^T A^T A x + t x^T A^T A y + ty^T A^T A x + t^2 y^T A^T A y - x^T A^T b - t y^T A^T b - b^T A x - t b^T A y + b^Tb)}}{t}}{t = 0}{} \\
+          &= \eval{\da{\sqrt{y^T A^T A y t^2 + (2x^T A^T A y - 2y^T A^T b) t + x^T A^T A x - 2x^T A^T b + b^Tb}}{t}}{t = 0}{} \\
+          &= \eval{\frac{1}{2}\frac{2 y^T A^T A y t + 2x^T A^T A y - 2y^T A^T b}{\sqrt{y^T A^T A y t^2 + (2x^T A^T A y - 2y^T A^T b) t + x^T A^T A x - 2x^T A^T b + b^Tb}}}{t = 0}{} \\
+          &= \frac{1}{2}\frac{2x^T A^T A y - 2y^T A^T b}{\sqrt{x^T A^T A x - 2x^T A^T b + b^Tb}} \\
+          &= \frac{x^T A^T A y - y^T A^T b}{\sqrt{x^T A^T A x - 2x^T A^T b + b^Tb}} \\
+        \end{align*}
+        So the final Euler-Lagrage equation is
+        \[
+          \frac{x^T A^T A y - y^T A^T b}{\sqrt{x^T A^T A x - 2x^T A^T b + b^Tb}} = 0
+        \]
+        In order for this equation to be satisfied the numerator must be zero,
+        or equivalently
+        \[
+          y^T A^T A x = y^T A^T b
+        \]
+        for all $y \in \RR^n$.
+
       \item[(b)]
         Under what circumstances does the Euler-Lagrange equation have a unique
         solution?
 
+        When $A$ has full rank, then the solution to the Euler-Lagrange will
+        have a unique solution.
+        In this case there is a unique solution to $Ax = b$ as well.
+
       \item[(c)]
         Under the circumstances will the solution of the Euler-Lagrange equation
         also be a solution of $Ax = b$.
+
+        The solution to the Euler Lagrange equation will also be a solution to
+        the equation $Ax = b$, when $b$ is in the range of $A$.
+        That is if a solution to $Ax = b$ exists, then the minimizer of $J(x)$
+        will be the solution to $Ax = b$, so that $J(x) = 0$.
     \end{enumerate}
 
-  \item[\#13]
+  \item[\#13] % Done
     Let $\Omega \subset \RR^N$ be a bounded open set,
     $\rho \in C(\overline{\Omega})$, $\rho(x) > 0$ in $\Omega$, and
     \[
       J(u) = \frac{\dintt{\Omega}{}{\norm{\nabla u(x)}^2}{x}}{\dintt{\Omega}{}{\rho(x)u(x)^2}{x}}
     \]
     \begin{enumerate}
-      \item[(a)]
+      \item[(a)] % Done
         Show that any nonzero critical point $u \in H_0^1(\Omega)$ of $J$ is a
         solution of the eigenvalue problem
         \[
@@ -69,21 +149,117 @@ Homework 10
           u = 0 \qquad x \in \partial \Omega
         \]
 
-      \item[(b)]
+        \begin{proof}
+          Let $u \in H^1_0(\Omega)$ be a nonzero critical point of $J$.
+          This means that for any $v \in H^1_0(\Omega)$,
+          \[
+            \eval{\da{J(u + tv)}{t}}{t = 0}{} = 0
+          \]
+          This condition can be simplified in many ways.
+          First I will compute the derivatives evaluated at $t = 0$ of the
+          numerator and denominator in order to use the quotient rule.
+          \begin{align*}
+            \eval{\da{\dintt{\Omega}{}{\norm{\nabla (u + tv)}^2}{x}}{t}}{t=0}{} &= \eval{\da{\dintt{\Omega}{}{\norm{\nabla u + t \nabla v}^2}{x}}{t}}{t=0}{} \\
+            &= \eval{\da{\dintt{\Omega}{}{(\nabla u + t \nabla v)\cdot (\nabla u + t \nabla v)}{x}}{t}}{t=0}{} \\
+            &= \eval{\da{\dintt{\Omega}{}{\nabla u \cdot \nabla u + 2 t \nabla u \cdot \nabla v + t^2 \nabla v \cdot \nabla v}{x}}{t}}{t=0}{} \\
+            &= \eval{\da{\dintt{\Omega}{}{\nabla u \cdot \nabla u}{x} + 2 t \dintt{\Omega}{}{\nabla u \cdot \nabla v}{x} + t^2 \dintt{\Omega}{}{\nabla v \cdot \nabla v}{x}}{t}}{t=0}{} \\
+            &= \eval{2 \dintt{\Omega}{}{\nabla u \cdot \nabla v}{x} + 2 t \dintt{\Omega}{}{\nabla v \cdot \nabla v}{x}}{t=0}{} \\
+            &= 2 \dintt{\Omega}{}{\nabla u \cdot \nabla v}{x} \\
+            \eval{\da{\dintt{\Omega}{}{\rho(x) (u + tv)^2}{x}}{t}}{t=0}{} &= \eval{\da{\dintt{\Omega}{}{\rho(x) (u^2 + 2tuv + t^2v^2)}{x}}{t}}{t=0}{}\\
+            &= \eval{\da{\dintt{\Omega}{}{\rho(x) u^2}{x} + 2t \dintt{\Omega}{}{\rho(x) uv}{x} + t^2 \dintt{\Omega}{}{\rho(x) v^2}{x}}{t}}{t=0}{}\\
+            &= \eval{2\dintt{\Omega}{}{\rho(x) uv}{x} + 2t \dintt{\Omega}{}{\rho(x) v^2}{x}}{t=0}{} \\
+            &= 2\dintt{\Omega}{}{\rho(x) uv}{x} \\
+          \end{align*}
+          Now the full derivative of the quotient evaluated at $t = 0$ can be
+          computed as
+          \[
+            \eval{\da{J(u + tv)}{t}}{t=0}{} = \frac{2\dintt{\Omega}{}{\rho(x) u(x)^2}{x}\dintt{\Omega}{}{\nabla u \cdot \nabla v}{x} -  2\dintt{\Omega}{}{\rho(x) u(x)v(x)}{x}\dintt{\Omega}{}{\nabla u \cdot \nabla u}{x}}{\p{\dintt{\Omega}{}{\rho(x) (u(x))^2}{x}}^2}
+          \]
+          The condition that this be equal to zero is equivalent to the
+          numerator being equal to zero.
+          Note that the denominator is strictly positive as $\rho(x)$ is
+          strictly positive and $u$ is nonzero.
+          The condition can now be simplified to
+          \begin{align*}
+            2\dintt{\Omega}{}{\rho(x) u(x)^2}{x}\dintt{\Omega}{}{\nabla u \cdot \nabla v}{x} &= 2\dintt{\Omega}{}{\rho(x) u(x)v(x)}{x}\dintt{\Omega}{}{\nabla u \cdot \nabla u}{x} \\
+            \dintt{\Omega}{}{\nabla u \cdot \nabla v}{x} &= \frac{\dintt{\Omega}{}{\rho(x) u(x)^2}{x}}{\dintt{\Omega}{}{\nabla u \cdot \nabla u}{x}} \dintt{\Omega}{}{\rho(x) u(x)v(x)}{x} \\
+            \dintt{\Omega}{}{\nabla u \cdot \nabla v}{x} &= J(u) \dintt{\Omega}{}{\rho(x) u(x)v(x)}{x} \\
+          \end{align*}
+          This last statement is exactly the weak formulation of the following PDE
+          \[
+            -\Delta u = J(u) \rho(x) u
+          \]
+          This shows that the critical points of $J$ are solutions to the
+          eigenvalue problem where $J(u)$ is the eigenvalue.
+        \end{proof}
+
+      \item[(b)] % Done
         Show that the eigenvalues are positive.
 
         \begin{proof}
-          
+          As was shown in part (a) the eigenvalues of this problem are all
+          values of the weighted Dirichlet quotient $J$.
+          Therefore if $J(u)$ is positive for all $u \in H^1_0(\Omega)$, then
+          this shows that all the eigenvalues of this problem must be positive.
+          Since $\rho(x) > 0$ and $u(x) \neq 0$, this implies that
+          \[
+            \dintt{\Omega}{}{\rho(x) u(x)^2}{x} > 0
+          \]
+          and
+          \[
+            \norm[L^2(\Omega)]{u}^2 = \dintt{\Omega}{}{u(x)^2}{x} > 0
+          \]
+          Therefore the denominator of $J(u)$ is always positive.
+          Now consider the numerator of $J(u)$, which is $\norm[H^1_0(\Omega)]{u}^2$.
+          By the Poincare inequality it is known that
+          \[
+            \norm[L^2(\Omega)]{u} \le C\norm[H^1_0(\Omega)]{u}
+          \]
+          for some $C > 0$.
+          This implies that
+          \[
+            \norm[H^1_0(\Omega)]{u} \ge \frac{1}{C} \norm[L^2(\Omega)]{u} > 0
+          \]
+          This shows that the numerator is also greater then zero, so $J(u) > 0$
+          for all $u \in H^1_0(\Omega)$.
+          So all the eigenvalues of this problem are also positive.
         \end{proof}
 
-      \item[(c)]
+      \item[(c)] % Done
         If $\rho(x) \ge 1$ in $\Omega$ and $\lambda_1$ denotes the smallest
         eigenvalue, show that $\lambda_1 < \lambda_1^*$ where $\lambda_1^*$ is
         the corresponding first eigenvalue of $-\Delta$ in $\Omega$.
 
+        \begin{proof}
+          I believe that this question should ask to show that
+          $\lambda_1 \le \lambda_1^*$ as if $\rho(x) = 1$, then
+          $\lambda_1 = \lambda_1^*$.
+
+          We have previously shown that
+          \[
+            \lambda_1^* = \min[u \in H^1_0(\Omega)]{\frac{\dintt{\Omega}{}{\norm{\nabla u(x)}^2}{x}}{\dintt{\Omega}{}{u(x)^2}{x}}}
+          \]
+          and part (a) showed that
+          \[
+            \lambda_1 = \min[u \in H^1_0(\Omega)]{\frac{\dintt{\Omega}{}{\norm{\nabla u(x)}^2}{x}}{\dintt{\Omega}{}{\rho(x)u(x)^2}{x}}}
+          \]
+          Now note that if $\rho(x) \ge 1$ then
+          \[
+            \dintt{\Omega}{}{\rho(x)u(x)^2}{x} \ge \dintt{\Omega}{}{u(x)^2}{x}
+          \]
+          for a given $u \in H^1_0(\Omega)$.
+          If the denominator is larger, this implies that the quotient is smaller or that
+          \[
+            \frac{\dintt{\Omega}{}{\norm{\nabla u(x)}^2}{x}}{\dintt{\Omega}{}{\rho(x)u(x)^2}{x}} \le \frac{\dintt{\Omega}{}{\norm{\nabla u(x)}^2}{x}}{\dintt{\Omega}{}{u(x)^2}{x}}
+          \]
+          Minimizing both sides of this inequality shows that
+          \[
+            \lambda_1 \le \lambda_1^*
+          \]
+        \end{proof}
     \end{enumerate}
 
-  \item[\#14]
+  \item[\#14] % Done
     Define
     \[
       J(u) = \frac{1}{2} \dintt{\Omega}{}{(\Delta u)^2}{x} + \dintt{\Omega}{}{fu}{x}
@@ -92,5 +268,43 @@ Homework 10
     $\chi = H^2(\Omega) \cap H_0^1(\Omega)$?
     Make sure to specify any relevant boundary conditions.
     What is different if instead we let $\chi = H^2_0(\Omega)$?
+
+    \begin{proof}
+      Let $u \in H^2(\Omega) \cap H^1_0(\Omega)$ be a critical point of $J(u)$.
+      This implies that for every $v \in C^{\infty}_0(\Omega)$,
+      \[
+        \eval{\da{J(u + tv)}{t}}{t=0}{} = 0.
+      \]
+      This condition can be simplified as follows.
+      \begin{align*}
+        0 &= \eval{\da{J(u + tv)}{t}}{t=0}{} \\
+        &= \eval{\da{\frac{1}{2} \dintt{\Omega}{}{(\Delta (u + tv))^2}{x} + \dintt{\Omega}{}{f(u + tv)}{x}}{t}}{t=0}{} \\
+        &= \eval{\da{\frac{1}{2} \dintt{\Omega}{}{(\Delta u + t \Delta v)^2}{x} + \dintt{\Omega}{}{fu + t fv}{x}}{t}}{t=0}{} \\
+        &= \eval{\da{\frac{1}{2} \dintt{\Omega}{}{(\Delta u)^2 + 2t \Delta u \Delta v + t^2(\Delta u)^2}{x} + \dintt{\Omega}{}{fu}{x} + t \dintt{\Omega}{}{fv}{x}}{t}}{t=0}{} \\
+        &= \eval{\da{\frac{1}{2} \dintt{\Omega}{}{(\Delta u)^2}{x} + t \dintt{\Omega}{}{\Delta u \Delta v}{x} + \frac{1}{2}t^2 \dintt{\Omega}{}{(\Delta u)^2}{x} + \dintt{\Omega}{}{fu}{x} + t \dintt{\Omega}{}{fv}{x}}{t}}{t=0}{} \\
+        &= \eval{\dintt{\Omega}{}{\Delta u \Delta v}{x} + t\dintt{\Omega}{}{(\Delta u)^2}{x} + \dintt{\Omega}{}{fv}{x}}{t=0}{} \\
+        &= \dintt{\Omega}{}{\Delta u \Delta v}{x} + \dintt{\Omega}{}{fv}{x} \\
+      \end{align*}
+      This condition is equivalent to
+      \[
+        \dintt{\Omega}{}{\Delta u \Delta v}{x} = - \dintt{\Omega}{}{fv}{x}
+      \]
+      This can be simplified by integrating by parts.
+      \begin{align*}
+        \dintt{\Omega}{}{\Delta u \Delta v}{x} &= -\dintt{\Omega}{}{fv}{x} \\
+        -\dintt{\Omega}{}{\nabla u \cdot \nabla \Delta v}{x} + \eval{\pd{u}{n} \Delta v}{\partial \Omega}{} &= -\dintt{\Omega}{}{fv}{x} \\
+        -\dintt{\Omega}{}{u \Delta^2 v}{x} + \eval{\pd{u}{n} \Delta v}{\partial \Omega}{} &= -\dintt{\Omega}{}{fv}{x} \\
+        \dintt{\Omega}{}{u \Delta^2 v}{x} - \eval{u \pd{\Delta v}{n}}{\partial \Omega}{} + \eval{\pd{u}{n} \Delta v}{\partial \Omega}{} &= -\dintt{\Omega}{}{fv}{x} \\
+      \end{align*}
+      This last statement is equivalent to the following PDE problem in the
+      distributional sense.
+      \begin{align*}
+        -\Delta^2 u = f \\
+        u = \pd{u}{n} = 0 \qquad x \in \partial \Omega
+      \end{align*}
+
+      When $u \in H^2_0(\Omega)$ instead the partial differential equation is
+      the same, but the boundary conditions change.
+    \end{proof}
 \end{enumerate}
 \end{document}
