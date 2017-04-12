@@ -1,0 +1,209 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[letterpaper, margin=2cm]{geometry}
+\usepackage{MATH520}
+
+\begin{document}
+\noindent \textbf{\Large{Caleb Logemann \\
+MATH 520 Methods of Applied Math II \\
+Homework 11
+}}
+
+\subsection*{Section 16.8}
+\begin{enumerate}
+  \item[\#6]
+    Prove the version of the Poincar\'e inequality stated in Proposition 16.1.
+    (Suggestions: If no such $C$ exists show that we can find sequence
+    $u_k \in H^1_*(\Omega)$ with $\norm[L^2(\Omega)]{u_k} = 1$ such that
+    $\norm[L^2(\Omega)]{\nabla u_k} < \frac{1}{k}$.
+    Using Rellich's theorem obtain a convergent subsequence whose limit must
+    have contradictory properties.
+
+    \begin{proof}
+      Suppose to the contrary that no such $C$ exists, such that
+      \[
+        \norm[L^2(\Omega)]{u} < C \norm[L^2(\Omega)]{\nabla u} \qquad \forall u \in H^1_*(\Omega).
+      \]
+      This implies that for every $k \in \NN$ there exists some
+      $v_k \in H^1_*(\Omega)$ such that
+      \[
+        \norm[L^2(\Omega)]{v_k} \ge k \norm[L^2(\Omega)]{\nabla v_k}
+      \]
+      Note that this inequality still holds for
+      $u_k = v_k/\norm[L^2(\Omega)]{v_k}$ as
+      \begin{align*}
+        \norm[L^2(\Omega)]{u_k} &\ge k \norm[L^2(\Omega)]{\nabla u_k} \\
+        \norm[L^2(\Omega)]{v_k/\norm[L^2(\Omega)]{v_k}} &\ge k \norm[L^2(\Omega)]{\nabla v_k/\norm[L^2(\Omega)]{v_k}} \\
+        \frac{1}{\norm[L^2(\Omega)]{v_k}} \norm[L^2(\Omega)]{v_k} &\ge \frac{1}{\norm[L^2(\Omega)]{v_k}} k \norm[L^2(\Omega)]{\nabla v_k} \\
+        \norm[L^2(\Omega)]{v_k} &\ge k \norm[L^2(\Omega)]{\nabla v_k}.
+      \end{align*}
+      This now shows that
+      \[
+        \norm[L^2(\Omega)]{u_k} = 1
+      \]
+      and that
+      \[
+        \norm[L^2(\Omega)]{\nabla u_k} \le \frac{1}{k}.
+      \]
+
+      We can now compute the $H^1(\Omega)$ norm of $u_k$ to be
+      \begin{align*}
+        \norm[H^1(\Omega)]{u} &= \sqrt{\norm[L^2(\Omega)]{u_k}^2 + \norm[L^2(\Omega)]{\nabla u_k}^2} \\
+        &\le \sqrt{1 + \frac{1}{k^2}} \\
+        &\le \sqrt{2}
+      \end{align*}
+      This shows that the set $\set{u_k}$ is bounded in $H^1(\Omega)$.
+
+      Now assuming that $\Omega$ has smooth enough boundaries, the
+      Rellich-Kondrachov theorem states that $\set{u_k}$ is precompact in
+      $L^2(\Omega)$.
+      Therefore there exists some convergent subsequence $\set{u_{k_j}}$ in
+      $L^2(\Omega)$.
+      Let $u$ be the limit of the subsequence $\set{u_{k_j}}$, that is
+      $\lim[j \to \infty]{u_{k_j}} = u$.
+      Note that since $\norm[L^2(\Omega)]{\nabla u_{k_j}} \le \frac{1}{k_j}$,
+      this implies that $\norm[L^2(\Omega)]{\nabla u_{k_j}} \to 0$.
+      Now since $u_{k_j} \to u$ this implies that $\nabla u_{k_j} \to \nabla u$.
+      This along with the fact that $\norm[L^2(\Omega)]{\nabla u_{k_j}} \to 0$,
+      shows that $\nabla u_{k_j} \to 0 = \nabla u$.
+      This shows that $u$ is a cons 
+    \end{proof}
+
+  \pagebreak
+  \item[\#8]
+    Consider a Lagrangian of the form $\mcL = \mcL(u, p)$ (i.e. it happens not
+    to depend on the space variable x) when $N = 1$.
+    Show that if $u$ is a solution of the Euler-Lagrange equation then
+    \[
+      \mcL(u, u') - u' \pd{\mcL}{p}(u, u') = C
+    \]
+    for some constant C.
+    In this way we are able to achieve a reduction of order from a second order
+    ODE to a first order ODE.
+    Use this observation to redo the derivation of the solution of the hanging
+    chain problem.
+
+    \begin{proof}
+      Let $u$ be a solution of the Euler-Lagrange equation, where the Lagrangian
+      is of the form $\mcL(u, p)$.
+    \end{proof}
+
+  \pagebreak
+  \item[\#9] % Done
+    Find the function $u(x)$ which minimizes
+    \[
+      J(u) = \dintt{0}{1}{(u'(x) - u(x))^2}{x}
+    \]
+    among all functions $u \in H^1(0, 1)$ satisfying $u(0) = 0$, $u(1) = 1$.
+
+    The function $u(x)$ which minimizes $J(u)$ will be the function that
+    satisfies the Euler-Lagrange equation where the Lagrangian is
+    $L(x, u, p) = (p - u)^2$.
+    The Euler-Lagrange equation in this case is
+    \[
+      -2(u' - u) - 2\da{u' - u}{x} = 0
+    \]
+    This is a second order differential equation which can be solved as follows.
+    \begin{align*}
+      0 &= -2(u' - u) - 2\da{u' - u}{x} \\
+      0 &= -2(u' - u) - 2\p{u'' - u'} \\
+      0 &= -2u' + 2u - 2u'' + 2u' \\
+      0 &= 2u - 2u'' \\
+      2u'' &= 2u \\
+      u'' &= u \\
+    \end{align*}
+    The solutions to this differential equation will be of the form
+    \[
+      u(x) = c_1 e^x + c_2 e^{-x}
+    \]
+    The constants $c_1$ and $c_2$ can be found by using the boundary conditions
+    $u(0) = 0$ and $u(1) = 1$.
+    \begin{align*}
+      u(0) = c_1 + c_2 = 0 \\
+      c_1 = -c_2 \\
+      u(1) = c_1 e + c_2 e^{-1} = 1\\
+      1 = -c_2 e + c_2 e^{-1} \\
+      1 = c_2(-e + e^{-1}) \\
+      c_2 = \frac{1}{e^{-1} - e} \\
+      c_2 = \frac{e}{1 - e^2} \\
+      c_1 = \frac{e}{e^2 - 1}
+    \end{align*}
+    Thus the solution to this minimization problem that satisfies $u(0) = 0$ and
+    $u(1) = 1$ is
+    \[
+      u(x) = \frac{e}{e^2 - 1} e^x + \frac{e}{1 - e^2} e^{-x}
+    \]
+
+  \pagebreak
+  \item[\#10]
+    The area of a surface obtained by revolving the graph of $y = u(x)$,
+    $0 < x < 1$, about the $x$ axis, is
+    \[
+      J(u) = 2\pi \dintt{0}{1}{u(x) \sqrt{1 + u'(x)^2}}{x}
+    \]
+    Assume that $u$ is required to satisfy $u(0) = a$, $u(1) = b$ where
+    $0 < a < b$.
+    \begin{enumerate}
+      \item[(a)]
+        Find the Euler-Lagrange equation for the problem of minimizing this surface area.
+
+        In this case the Lagrangian is
+        \[
+          \mcL(x, u, p) = 2\pi u \sqrt{1 + p^2}
+        \]
+        The Euler-Lagrange equation is then
+        \[
+          \pd{\mcL}{u} - \pd{}{x} \pd{\mcL}{p} = 0
+        \]
+        or more specifically
+        \[
+          2\pi \sqrt{1 + p} - \pd{}{x} \pd{\mcL}{p} = 0
+        \]
+
+      \item[(b)]
+        Show that
+        \[
+          \frac{u(u')^2}{\sqrt{1 + (u')^2}} - u\sqrt{1 + (u')^2}
+        \]
+        is a constant function for any such minimal surface (Hint: use Exercise 8).
+
+      \item[(c)]
+        Solve the first order ODE in part b) to find the minimal surface.
+        Make sure to compute all constants of integration.
+    \end{enumerate}
+
+  \pagebreak
+  \item[\#18]
+    Show that if $\Omega$ is a bounded domain in $\RR^N$ and $f \in L^2(\Omega)$,
+    then the problem of minimizing
+    \[
+      J(u) = \frac{1}{2} \dintt{\Omega}{}{\abs{\nabla u}^2}{x} - \dintt{\Omega}{}{f u}{x}
+    \]
+    over $H^1_0(\Omega)$ satisfies all of the conditions of Theorem 16.8.
+    What goes wrong if we replace $H^1_0(\Omega)$ by $H^1(\Omega)$.
+
+  \pagebreak
+  \item[\#19] % Done
+    We say that $J: \chi \to \RR$ is stricly convex if
+    \[
+      J(tx + (1 - t)y) < tJ(x) + (1 - t)J(y) \qquad x, y \in \chi \quad 0 < t < 1
+    \]
+    If $J$ is strictly convex show that the minimization problem (16.6.89) has
+    at most one solution.
+
+    \begin{proof}
+      First note that in order for $J$ to be strictly convex $\chi$ must be a
+      convex set as well.
+      This means that if $x, y \in \chi$, then $tx + (1 - t)y \in \chi$ for all
+      $t \in \br{0, 1}$.
+      Suppose that there exists two distinct solutions to the minimization
+      problem (16.6.89), that is there exists $x, y \in \chi$ such that
+      $x \neq y$ and $J(x) = J(y) = \min*[z \in \chi]{J(z)}$.
+      Now since $J$ is strictly convex it is known that $x/2 + y/2 \in \chi$ and
+      \[
+        J(x/2 + y/2) < J(x)/2 + J(y)/2 = J(x)
+      \]
+      This is a contradiction as $J(x) = \min*[z \in \chi]{J(x)}$.
+      Therefore $J$ has a most one solution to the minimization problem.
+    \end{proof}
+\end{enumerate}
+\end{document}
