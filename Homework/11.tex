@@ -10,7 +10,7 @@ Homework 11
 
 \subsection*{Section 16.8}
 \begin{enumerate}
-  \item[\#6]
+  \item[\#6] % Done
     Prove the version of the Poincar\'e inequality stated in Proposition 16.1.
     (Suggestions: If no such $C$ exists show that we can find sequence
     $u_k \in H^1_*(\Omega)$ with $\norm[L^2(\Omega)]{u_k} = 1$ such that
@@ -52,20 +52,54 @@ Homework 11
         &\le \sqrt{2}
       \end{align*}
       This shows that the set $\set{u_k}$ is bounded in $H^1(\Omega)$.
+      Since $\set{u_k}$ is bounded in $H^1(\Omega)$, there exists a weakly
+      convergent subsequence $\set{u_{k_j}}$.
 
       Now assuming that $\Omega$ has smooth enough boundaries, the
-      Rellich-Kondrachov theorem states that $\set{u_k}$ is precompact in
+      Rellich-Kondrachov theorem as well as the compact embedding of
+      $H^1(\Omega)$ in $L^2(\Omega)$ implies that $\set{u_{k_j}}$ is strongly
+      convergent in $L^2(\Omega)$.
+      Let $u \in L^2(\Omega)$ be the limit of the subsequence $\set{u_{k_j}}$, that is
+      $u_{k_j} \to u$ in $L^2(\Omega)$.
+      This also implies that $\norm[L^2(\Omega)]{u} = 1$ as
+      $\norm[L^2(\Omega)]{u_{k_j}} = 1$.
+      Note that strong convergence also implies that $u_{k_j} \wto u$ in
       $L^2(\Omega)$.
-      Therefore there exists some convergent subsequence $\set{u_{k_j}}$ in
-      $L^2(\Omega)$.
-      Let $u$ be the limit of the subsequence $\set{u_{k_j}}$, that is
-      $\lim[j \to \infty]{u_{k_j}} = u$.
-      Note that since $\norm[L^2(\Omega)]{\nabla u_{k_j}} \le \frac{1}{k_j}$,
-      this implies that $\norm[L^2(\Omega)]{\nabla u_{k_j}} \to 0$.
-      Now since $u_{k_j} \to u$ this implies that $\nabla u_{k_j} \to \nabla u$.
-      This along with the fact that $\norm[L^2(\Omega)]{\nabla u_{k_j}} \to 0$,
-      shows that $\nabla u_{k_j} \to 0 = \nabla u$.
-      This shows that $u$ is a cons 
+      Therefore
+      \[
+        \abr[L^2(\Omega)]{u_{k_j}, 1} \to \abr[L^2(\Omega)]{u, 1} = \dintt{\Omega}{}{u}{x}
+      \]
+      but note that since $u_{k_j} \in H^1_*(\Omega)$ as well
+      \[
+        \abr[L^2(\Omega)]{u_{k_j}, 1} = \dintt{\Omega}{}{u_{k_j}}{x} = 0.
+      \]
+      This shows that $\dintt{\Omega}{}{u}{x} = 0$.
+
+      Since $\set{u_{k_j}} \wto u$ in $H^1(\Omega)$, Proposition 13.1 states
+      that
+      \[
+        \norm[H^1(\Omega)]{u}^2 \le \liminf[j \to \infty]{\norm[H^1(\Omega)]{u_{k_j}}^2}
+      \]
+      This can be simplified as follows.
+      \begin{align*}
+        \norm[H^1(\Omega)]{u}^2 &\le \liminf[j \to \infty]{\norm[H^1(\Omega)]{u_{k_j}}^2} \\
+        \norm[L^2(\Omega)]{u}^2 + \norm[L^2(\Omega)]{\nabla u}^2 &\le \liminf[j \to \infty]{\norm[L^2(\Omega)]{u_{k_j}}^2 + \norm[L^2(\Omega)]{\nabla u_{k_j}}^2} \\
+        1 + \norm[L^2(\Omega)]{\nabla u}^2 &\le \liminf[j \to \infty]{\norm[L^2(\Omega)]{\nabla u_{k_j}}^2} + 1 \\
+        \norm[L^2(\Omega)]{\nabla u}^2 &\le \liminf[j \to \infty]{\norm[L^2(\Omega)]{\nabla u_{k_j}}^2} \\
+        \norm[L^2(\Omega)]{\nabla u}^2 &\le 0 \\
+      \end{align*}
+      This shows that $\nabla u = 0$.
+      If a function $u$ has a zero gradient, this implies that $u$ is constant.
+      However since we have already shown that $\dintt{\Omega}{}{u}{x} = 0$, and
+      the only constant function with zero average value is zero itself.
+      Thus $u = 0$, however this contradicts the fact that
+      $\norm[L^2(\Omega)]{u} = 1$.
+
+      Now that we have found a contradiction, this shows that there does exist
+      a constant $C$ such that
+      \[
+        \norm[L^2(\Omega)]{u} \le C \norm[L^2(\Omega)]{\nabla u} \qquad \forall u \in H^1_*(\Omega)
+      \]
     \end{proof}
 
   \pagebreak
@@ -143,7 +177,7 @@ Homework 11
     Assume that $u$ is required to satisfy $u(0) = a$, $u(1) = b$ where
     $0 < a < b$.
     \begin{enumerate}
-      \item[(a)]
+      \item[(a)] % Done
         Find the Euler-Lagrange equation for the problem of minimizing this surface area.
 
         In this case the Lagrangian is
@@ -156,23 +190,68 @@ Homework 11
         \]
         or more specifically
         \[
-          2\pi \sqrt{1 + p} - \pd{}{x} \pd{\mcL}{p} = 0
+          2\pi \sqrt{1 + u'} - 2\pi \pd{}{x} \frac{uu'}{\sqrt{1 + u'}} = 0.
+        \]
+        Simplifying this gives a the final Euler-Lagrange equation to be
+        \[
+          \sqrt{1 + u'} - \pd{}{x} \frac{uu'}{\sqrt{1 + u'}} = 0.
         \]
 
-      \item[(b)]
+      \item[(b)] % Done
         Show that
         \[
           \frac{u(u')^2}{\sqrt{1 + (u')^2}} - u\sqrt{1 + (u')^2}
         \]
         is a constant function for any such minimal surface (Hint: use Exercise 8).
 
+        The Lagrangian for this problem satisifies the assumption made in
+        Exercise 8, therefore the following first order differential equation
+        must be satisfied for any minimal surface,
+        \[
+          \mcL(u, u') - u' \pd{\mcL}{p}(u, u') = C.
+        \]
+        More specifically
+        \[
+          2\pi u\sqrt{1 + (u')^2} - 2\pi u' \frac{uu'}{\sqrt{1 + (u')^2}} = C.
+        \]
+        This can be simplified to 
+        \[
+          \frac{u(u')^2}{\sqrt{1 + (u')^2}} - u\sqrt{1 + (u')^2} = -\frac{C}{2\pi}
+        \]
+
+        This shows that
+        \[
+          \frac{u(u')^2}{\sqrt{1 + (u')^2}} - u\sqrt{1 + (u')^2}
+        \]
+        is a constant function for any minimal surface.
+
       \item[(c)]
         Solve the first order ODE in part b) to find the minimal surface.
         Make sure to compute all constants of integration.
+
+        The first order ODE in (b) can be solved as follows.
+        \begin{align*}
+          \frac{u(u')^2}{\sqrt{1 + (u')^2}} - u\sqrt{1 + (u')^2} &= c \\
+          u(u')^2 - u\p{1 + (u')^2} &= c\sqrt{1 + (u')^2} \\
+          u\p{(u')^2 - 1 + (u')^2} &= c\sqrt{1 + (u')^2} \\
+          -u &= c\sqrt{1 + (u')^2} \\
+          u^2 &= c^2 + c^2(u')^2 \\
+          u^2 - c^2 &= c^2(u')^2 \\
+          \pm \sqrt{u^2 - c^2} &= cu' \\
+          \pm c\sqrt{\p{\frac{u}{c}}^2 - 1} &= cu' \\
+          \pm \sqrt{\p{\frac{u}{c}}^2 - 1} &= u' \\
+          \pm \sqrt{\p{\frac{u}{c}}^2 - 1} &= \d{u}{x} \\
+          \pm \intt{}{x} &= \intt{\frac{1}{\sqrt{\p{\frac{u}{c}}^2 - 1}}}{u} \\
+          x + d &= c \arccosh{\frac{u}{c}} \\
+          u(x) &= c \cosh{\frac{x + d}{c}}
+        \end{align*}
+        Note that this is equivalent to the solution found earlier for the
+        hanging chain, and this is consistent as the Lagrangian is equivalent
+        in these situations.
     \end{enumerate}
 
   \pagebreak
-  \item[\#18]
+  \item[\#18] % Done
     Show that if $\Omega$ is a bounded domain in $\RR^N$ and $f \in L^2(\Omega)$,
     then the problem of minimizing
     \[
@@ -181,28 +260,80 @@ Homework 11
     over $H^1_0(\Omega)$ satisfies all of the conditions of Theorem 16.8.
     What goes wrong if we replace $H^1_0(\Omega)$ by $H^1(\Omega)$.
 
+    \begin{proof}
+      First note that $H^1_0(\Omega)$ is a closed subspace of a Hilbert space,
+      therefore by Theorem 13.1 $H^1_0(\Omega)$ is weakly closed.
+
+      Now I will show that $J(u)$ is both coersive and weakly lower
+      semicontinuous.
+      To see that $J(u)$ is coersive consider a sequence
+      $u_k \in H^1_0(\Omega)$, such that $\norm[H^1_0(\Omega)]{u_k} \to \infty$.
+      Consider the following, which follows from the Cauchy-Schwartz are
+      Poincar\'e inequalities.
+      \[
+        \dintt{\Omega}{}{fu}{x} &\le \norm[L^2]{f} \norm[L^2]{u} &\le C\norm[L^2]{f} \norm[H^1_0]{u}
+      \]
+      Using this inequality we can characterize $J(u_k)$ as
+      \begin{align*}
+        J(u_k) &= \frac{1}{2} \dintt{\Omega}{}{\abr{\nabla u_k}^2}{x} - \dintt{\Omega}{}{f u_k}{c} \\
+        &\ge \frac{1}{2} \norm[H^1_0(\Omega)]{u_k}^2 - C \norm[L^2]{f} \norm[H^1_0]{u_k} \\
+        &= \norm[H^1_0(\Omega)]{u_k} \p{\frac{1}{2} \norm[H^1_0(\Omega)]{u_k} - C \norm[L^2]{f}} \\
+      \end{align*}
+      Since $C \norm[L^2]{f}$ is fixed we can see that this last expression
+      tends to infinity as $\norm[H^1_0(\Omega)]{u_k} \to \infty$ and
+      $\frac{1}{2} \norm[H^1_0(\Omega)]{u_k} - C \norm[L^2]{f} \to \infty$.
+      Therefore $J(u_k) \to \infty$, and thus $J$ is coersive.
+      Note that this proof wouldn't work for $u_k \in H^1(\Omega)$ as
+      $\norm[L^2(\Omega)]{u_k} \to \infty$ does not imply that
+      $\norm[L^2(\Omega)]{\nabla u_k} \to \infty$.
+
+      Lastly I will show that $J$ is weakly lower semicontinuous.
+      In order to do this suppose that $u_k \wto u$ in $H^1_0(\Omega)$.
+      Since $H^1_0(\Omega)$ is compact in $L^2(\Omega)$ this implies that
+      $u_k \to u$ in $L^2(\Omega)$
+      Since $u_k \to u$ in $L^2(\Omega)$, it is also known that $u_k \wto u$ in
+      $L^2(\Omega)$ and this implies that
+      $\dintt{\Omega}{}{f u_k}{x} \to \dintt{\Omega}{}{f u}{x}$.
+      Proposition 13.2 also gives that
+      \[
+        \norm[H^1_0(\Omega)]{u}^2 \le \liminf[k \to \infty]{\norm[H^1_0(\Omega)]{u_k}^2}
+      \]
+      or equivalently that
+      \[
+        \dintt{\Omega}{}{\abs{\nabla u}^2}{x} \le \liminf[k \to \infty]{\dintt{\Omega}{}{\abs{\nabla u_k}^2}{x}}.
+      \]
+      Now using these two facts together we see that
+      \begin{align*}
+        J(u) &= \frac{1}{2}\dintt{\Omega}{}{\abs{\nabla u}^2}{x} - \dintt{\Omega}{}{fu}{x} \\
+        &\le \liminf[k \to \infty]{\frac{1}{2}\dintt{\Omega}{}{\abs{\nabla u_k}^2}{x} - \dintt{\Omega}{}{fu_k}{x}} \\
+        &= \liminf[k \to \infty]{J(u_k)}
+      \end{align*}
+      Thus $J$ is weakly lower semicontinuous and satisfies all of the
+      assumptions of Theorem 16.8.
+    \end{proof}
+
   \pagebreak
   \item[\#19] % Done
-    We say that $J: \chi \to \RR$ is stricly convex if
+    We say that $J: \mcX \to \RR$ is stricly convex if
     \[
-      J(tx + (1 - t)y) < tJ(x) + (1 - t)J(y) \qquad x, y \in \chi \quad 0 < t < 1
+      J(tx + (1 - t)y) < tJ(x) + (1 - t)J(y) \qquad x, y \in \mcX \quad 0 < t < 1
     \]
     If $J$ is strictly convex show that the minimization problem (16.6.89) has
     at most one solution.
 
     \begin{proof}
-      First note that in order for $J$ to be strictly convex $\chi$ must be a
+      First note that in order for $J$ to be strictly convex $\mcX$ must be a
       convex set as well.
-      This means that if $x, y \in \chi$, then $tx + (1 - t)y \in \chi$ for all
+      This means that if $x, y \in \mcX$, then $tx + (1 - t)y \in \mcX$ for all
       $t \in \br{0, 1}$.
       Suppose that there exists two distinct solutions to the minimization
-      problem (16.6.89), that is there exists $x, y \in \chi$ such that
-      $x \neq y$ and $J(x) = J(y) = \min*[z \in \chi]{J(z)}$.
-      Now since $J$ is strictly convex it is known that $x/2 + y/2 \in \chi$ and
+      problem (16.6.89), that is there exists $x, y \in \mcX$ such that
+      $x \neq y$ and $J(x) = J(y) = \min*[z \in \mcX]{J(z)}$.
+      Now since $J$ is strictly convex it is known that $x/2 + y/2 \in \mcX$ and
       \[
         J(x/2 + y/2) < J(x)/2 + J(y)/2 = J(x)
       \]
-      This is a contradiction as $J(x) = \min*[z \in \chi]{J(x)}$.
+      This is a contradiction as $J(x) = \min*[z \in \mcX]{J(x)}$.
       Therefore $J$ has a most one solution to the minimization problem.
     \end{proof}
 \end{enumerate}
