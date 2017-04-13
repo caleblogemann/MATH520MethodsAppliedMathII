@@ -103,7 +103,7 @@ Homework 11
     \end{proof}
 
   \pagebreak
-  \item[\#8]
+  \item[\#8] % Done
     Consider a Lagrangian of the form $\mcL = \mcL(u, p)$ (i.e. it happens not
     to depend on the space variable x) when $N = 1$.
     Show that if $u$ is a solution of the Euler-Lagrange equation then
@@ -119,7 +119,44 @@ Homework 11
     \begin{proof}
       Let $u$ be a solution of the Euler-Lagrange equation, where the Lagrangian
       is of the form $\mcL(u, p)$.
+      This means that $u$ is a solution to the following equation.
+      \[
+        \pd{\mcL}{u} - \da{\pd{\mcL}{p}}{x} = 0
+      \]
+      Multiplying both sides by $\pd{u}{x}$ gives
+      \[
+        \pd{u}{x} \pd{\mcL}{u} - \pd{u}{x} \d{}{x} \pd{\mcL}{p} = 0
+      \]
+      Integrating both sides with respect to $x$ gives
+      \begin{align*}
+        \intt{\pd{u}{x} \pd{\mcL}{u}}{x} - \intt{\d{}{x}\pd{u}{x}  \pd{\mcL}{p}}{x} &= \intt{0}{x} \\
+        \mcL - \d{u}{x}  \pd{\mcL}{p} &= c \\
+        \mcL(u, u') - \d{u}{x}  \pd{\mcL}{p}(u, u') &= c \\
+      \end{align*}
+      This is the first order ODE that we were trying to achieve.
     \end{proof}
+
+    In the case of the hanging chain problem, the Lagrangian is
+    \[
+      \mcL(u, u') = u\sqrt{1 + (u')^2}
+    \]
+    The first order ODE can now be solved as follows
+    \begin{align*}
+      \frac{u(u')^2}{\sqrt{1 + (u')^2}} - u\sqrt{1 + (u')^2} &= c \\
+      u(u')^2 - u\p{1 + (u')^2} &= c\sqrt{1 + (u')^2} \\
+      u\p{(u')^2 - 1 + (u')^2} &= c\sqrt{1 + (u')^2} \\
+      -u &= c\sqrt{1 + (u')^2} \\
+      u^2 &= c^2 + c^2(u')^2 \\
+      u^2 - c^2 &= c^2(u')^2 \\
+      \pm \sqrt{u^2 - c^2} &= cu' \\
+      \pm c\sqrt{\p{\frac{u}{c}}^2 - 1} &= cu' \\
+      \pm \sqrt{\p{\frac{u}{c}}^2 - 1} &= u' \\
+      \pm \sqrt{\p{\frac{u}{c}}^2 - 1} &= \d{u}{x} \\
+      \pm \intt{}{x} &= \intt{\frac{1}{\sqrt{\p{\frac{u}{c}}^2 - 1}}}{u} \\
+      x + d &= c \arccosh{\frac{u}{c}} \\
+      u(x) &= c \cosh{\frac{x + d}{c}}
+    \end{align*}
+    This solution matches the solution found in the book.
 
   \pagebreak
   \item[\#9] % Done
@@ -226,7 +263,7 @@ Homework 11
         is a constant function for any minimal surface.
 
       \item[(c)]
-        Solve the first order ODE in part b) to find the minimal surface.
+        Solve the first order ODE in part (b) to find the minimal surface.
         Make sure to compute all constants of integration.
 
         The first order ODE in (b) can be solved as follows.
@@ -271,7 +308,7 @@ Homework 11
       Consider the following, which follows from the Cauchy-Schwartz are
       Poincar\'e inequalities.
       \[
-        \dintt{\Omega}{}{fu}{x} &\le \norm[L^2]{f} \norm[L^2]{u} &\le C\norm[L^2]{f} \norm[H^1_0]{u}
+        \dintt{\Omega}{}{fu}{x} \le \norm[L^2]{f} \norm[L^2]{u} \le C\norm[L^2]{f} \norm[H^1_0]{u}
       \]
       Using this inequality we can characterize $J(u_k)$ as
       \begin{align*}
