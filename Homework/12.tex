@@ -106,13 +106,51 @@ Homework 12
     Assume the ellipticity property (17.1.3) and that $a_{jk} \in L^{\infty}(\Omega)$.
     If $f \in L^2(\Omega)$ show that there exists a unique solution of
     \[
-      u \in H^1(\Omega) \qquad A[u, v] = \dintt{\Omega}{}{fv}{x} \forall v \in H^1(\Omega).
+      u \in H^1(\Omega) \qquad A[u, v] = \dintt{\Omega}{}{fv}{x} \quad \forall v \in H^1(\Omega).
     \]
     Justify that $u$ may be regarded as the weak solution of
     \[
       -(a_{jk}u_{x_k})_{x_j} + \lambda u = f(x) \quad x \in \Omega \qquad a_{jk}u_{x_k}n_j = 0 \quad x \in \partial \Omega
     \]
     The above boundary condition is said to be of conormal type.
+
+    \begin{proof}
+      Lax-Milgram's Theorem can be used to show that there exists a unique solution to
+      \[
+        u \in H^1(\Omega) \qquad A[u, v] = \dintt{\Omega}{}{fv}{x} \quad \forall v \in H^1(\Omega).
+      \]
+
+      First I will show that $A$ is bilinear.
+      \begin{align*}
+        A[u_1 + u_2, v] &= \dintt{\Omega}{}{a_{jk}(x)(u_1 + u_2)_{x_k}(x) v_{x_j}(x)}{x} + \lambda \dintt{\Omega}{}{(u_1 + u_2)v}{x} \\
+        &= \dintt{\Omega}{}{a_{jk}(x)(u_1)_{x_k}(x)v_{x_j}(x) + a_{jk}(x)(u_2)_{x_k}(x) v_{x_j}(x)}{x} + \lambda \dintt{\Omega}{}{u_1v + u_2v}{x} \\
+        &= \dintt{\Omega}{}{a_{jk}(x)(u_1)_{x_k}(x)v_{x_j}(x)}{x} + \dintt{\Omega}{}{a_{jk}(x)(u_2)_{x_k}(x) v_{x_j}(x)}{x} + \lambda \dintt{\Omega}{}{u_1v}{x} + \lambda\dintt{\Omega}{}{u_2v}{x} \\
+        &= A[u_1, v] + A[u_2, v] \\
+        A[u, v_1 + v_2] &= \dintt{\Omega}{}{a_{jk}(x)u_{x_k}(x) (v_1 + v_2)_{x_j}(x)}{x} + \lambda \dintt{\Omega}{}{u(v_1 + v_2)}{x} \\
+        &= \dintt{\Omega}{}{a_{jk}(x)u_{x_k}(x)(v_1)_{x_j}(x) + a_{jk}(x)u_{x_k}(x)(v_2)_{x_j}(x)}{x} + \lambda \dintt{\Omega}{}{uv_1 + uv_2}{x} \\
+        &= \dintt{\Omega}{}{a_{jk}(x)u_{x_k}(x)(v_1)_{x_j}(x)}{x} + \dintt{\Omega}{}{a_{jk}(x)u_{x_k}(x)(v_2)_{x_j}(x)}{x} + \lambda \dintt{\Omega}{}{uv_1}{x} + \lambda\dintt{\Omega}{}{uv_2}{x} \\
+        &= A[u, v_1] + A[u, v_2]
+      \end{align*}
+      This shows that $A$ is bilinear.
+
+      Next I will show that $A$ is bounded.
+      \begin{align*}
+        A[u, v] &= 
+      \end{align*}
+
+      Lastly I will show that $A$ is coercive.
+      \begin{align*}
+        A[u, u] &=
+      \end{align*}
+
+      Now Lax-Milgram's Theorem states that there exists a unique
+      $u \in H^1(\Omega)$ such that
+      \[
+        A[u, v] = \dintt{\Omega}{}{fv}{x} \quad \forall v \in H^1(\Omega).
+      \]
+
+      
+    \end{proof}
 
   \pagebreak
   \item[\#6]
@@ -131,7 +169,45 @@ Homework 12
     on $H^1_0(0, 1) \times H^1_0(0, 1)$.
 
     \begin{proof}
-      
+      First I will rewrite this system of PDEs in weak form.
+      \[
+        \dintt{0}{1}{-u'' \phi + u\phi + v'\phi - v'' \psi + v\psi + u'\psi}{x} = \dintt{0}{1}{f\phi + g \psi}{x}
+      \]
+      for all $\phi, \psi \in H^1_0(0, 1)$.
+      Integrating by parts were necessary gives
+      \[
+        \dintt{0}{1}{u' \phi' + u\phi + v'\phi + v' \psi' + v\psi + u'\psi}{x} = \dintt{0}{1}{f\phi + g \psi}{x}.
+      \]
+      Now I will define the following bilinear function
+      \[
+        A[(u, v), (\phi, \psi)] = \dintt{0}{1}{u' \phi' + u\phi + v'\phi + v' \psi' + v\psi + u'\psi}{x}.
+      \]
+      This function is bilinear because differentiation and integration are both
+      linear operations.
+      To verify this note that
+      \begin{align*}
+        A[(u_1 + u_2, v_1 + v_2), (\phi, \psi)] &= \dintt{0}{1}{(u_1 + u_2)' \phi' + (u_1 + u_2)\phi + (v_1 + v_2)'\phi + (v_1 + v_2)' \psi' + (v_1 + v_2)\psi + (u_1 + u_2)'\psi}{x} \\
+        &= \dintt{0}{1}{u_1'\phi + u_2' \phi' + u_1\phi + u_2\phi + v_1'\phi + v_2'\phi + v_1'\psi + v_2' \psi' + v_1\psi + v_2\psi + u_1'\psi + u_2'\psi}{x} \\
+        &= \dintt{0}{1}{u_1'\phi + u_1 \phi + v_1' \phi + v_1'\psi + v_1\psi + u_1'\psi}{x} + \dintt{0}{1}{u_2' \phi' + u_2\phi + v_2'\phi + v_2' \psi' + v_2\psi + u_2'\psi}{x} \\
+        &= A[(u_1, v_1), (\phi, \psi)] + A[(u_2, v_2), (\phi, \psi)]
+      \end{align*}
+      and the same can be shown for the second argument.
+
+      Next I will show that $A$ is bounded.
+      \begin{align*}
+        A[(u, v), (\phi, \psi)]
+      \end{align*}
+
+      Lastly I will show that $A$ is coercive.
+      Let $u, v \in H^1_0(0, 1)$, then
+      \begin{align*}
+        A[(u, v), (u, v)] &= \dintt{0}{1}{(u')^2 + u^2 + uv' + (v')^2 + v^2 + u'v}{x} \\
+        &= \dintt{0}{1}{(u')^2}{x} + \dintt{0}{1}{u^2}{x} + \dintt{0}{1}{uv'}{x} + \dintt{0}{1}{(v')^2}{x} + \dintt{0}{1}{v^2}{x} + \dintt{0}{1}{u'v}{x}
+        \intertext{Integrating by parts}
+        &= \dintt{0}{1}{(u')^2}{x} + \dintt{0}{1}{u^2}{x} - \dintt{0}{1}{u'v}{x} + \dintt{0}{1}{(v')^2}{x} + \dintt{0}{1}{v^2}{x} + \dintt{0}{1}{u'v}{x} \\
+        &= \dintt{0}{1}{(u')^2}{x} + \dintt{0}{1}{u^2}{x} + \dintt{0}{1}{(v')^2}{x} + \dintt{0}{1}{v^2}{x} \\
+        &= \norm[H^1_0]{u}^2 + \norm[L^2]{u}^2 + \norm[H^1_0]{v}^2 + \norm[L^2]{v}^2 \\
+      \end{align*}
     \end{proof}
 
 \end{enumerate}
