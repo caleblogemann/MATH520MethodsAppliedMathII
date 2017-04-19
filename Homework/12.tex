@@ -93,7 +93,53 @@ Homework 12
     \]
 
     \begin{proof}
-      
+      Even though it isn't stated I will operate in the space $H^1_0(\Omega)$
+      as this is the natural Hilbert space for the Dirichlet Laplacian.
+      First I will rewrite this PDE in weak form as
+      \[
+        \dintt{\Omega}{}{\nabla u \nabla v + c(x) uv}{x} = \dintt{\Omega}{}{fv}{x}
+      \]
+      for all $v \in H^1_0(\Omega)$.
+      Next I will define the following function
+      \[
+        A[u, v] = \dintt{\Omega}{}{\nabla u \nabla v + c(x) uv}{x}.
+      \]
+
+      To see that this function is bilinear, note that
+      \begin{align*}
+        A[u_1 + u_2, v] &= \dintt{\Omega}{}{\nabla (u_1 + u_2) \nabla v + c(x) (u_1 + u_2)v}{x} \\
+        &= \dintt{\Omega}{}{\nabla u_1 \nabla v + \nabla u_2 \nabla v + c(x) u_1 v + c(x) u_2 v}{x} \\
+        &= \dintt{\Omega}{}{\nabla u_1 \nabla v + c(x)u_1 v}{x} + \dintt{\Omega}{}{\nabla u_2 \nabla v + c(x) u_2 v}{x} \\
+        &= A[u_1, v] + A[u_2, v]
+      \end{align*}
+      and that
+      \begin{align*}
+        A[u, v_1 + v_2] &= \dintt{\Omega}{}{\nabla u \nabla (v_1 + v_2) + c(x) u (v_1 + v_2)}{x} \\
+        &= \dintt{\Omega}{}{\nabla u \nabla v_1 + \nabla u \nabla v_2 + c(x) u v_1 + c(x) u v_2}{x} \\
+        &= \dintt{\Omega}{}{\nabla u \nabla v_1 + c(x) u v_1}{x} + \dintt{\Omega}{}{\nabla u \nabla v_2 + c(x) u v_2}{x} \\
+        &= A[u, v_1] + A[u, v_2].
+      \end{align*}
+      This shows that $A$ is bilinear.
+
+      Next I will show that $A$ is bounded.
+      \begin{align*}
+        A[u, v] &= 
+      \end{align*}
+
+      Finally I will show that $A$ is coercive.
+      \begin{align*}
+        A[u, u] &= 
+      \end{align*}
+
+      Now Lax-Milgram's Theorem states that there exists a unique solution to
+      \[
+        \dintt{\Omega}{}{\nabla u \nabla v + c(x) uv}{x} = \dintt{\Omega}{}{fv}{x}
+      \]
+      for all $v \in H^1_0(\Omega)$.
+      This also implies that there is a weak solution to
+      \[
+        -\Delta u + c(x) u = f \quad x \in \Omega \qquad u = 0 \quad \forall x \in \partial \Omega
+      \]
     \end{proof}
 
   \pagebreak
@@ -140,7 +186,7 @@ Homework 12
 
       Lastly I will show that $A$ is coercive.
       \begin{align*}
-        A[u, u] &=
+        A[u, u] &= 
       \end{align*}
 
       Now Lax-Milgram's Theorem states that there exists a unique
