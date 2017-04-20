@@ -128,6 +128,21 @@ Homework 12
     \]
     (Suggestion: justify and use a suitable version of the fundamental theorem
     of calculus.)
+
+    \begin{proof}
+      The Fundamental Theorem of Calculus for Banach spaces can be stated as
+      \[
+        \dintt{0}{1}{DF(tx + (1 - t)x_0)(x - x_0)}{t} = F(x) - F(x_0).
+      \]
+      This can be used to show Lipschitz continuity as follows.
+      \begin{align*}
+        \norm{F(x) - F(x_0)} &= \norm{\dintt{0}{1}{DF(tx + (1 - t)x_0)(x - x_0)}{t}} \\
+        &\le \dintt{0}{1}{\norm{DF(tx + (1 - t)x_0)(x - x_0)}}{t} \\
+        &\le \dintt{0}{1}{\norm{DF(tx + (1 - t)x_0)}\norm{(x - x_0)}}{t} \\
+        &\le \dintt{0}{1}{M\norm{(x - x_0)}}{t} \\
+        &= M\norm{(x - x_0)} \\
+      \end{align*}
+    \end{proof}
 \end{enumerate}
 
 \pagebreak
