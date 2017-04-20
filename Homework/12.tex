@@ -10,13 +10,13 @@ Homework 12
 
 \subsection*{Section 16.8}
 \begin{enumerate}
-  \item[\#20]
+  \item[\#20] % Done
     Show that the Fr\'echet derivative, if it exists, must be unique.
 
     \begin{proof}
       Let $X, Y$ be Banach spaces and let $F: D(F) \subset X \to Y$.
       Now suppose that $A_1, A_2 \in B(X, Y)$ exist such that $A_1 \neq A_2$ and
-      they both are the Fr\'echet derivative of $F$ at some $x_0 \in D(F)$.
+      they both are the Fr\'echet derivative of $F$ for all $x_0 \in D(F)$.
       This means that
       \[
         \lim*[x \to x_0]{\frac{\norm{F(x) - F(x_0) - A_1(x - x_0)}}{\norm{x - x_0}}} = 0
@@ -25,10 +25,43 @@ Homework 12
       \[
         \lim*[x \to x_0]{\frac{\norm{F(x) - F(x_0) - A_2(x - x_0)}}{\norm{x - x_0}}} = 0
       \]
+      This can be written equivalently as
+      \[
+        \lim*[z \to 0]{\frac{\norm{F(z) - A_i(z)}}{\norm{z}}} = 0
+      \]
+
+      Let $\epsilon > 0$ be given, and then I will show that
+      $\norm{A_1 - A_2} < \epsilon$.
+      Since $A_1$ and $A_2$ are derivatives of $F$, there exists $\delta_1$ and
+      $\delta_2$ such that
+      \[
+        \frac{\norm{F(z) - A_i(z)}}{\norm{z}} < \epsilon/2
+      \]
+      for $\norm{z} \le \delta_i$ for $i = 1, 2$.
+      Let $\delta = \min{\delta_1, \delta_2}$.
+      Now consider the following for $\norm{z} \le \delta$.
+      \begin{align*}
+        \norm{A_1(z) - A_2(z)} &= \norm{A_1(z) - F(z) + F(z) - A_2(z)} \\
+        &\le \norm{A_1(z) - F(z)} + \norm{F(z) - A_2(z)} \\
+        &\le \epsilon/2 \norm{z} + \epsilon/2 \norm{z} \\
+        &= \epsilon \norm{z}
+      \end{align*}
+
+      Finally consider $\norm{A_1 - A_2}$.
+      \begin{align*}
+        \norm{A_1 - A_2} &= \sup[z \in X]{\frac{\norm{A_1(z) - A_2(z)}}{\norm{z}}} \\
+        &= \sup[\norm{z} = \delta]{\frac{\norm{A_1(z) - A_2(z)}}{\delta}} \\
+        &\le \sup[\norm{z} = \delta]{\frac{\epsilon \norm{z}}{\delta}} \\
+        &= \frac{\epsilon \delta}{\delta} \\
+        &= \epsilon \\
+      \end{align*}
+      Since $\epsilon > 0$ was arbitrary this shows that $\norm{A_1 - A_2} = 0$
+      or that $A_1 = A_2$, thus there can only be one Fr\'echet derivative of
+      an operator.
     \end{proof}
 
   \pagebreak
-  \item[\#21]
+  \item[\#21] % Done
     If $F: \RR^2 \to \RR$ is defined by
     \[
       F(x, y) =
@@ -63,6 +96,23 @@ Homework 12
       \lim*[(u, v) \to (0, 0)]{\frac{\abs{\frac{uv^2}{u^2 + v^4} - A(u, v)}}{\sqrt{u^2 + v^2}}} = 0.
     \]
 
+    If the Fr\'echet derivative exists, then it will coincide with the
+    G\^ateaux derivative, therefore it must be that $A(u, v) = \frac{v^2}{u}$.
+    The limit is now
+    \[
+      \lim*[(u, v) \to (0, 0)]{\frac{\abs{\frac{uv^2}{u^2 + v^4} - \frac{v^2}{u}}}{\sqrt{u^2 + v^2}}} = 0.
+    \]
+    Also if the previous limit is going to exist, it must exist along any path
+    to $(0, 0)$.
+    Therefore I will consider the path along $u = v^2$, this gives
+    \begin{align*}
+      \lim*[(u, v) \to (0, 0)]{\frac{\abs{\frac{uv^2}{u^2 + v^4} - \frac{v^2}{u}}}{\sqrt{u^2 + v^2}}} 
+      &=  \lim*[(u, v) \to (0, 0)]{\frac{\abs{\frac{v^4}{v^4 + v^4} - \frac{v^2}{v^2}}}{\sqrt{v^4 + v^2}}} \\
+      &=  \lim*[(u, v) \to (0, 0)]{\frac{\frac{1}{2}}{\sqrt{v^4 + v^2}}} \to \infty\\
+    \end{align*}
+    This shows that along the path $u = v^2$ the limit actually goes to
+    $\infty$ as $(u, v) \to (0, 0)$, thus the Fr\'echet derivative does not exist.
+
   \pagebreak
   \item[\#27]
     Let $X, Y$ be Banach spaces, $F: D(F) \subset X \to Y$, and let
@@ -83,7 +133,7 @@ Homework 12
 \pagebreak
 \subsection*{Section 17.5}
 \begin{enumerate}
-  \item[\#2]
+  \item[\#2] % Done
     Let $\lambda_1$ be the smallest Dirichlet eigenvalue for $-\Delta$ in
     $\Omega$, assume that $c \in C(\overline{\Omega})$ and $c(x) > -\lambda_1$
     in $\overline{\Omega}$.
@@ -122,14 +172,50 @@ Homework 12
       This shows that $A$ is bilinear.
 
       Next I will show that $A$ is bounded.
+      Note that since $c$ is continuous on a closed set, so this implies that
+      $c$ achieves its maximum on $\overline{\Omega}$.
+      Let $M = \max[x \in \overline{\Omega}]{c(x)}$.
       \begin{align*}
-        A[u, v] &= 
+        A[u, v] &= \dintt{\Omega}{}{\nabla u \nabla v + c(x) uv}{x} \\
+        &= \dintt{\Omega}{}{\nabla u \nabla v}{x} + \dintt{\Omega}{}{c(x)uv}{x} \\
+        &\le \dintt{\Omega}{}{\nabla u \nabla v}{x} + M\dintt{\Omega}{}{uv}{x}
+        \intertext{By Holder's inequality}
+        &\le \norm[H^1_0(\Omega)]{u}\norm[H^1_0(\Omega)]{u} + M\norm[L^2(\Omega)]{u}\norm[L^2(\Omega)]{v}
+        \intertext{By Poincar\'e's Inequality}
+        &\le \norm[H^1_0(\Omega)]{u}\norm[H^1_0(\Omega)]{u} + MC^2\norm[H^1_0(\Omega)]{u}\norm[H^1_0(\Omega)]{v} \\
+        &= (1 + MC^2)\norm[H^1_0(\Omega)]{u}\norm[H^1_0(\Omega)]{u}
       \end{align*}
+      This shows that $A$ is bounded.
 
       Finally I will show that $A$ is coercive.
+      To see this note that $c$ is continuous on a closed set, so this implies
+      that $c$ achieves its minimum on $\overline{\Omega}$.
+      Let $m = \min[x \in \overline{\Omega}]{c(x)}$.
+      Also since $c(x) > -\lambda_1$ this implies that $m > -\lambda_1$.
+      Since $m$ is strictly greater than $-\lambda_1$ a value $-\epsilon$ can be
+      chosen such that $m > -\epsilon > -\lambda_1$.
+      This value can be chosen in such a way that $\epsilon > 0$.
+      If $m \le 0$, then $-\epsilon$ is any number between $m$ and $-\lambda$ and
+      $-\epsilon < 0$.
+      If $m > 0$, then $-\epsilon$ can be chosen such that
+      $0 > -\epsilon > -\lambda$ as $-\lambda < 0$.
       \begin{align*}
-        A[u, u] &= 
+        A[u, u] &= \dintt{\Omega}{}{\abs{\nabla u}^2 + c(x) u^2}{x} \\
+        &= \norm[H^1_0(\Omega)]{u}^2 + \dintt{\Omega}{}{c(x)u^2}{x}
+        \intertext{Since $c(x) > m > -\epsilon$}
+        &\ge \norm[H^1_0(\Omega)]{u}^2 - \epsilon\dintt{\Omega}{}{u^2}{x} \\
+        &= \norm[H^1_0(\Omega)]{u}^2 - \epsilon\norm[L^2(\Omega)]{u}^2
+        \intertext{Since we are subtracting a positive number, subtracting a
+          larger positive number will decrease the total.
+          In this case the Poincar\'e inequality can be used.
+          It is known that the smallest constant that satisfies the
+          Poincar\'e inequality is $1/\lambda_1$.}
+        &\ge \norm[H^1_0(\Omega)]{u}^2 - \frac{\epsilon}{\lambda_1}\norm[H^1_0(\Omega)]{u}^2 \\ 
+        &\ge \p{1 - \frac{\epsilon}{\lambda_1}}\norm[H^1_0(\Omega)]{u}^2
       \end{align*}
+      Since $-\epsilon > -\lambda_1$, this implies that $\epsilon < \lambda_1$
+      and that $1 - \frac{\epsilon}{\lambda_1} > 0$.
+      Thus $A$ is coercive.
 
       Now Lax-Milgram's Theorem states that there exists a unique solution to
       \[
@@ -180,14 +266,32 @@ Homework 12
       This shows that $A$ is bilinear.
 
       Next I will show that $A$ is bounded.
+      Let $M = \max[j,k]{\norm[L^{\infty}(\Omega)]{a_{jk}}}$.
       \begin{align*}
-        A[u, v] &= 
+        A[u, v] &= \dintt{\Omega}{}{a_{jk}(x)u_{x_k}(x) v_{x_j}(x)}{x} + \lambda \dintt{\Omega}{}{uv}{x} \\
+        &\le M\dintt{\Omega}{}{u_{x_k}(x) v_{x_j}(x)}{x} + \lambda \dintt{\Omega}{}{uv}{x} \\
+        &\le M\norm[H^1_0(\Omega)]{u}\norm[H^1_0(\Omega)]{v} + \lambda \norm[L^2(\Omega)]{u}\norm[L^2(\Omega)]{v}
+        \intertext{By Poincar\'e's Inequality}
+        &\le M\norm[H^1_0(\Omega)]{u}\norm[H^1_0(\Omega)]{v} + \lambda C^2\norm[H^1_0(\Omega)]{u}\norm[H^1_0(\Omega)]{v} \\
+        &= (M + \lambda C^2)\norm[H^1_0(\Omega)]{u}\norm[H^1_0(\Omega)]{v}
+        \intertext{Since $\norm[H^1(\Omega)]{u} = \sqrt{\norm[L^2(\Omega)]{u}^2 + \norm[H^1_0(\Omega)]{u}^2}$,
+          this implies that $\norm[H^1_0(\Omega)]{u} \le \norm[H^1(\Omega)]{u}$, therefore}
+        &\le (M + \lambda C^2) \norm[H^1(\Omega)]{u} \norm[H^1(\Omega)]{v}
       \end{align*}
+      This shows that $A$ is bounded.
 
       Lastly I will show that $A$ is coercive.
       \begin{align*}
-        A[u, u] &= 
+        A[u, u] &= \dintt{\Omega}{}{a_{jk}(x)u_{x_k}(x) u_{x_j}(x)}{x} + \lambda \dintt{\Omega}{}{u^2}{x} \\
+        &= \dintt{\Omega}{}{a_{jk}(x)(\nabla u)_k (\nabla u)_j}{x} + \lambda \dintt{\Omega}{}{u^2}{x}
+        \intertext{By the ellipticity condition}
+        &\ge \theta\dintt{\Omega}{}{\abs{\nabla u}^2}{x} + \lambda \dintt{\Omega}{}{u^2}{x} \\
+        &= \theta\norm[H^1_0(\Omega)]{u}^2 + \lambda \norm[L^2(\Omega)]{u}^2
+        \intertext{Let $\gamma = \min{\theta, \lambda} > 0$, then}
+        &\ge \gamma \p{\norm[H^1_0(\Omega)]{u}^2 + \norm[L^2(\Omega)]{u}^2} \\
+        &= \gamma \norm[H^1(\Omega)]{u}^2
       \end{align*}
+      This shows that $A$ is coercive.
 
       Now Lax-Milgram's Theorem states that there exists a unique
       $u \in H^1(\Omega)$ such that
@@ -199,7 +303,7 @@ Homework 12
     \end{proof}
 
   \pagebreak
-  \item[\#6]
+  \item[\#6] % Done
     Let $f$ and $g$ be in $L^2(0, 1)$.
     Use the Lax-Milgram Theorem to prove there is a unique weak solution
     $\set{u, v} \in H^1_0(0, 1)$ to
@@ -232,7 +336,8 @@ Homework 12
       linear operations.
       To verify this note that
       \begin{align*}
-        A[(u_1 + u_2, v_1 + v_2), (\phi, \psi)] &= \dintt{0}{1}{(u_1 + u_2)' \phi' + (u_1 + u_2)\phi + (v_1 + v_2)'\phi + (v_1 + v_2)' \psi' + (v_1 + v_2)\psi + (u_1 + u_2)'\psi}{x} \\
+        &A[(u_1 + u_2, v_1 + v_2), (\phi, \psi)] \\
+        &= \dintt{0}{1}{(u_1 + u_2)' \phi' + (u_1 + u_2)\phi + (v_1 + v_2)'\phi + (v_1 + v_2)' \psi' + (v_1 + v_2)\psi + (u_1 + u_2)'\psi}{x} \\
         &= \dintt{0}{1}{u_1'\phi + u_2' \phi' + u_1\phi + u_2\phi + v_1'\phi + v_2'\phi + v_1'\psi + v_2' \psi' + v_1\psi + v_2\psi + u_1'\psi + u_2'\psi}{x} \\
         &= \dintt{0}{1}{u_1'\phi + u_1 \phi + v_1' \phi + v_1'\psi + v_1\psi + u_1'\psi}{x} + \dintt{0}{1}{u_2' \phi' + u_2\phi + v_2'\phi + v_2' \psi' + v_2\psi + u_2'\psi}{x} \\
         &= A[(u_1, v_1), (\phi, \psi)] + A[(u_2, v_2), (\phi, \psi)]
@@ -241,8 +346,22 @@ Homework 12
 
       Next I will show that $A$ is bounded.
       \begin{align*}
-        A[(u, v), (\phi, \psi)]
+        &A[(u, v), (\phi, \psi)] \\
+        &= \dintt{0}{1}{u' \phi' + u\phi + v'\phi + v' \psi' + v\psi + u'\psi}{x} \\
+        &\le \norm[H^1_0]{u}\norm[H^1_0]{\phi} + \norm[L^2]{u}\norm[L^2]{\phi} + \norm[H^1_0]{v}\norm[L^2]{\phi} + \norm[H^1_0]{v}\norm[H^1_0]{\psi} + \norm[L^2]{v}\norm[L^2]{\psi} + \norm[H^1_0]{u}\norm[L^2]{\psi} \\
+        \intertext{Using Poincar\'e's Inequality many times}
+        &\le \norm[H^1_0]{u}\norm[H^1_0]{\phi} + C^2\norm[H^1_0]{u}\norm[H^1_0]{\phi} + C\norm[H^1_0]{v}\norm[H^1_0]{\phi} + \norm[H^1_0]{v}\norm[H^1_0]{\psi} + C^2\norm[H^1_0]{v}\norm[H^1_0]{\psi} + C\norm[H^1_0]{u}\norm[H^1_0]{\psi} \\
+        &= \norm[H^1_0]{u}\p{(1 + C^2)\norm[H^1_0]{\phi} + C\norm[H^1_0]{\psi}} + \norm[H^1_0]{v}\p{C\norm[H^1_0]{\phi} + (1 + C^2)\norm[H^1_0]{\psi}}
+        \intertext{Let $M = \max{1 + C^2, C}$}
+        &\le M\norm[H^1_0]{u}\p{\norm[H^1_0]{\phi} + \norm[H^1_0]{\psi}} + M\norm[H^1_0]{v}\p{\norm[H^1_0]{\phi} + \norm[H^1_0]{\psi}} \\
+        &\le M\p{\norm[H^1_0]{u} + \norm[H^1_0]{v}}\p{\norm[H^1_0]{\phi} + \norm[H^1_0]{\psi}} \\
+        \intertext{Using Cauchy-Schwarze it is possible to show that
+          $\abs{x} + \abs{y} \le \sqrt{2} \sqrt{x^2 + y^2}$.
+          Using this fact results in}
+        &\le 2M\sqrt{\norm[H^1_0]{u}^2 + \norm[H^1_0]{v}^2} \sqrt{\norm[H^1_0]{\phi}^2 + \norm[H^1_0]{v}^2} \\
+        &= 2M \norm[H^1_0 \times H^1_0]{(u, v)} \norm[H^1_0 \times H^1_0]{(\phi, \psi)}\\
       \end{align*}
+      Thus $A$ is bounded.
 
       Lastly I will show that $A$ is coercive.
       Let $u, v \in H^1_0(0, 1)$, then
@@ -253,8 +372,18 @@ Homework 12
         &= \dintt{0}{1}{(u')^2}{x} + \dintt{0}{1}{u^2}{x} - \dintt{0}{1}{u'v}{x} + \dintt{0}{1}{(v')^2}{x} + \dintt{0}{1}{v^2}{x} + \dintt{0}{1}{u'v}{x} \\
         &= \dintt{0}{1}{(u')^2}{x} + \dintt{0}{1}{u^2}{x} + \dintt{0}{1}{(v')^2}{x} + \dintt{0}{1}{v^2}{x} \\
         &= \norm[H^1_0]{u}^2 + \norm[L^2]{u}^2 + \norm[H^1_0]{v}^2 + \norm[L^2]{v}^2 \\
+        &\ge \norm[H^1_0]{u}^2 + \norm[H^1_0]{v}^2 \\
+        &= \norm[H^1_0 \times H^1_0]{(u, v)}
       \end{align*}
-    \end{proof}
+      Thus $A$ is coercive.
 
+      Now the Lax-Milgram Theorem allows us to conclude that there exists a
+      unique weak solution to
+      \begin{align*}
+        -u'' + u + v' &= f \\
+        -v'' + v + u' &= g,
+      \end{align*}
+      where $u(0) = v(0) = 0$ and $u(1) = v(1) = 0$.
+    \end{proof}
 \end{enumerate}
 \end{document}
